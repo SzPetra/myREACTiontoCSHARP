@@ -1,30 +1,33 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../assets/adminPage.css";
-import Dropdown from "react-dropdown";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-
-const testOptions = ["Chair-lamp test", "Work motivation test"];
-const editTestsOptions = ["Edit chair-lamp test", "Edit work motivation test"];
+import Dropdown from "./Dropdown";
+import testPageOptions from "../options/testPageOptions";
+import editPageOptions from "../options/editPageOptions";
 
 const Header = () => {
   return (
-    <>
-      <div className="header-container">
-        <Dropdown
-          options={testOptions}
-          arrowClosed={<FaAngleDown />}
-          arrowOpen={<FaAngleUp />}
-          placeholder={"Tests"}
-        />
+    <div className="header-container">
+      <img
+        src="/salva_logo.jpg"
+        id="salva-logo"
+        aria-label="Salva Vita logo"
+        alt="Salva Vita logo"
+      />
 
-        <Dropdown
-          options={editTestsOptions}
-          arrowClosed={<FaAngleDown />}
-          arrowOpen={<FaAngleUp />}
-          placeholder={"Edit tests"}
-        />
-      </div>
-    </>
+      <section className="header-content-container">
+        <ul className="header-content">
+          {/* Test menu dropdown */}
+          <Dropdown menu="Tests" options={testPageOptions} />
+
+          {/* Create link page link */}
+          <Link to="/tests/create-link">Create link for tests</Link>
+
+          {/* Edit tests menu dropdown */}
+          <Dropdown menu="Edit tests" options={editPageOptions} />
+        </ul>
+      </section>
+    </div>
   );
 };
 
