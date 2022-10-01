@@ -11,7 +11,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/tests" element={<App />}>
-          <Route path="create-link/:test" element={<CreateLink />} />
+          <Route exact path="/create-link" element={<CreateLink />} />
         </Route>
       </Routes>
     </BrowserRouter>

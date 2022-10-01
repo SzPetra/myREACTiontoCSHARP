@@ -11,6 +11,8 @@
 .header-content {
     display: flex;
     flex-direction: row;
+
+    font-size: 1rem;
 }
 
 a {
@@ -20,12 +22,16 @@ a {
 a:visited {
     color: var(--mainblue);
 }
+a:hover {
+    color: var(--red);
+}
+
 
 #salva-logo {
     width: 3.5rem;
     height: 3.5rem;
 
-    margin-left: 3rem;
+    margin-left: 5rem;
 }
 
 .sub-menu {
@@ -44,4 +50,13 @@ a:visited {
     height: 8rem;
 
     border-top: 0.2rem solid var(--lightblue);
+}
+.sub-menu a {
+    color: var(--black);
+    opacity: 0.6;
+}
+
+#together-img {
+    width: 100%;
+    height: 33.5rem;
 }
