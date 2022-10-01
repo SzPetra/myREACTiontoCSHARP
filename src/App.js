@@ -1,9 +1,9 @@
-import AdminPage from "./adminPage/AdminPage";
+import { Outlet } from "react-router-dom";
 
 function App() {
   return (
     <>
-      <AdminPage />
+      <Outlet />
     </>
   );
 }
