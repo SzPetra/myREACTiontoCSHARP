@@ -1,5 +1,10 @@
+import Container from "./adminPage/components/Container";
+
 function App() {
-  return <></>;
+  return (
+    <>
+    <Container />
+    </>);
 }
 
 export default App;
