@@ -1,5 +1,11 @@
+import AdminPage from "./adminPage/AdminPage";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <AdminPage />
+    </>
+  );
 }
 
 export default App;
