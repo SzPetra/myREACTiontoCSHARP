@@ -1,10 +1,11 @@
-import Container from "./adminPage/components/Container";
+import AdminPage from "./adminPage/AdminPage";
 
 function App() {
   return (
     <>
-    <Container />
-    </>);
+      <AdminPage />
+    </>
+  );
 }
 
 export default App;
