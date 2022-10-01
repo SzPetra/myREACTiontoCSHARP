@@ -1,10 +1,11 @@
 import React from "react";
-import Header from "./components/Header";
+import Navbar from "../../layout/components/Navbar";
+import "../assets/adminPage.css";
 
 const AdminPage = () => {
   return (
     <>
-      <Header />
+      <Navbar />
       <img
         src="/together.jpg"
         id="together-img"

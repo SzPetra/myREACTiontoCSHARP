@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
-import AdminPage from "./adminPage/AdminPage";
+import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
