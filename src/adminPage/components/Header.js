@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../assets/adminPage.css";
 import Dropdown from "react-dropdown";
 import { FaAngleDown, FaAngleUp } from "react-icons/fa";
@@ -16,6 +17,8 @@ const Header = () => {
           arrowOpen={<FaAngleUp />}
           placeholder={"Tests"}
         />
+
+        <Link to="/tests/create-link/:test">Create link for tests</Link>
 
         <Dropdown
           options={editTestsOptions}
