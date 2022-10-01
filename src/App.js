@@ -2,6 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  const url = new URL('https://developer.mozilla.org/en-US/docs/Web/API/URL/href#Examples');
+  console.log(url.hash);
   return (
     <div className="App">
       <header className="App-header">
