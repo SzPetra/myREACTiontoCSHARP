@@ -1,13 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../assets/adminPage.css";
-import { FaAngleDown, FaAngleUp } from "react-icons/fa";
-
-const testOptions = ["Chair-lamp test", "Work motivation test"];
-const editTestsOptions = ["Edit chair-lamp test", "Edit work motivation test"];
+import Dropdown from "./Dropdown";
+import testPageOptions from "../options/testPageOptions";
+import editPageOptions from "../options/editPageOptions";
 
 const Header = () => {
-  return <></>;
+  return (
+    <div className="header-container">
+      <img src="/salva_logo.jpg" id="salva-logo" alt="Salva Vita logo" />
+
+      <section className="header-content-container">
+        <ul className="header-content">
+          {/* Test menu dropdown */}
+          <Dropdown menu="Tests" options={testPageOptions} />
+
+          {/* Create link page link */}
+          <Link to="/TODO">Create link for tests</Link>
+
+          {/* Edit tests menu dropdown */}
+          <Dropdown menu="Edit tests" options={editPageOptions} />
+        </ul>
+      </section>
+    </div>
+  );
 };
 
 export default Header;
