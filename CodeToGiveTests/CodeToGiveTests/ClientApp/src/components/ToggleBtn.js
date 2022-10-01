@@ -1,19 +1,19 @@
-import React from 'react';
-import apiRequest from '../requests/apiRequest';
-import postOptions from '../requests/apiRequest';
 
-const ToggleBtn = (btnprops) => {
+import React from 'react'
+
+const ToggleButton = (btnprops) => {
     const [toggleState, setToggleState] = btnprops.toggle;
-    const url = "https://localhost:44490/weather/encrypt";
-    const toggleButtonState = ([toggleState, setToggleState]) => {
-      apiRequest(url, [toggleState, setToggleState], postOptions(toggleState));
+
+    const toggleButtonState = (toggleState) => {
+        setToggleState(toggleState === true ? false : true);
+        console.log(toggleState);
     };
 
   return (
-    <button onClick={ () => {toggleButtonState([toggleState, setToggleState])} }>
-        Send 
+    <button onClick={ () => {toggleButtonState(toggleState)} }>
+        {toggleState ? 'Event' : 'Song'}
     </button>
   )
 };
 
-export default ToggleBtn;
+export default ToggleButton;

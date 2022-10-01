@@ -7,9 +7,15 @@ const Container = () => {
 
     //const queryParams = 'name=John&&age=22&&number=9876543210'; //query string params which you want to encrypt
     //const hash = encryptQueryParams(queryParams, key)
+    const hash = encodeURIComponent('name=John&&age=22&&number=9876543210');
+    const s = decodeURIComponent(hash);
+    const myUrl = "http://example.com/index.html?param=1&anotherParam=2";
+    const myOtherUrl = new URL("http://example.com/index.html");
+    myOtherUrl.search = new URLSearchParams({url: myUrl});
+    console.log(myOtherUrl.toString());
   return (
     <container>
-      {hash}
+      {s}
     </container>
   );
 };
