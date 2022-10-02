@@ -9,19 +9,20 @@ const CreateLink = () => {
   return (
     <>
       <Navbar />
-      <div className="page-content-container">
+      <div className="link-page-content-container">
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
           alt="We help people with disabilities"
         />
 
-        <form className="form">
-          <section className="form-content">
+        <form className="link-page-form">
+          <section className="link-page-form-content">
             {/* email input */}
             <label for="email">Enter a valid email address*:</label>
             <input
               id="email"
+              className="link-page-form-input-email"
               type="email"
               required
               placeholder="email of the receiver"
@@ -32,14 +33,14 @@ const CreateLink = () => {
             <Select id="test-type" options={testPageOptions} />
 
             {/* select mode */}
-            <label for="mode">
+            <label for="test-mode">
               Choose mode:
               <p>(if you don't choose test mode, the default will be normal)</p>
             </label>
-            <Select id="mode" options={modeOptions} />
+            <Select id="test-mode" options={modeOptions} />
           </section>
           <Form />
-          <button type="submit" id="form-btn">
+          <button type="submit" id="link-page-form-btn">
             Send test link
           </button>
         </form>

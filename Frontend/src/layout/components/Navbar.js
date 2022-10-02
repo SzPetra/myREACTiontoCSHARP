@@ -7,7 +7,7 @@ import editPageOptions from "../../options/editPageOptions";
 
 const Navbar = () => {
   return (
-    <div className="header-container">
+    <div className="header-content-container">
       <img
         src="/salva_logo.jpg"
         id="salva-logo"
@@ -15,13 +15,15 @@ const Navbar = () => {
         alt="Salva Vita logo"
       />
 
-      <section className="header-content-container">
-        <ul className="header-content">
+      <section className="header-content">
+        <ul className="header-content-menu">
           {/* Test menu dropdown */}
           <Dropdown menu="Tests" options={testPageOptions} />
 
           {/* Create link page link */}
-          <Link to="/tests/create-link">Create link for tests</Link>
+          <Link to="/tests/create-link" className="header-content-menu-link">
+            Create link for tests
+          </Link>
 
           {/* Edit tests menu dropdown */}
           <Dropdown menu="Edit tests" options={editPageOptions} />
