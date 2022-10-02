@@ -1,0 +1,18 @@
+.test-content-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.test-scale {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.scale-btn {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 1.5rem;
+}
