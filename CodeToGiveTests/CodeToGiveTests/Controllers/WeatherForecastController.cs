@@ -7,6 +7,8 @@ namespace CodeToGiveTests.Controllers
 	[Route("[controller]")]
 	public class WeatherForecastController : ControllerBase
 	{
+
+		private string _data {get;set;}
 		private static readonly string[] Summaries = new[]
 		{
 		"Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
@@ -31,10 +33,20 @@ namespace CodeToGiveTests.Controllers
 			.ToArray();
 		}
 
-		[HttpPost("encrypt")]
-		public string GetAlles([FromBody] string payload)
+		[HttpGet("{id}")]
+		public ActionResult<string> GetAlle()
 		{
-			return StringCrypter.Encrypt(payload);
+			return _data;
+		}
+
+
+		[HttpPost]
+		public ActionResult<string> GetAlles([FromBody] string payload)
+		{
+			var c = StringCrypter.Encrypt(payload);
+			_data = c;
+			_logger.LogInformation(c);
+			return Ok(c);
 		}
 	}
 }
