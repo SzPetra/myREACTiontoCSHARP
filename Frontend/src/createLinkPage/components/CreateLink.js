@@ -5,6 +5,7 @@ import Select from "./Select";
 import testPageOptions from "../../options/testPageOptions";
 import modeOptions from "../../options/modeOptions";
 import Form from "./Form";
+
 const CreateLink = () => {
   return (
     <>
@@ -18,6 +19,14 @@ const CreateLink = () => {
 
         <form className="form">
           <section className="form-content">
+            {/* test participant name input */}
+            <label for="participantName">Enter the name of the reciver*:</label>
+            <input
+              id="participantName"
+              type="email"
+              required
+              placeholder="name of the receiver"
+            />
             {/* email input */}
             <label for="email">Enter a valid email address*:</label>
             <input
@@ -29,14 +38,14 @@ const CreateLink = () => {
 
             {/* select test type */}
             <label for="test-type">Choose a type of test* :</label>
-            <Select id="test-type" options={testPageOptions} />
+            <Select id="test-type" options={testPageOptions} type="test-type" />
 
             {/* select mode */}
             <label for="mode">
               Choose mode:
               <p>(if you don't choose test mode, the default will be normal)</p>
             </label>
-            <Select id="mode" options={modeOptions} />
+            <Select id="mode" options={modeOptions} type="display-mode"/>
           </section>
           <Form />
           <button type="submit" id="form-btn">
