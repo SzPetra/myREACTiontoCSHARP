@@ -1,14 +1,11 @@
-.page-content-container {
+.link-page-content-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-#we-help-people-image {
-    width: 100%;
-}
-
-.form {
+/* form */
+.link-page-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,27 +24,26 @@
     margin-top: 6rem;
     margin-bottom: 6rem;
 }
-.form-content {
+
+/* form content selection: including only input/select fields */
+.link-page-form-content {
     display: flex;
     flex-direction: column;
 
     margin-bottom: 5rem;
     margin-top: 2rem;
 }
-.form-content p {
+
+.link-page-form-content p {
     font-size: 1rem;
 }
-.form-content label {
+
+.link-page-form-content label {
     margin-bottom: 1.5rem;
 }
 
-.select-menu {
-    width: 15rem;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-#email {
+/* email input */
+.link-page-form-input-email {
     width: 25rem;
     height: 3rem;
 
@@ -61,13 +57,22 @@
 
     margin-bottom: 2rem;
 }
-#email:focus {
+
+.link-page-form-input-email:focus {
     border: none;
     text-decoration: none;
     box-shadow: none;
 }
 
-#form-btn {
+/* select menu fields */
+.select-menu {
+    width: 15rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* form button */
+#link-page-form-btn {
     width: 100%;
     height: 4rem;
 
@@ -77,5 +82,10 @@
     background-color: var(--orange);
 
     font-size: 1.5rem;
-    color: var(--white);    
+    color: var(--white);
+}
+
+/* image */
+#we-help-people-image {
+    width: 100%;
 }
