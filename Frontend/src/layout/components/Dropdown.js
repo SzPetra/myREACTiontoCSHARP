@@ -20,10 +20,11 @@ const Dropdown = ({ menu, options, ...rest }) => {
         to="/TODO"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
+        className="header-content-menu-link"
       >
         {menu} <FaAngleDown />
         {isHovering && (
-          <ul className="sub-menu">
+          <ul className="header-content-sub-menu">
             {options.map((option) => (
               <Link key={option.id} to={option.pageLink}>
                 {option.option}
