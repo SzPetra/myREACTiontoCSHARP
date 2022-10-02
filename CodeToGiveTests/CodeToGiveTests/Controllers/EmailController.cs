@@ -26,7 +26,7 @@ namespace CodeToGiveTests.Controllers
 			Console.WriteLine(payload);
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "szabimi12@gmail.com",
+                EmailAdress = "petra.szilagyi27@gmail.com",
                 Subject = "Hi Test mail",
                 Body = $"<strong> HEllo this is the test mail with {payload.Name}",
                 Attachments = null
