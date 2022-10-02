@@ -19,26 +19,31 @@ const CreateLink = () => {
         <form className="link-page-form">
           <section className="link-page-form-content">
             {/* email input */}
-            <label for="email">Enter a valid email address*:</label>
-            <input
-              id="email"
-              className="link-page-form-input-email"
-              type="email"
-              required
-              placeholder="email of the receiver"
-            />
+            <label for="email">
+              Enter a valid email address*:
+              <input
+                id="email"
+                className="link-page-form-input-email"
+                type="email"
+                required
+                placeholder="email of the receiver"
+              />
+            </label>
 
             {/* select test type */}
-            <label for="test-type">Choose a type of test* :</label>
-            <Select id="test-type" options={testPageOptions} />
+            <label for="test-type">
+              Choose a type of test* :
+              <Select id="test-type" options={testPageOptions} />
+            </label>
 
             {/* select mode */}
             <label for="test-mode">
               Choose mode:
               <p>(if you don't choose test mode, the default will be normal)</p>
+              <Select id="test-mode" options={modeOptions} />
             </label>
-            <Select id="test-mode" options={modeOptions} />
           </section>
+
           <Form />
           <button type="submit" id="link-page-form-btn">
             Send test link
