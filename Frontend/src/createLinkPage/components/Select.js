@@ -1,8 +1,9 @@
 import React from "react";
+import { useEffect } from "react";
 
-const Select = ({ options, ...rest }) => {
+const Select = ({ options, type, ...rest }) => {
   return (
-    <select className="select-menu">
+    <select id={type} className="select-menu">
       {options.map((option) => (
         <option key={option.id} value={option.option}>
           {option.option}
