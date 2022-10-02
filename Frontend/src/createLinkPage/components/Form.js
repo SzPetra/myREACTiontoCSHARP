@@ -1,12 +1,24 @@
 import React from "react";
 const Form = () => {
-    const submission = {
-        Name: 'Kázmér',
-        Email: 'szabimi12@gmail.com',
-        TestUrl: 'Tigris, Cica'
-    };
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const participantName = document.getElementById("participantName").value;
+        const email = document.getElementById("email").value;
+        const selectTestType = document.getElementById("test-type");
+        const testType = selectTestType.options[selectTestType.selectedIndex].text;
+        const selectDisplayMode = document.getElementById("display-mode");
+        const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
+
+        //const urlQuery = `name=${participantName},displayMode=${displayMode},testType=${testType}`;
+        const urlQuery = `${participantName},${displayMode},${testType}`;
+
+        const submission = {
+            Name: participantName,
+            Email: email,
+            TestUrl: urlQuery
+        };
+
         fetch("https://localhost:7200/api/Email/SendEmailWithTestLink", {
             method: "POST",
             headers: {
