@@ -1,0 +1,81 @@
+.page-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#we-help-people-image {
+    width: 100%;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    background-color: var(--white);
+    box-shadow: 0.6rem 0.6rem 0.3rem var(--lightgrey);
+    border-radius: 0.5rem;
+    width: 35rem;
+    height: 40rem;
+
+    font-size: 2rem;
+    color: var(--black);
+    font-weight: normal;
+
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+}
+.form-content {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+}
+.form-content p {
+    font-size: 1rem;
+}
+.form-content label {
+    margin-bottom: 1.5rem;
+}
+
+.select-menu {
+    width: 15rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+#email {
+    width: 25rem;
+    height: 3rem;
+
+    border: none;
+    border-bottom: 0.2rem solid var(--black);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+    box-shadow: 0.6rem 0.6rem 0.3rem var(--lightgrey);
+
+    font-size: 1.5rem;
+
+    margin-bottom: 2rem;
+}
+#email:focus {
+    border: none;
+    text-decoration: none;
+    box-shadow: none;
+}
+
+#form-btn {
+    width: 100%;
+    height: 4rem;
+
+    border: none;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: var(--orange);
+
+    font-size: 1.5rem;
+    color: var(--white);    
+}

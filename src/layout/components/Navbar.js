@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../assets/adminPage.css";
+import "../assets/navbar.css";
 import Dropdown from "./Dropdown";
-import testPageOptions from "../options/testPageOptions";
-import editPageOptions from "../options/editPageOptions";
+import testPageOptions from "../../options/testPageOptions";
+import editPageOptions from "../../options/editPageOptions";
 
-const Header = () => {
+const Navbar = () => {
   return (
     <div className="header-container">
       <img
@@ -31,4 +31,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;
