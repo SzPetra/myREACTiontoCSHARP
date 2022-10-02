@@ -24,4 +24,7 @@ code {
   --black: rgb(0,0,0);
   --lightgrey: #ECECEC;
   --orange: #FF9700;
+
+  /* contrast option colors */
+  --contrastyellow: #ffff00;
 }
