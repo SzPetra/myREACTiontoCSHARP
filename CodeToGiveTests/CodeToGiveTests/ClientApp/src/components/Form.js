@@ -1,13 +1,14 @@
 import React from "react";
 const Form = () => {
     const submission = {
-        Name: 'Mármint'
+        Name: 'Kázmér',
+        Email: 'szabimi12@gmail.com',
+        TestUrl: 'Tigris, Cica'
     };
     const handleSubmit = async (event) => {
         event.preventDefault();
-        fetch("https://localhost:7275/api/Email/SendEmail", {
+        fetch("https://localhost:7275/api/Email/SendEmailWithTestLink", {
             method: "POST",
-            //mode: "no-cors",
             headers: {
                 'Content-Type': "application/json"
             },

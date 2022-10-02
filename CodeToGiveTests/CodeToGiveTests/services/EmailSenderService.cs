@@ -8,7 +8,7 @@ namespace CodeToGiveTests.services
     {
         public static MailjetClient CreateMailJetClient()
         {
-            return new MailjetClient("4ea34862af42c11c845a4e733642ee31", "9ae9b242fcff2e7bf6ff6d374dac0ff4");
+            return new MailjetClient("63aa1561aba97d8b079e441f8d9dbcb4", "293bac4932089534cb94fbc39487ea9a");
         }
         protected abstract Task Send(EmailModel email);
         public async Task SendEmail(EmailModel emailModel)
