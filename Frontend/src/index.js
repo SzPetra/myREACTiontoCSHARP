@@ -5,7 +5,9 @@ import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
-import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
+//import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
+import TestSelector from "./testSelector/components/TestSelector";
+import TestSelectorPage from "./testSelector/components/TestSelectorPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,11 +17,10 @@ root.render(
         <Route path="/tests" element={<App />}>
           <Route index element={<AdminPage />} />
           <Route exact path="create-link" element={<CreateLink />} />
-          <Route
-            exact
-            path="work-motivation-test"
-            element={<WorkMotivationTestPage />}
-          />
+          
+        </Route>
+        <Route path="/select-test" element={<App />}>
+          <Route index element={<TestSelector />} />
         </Route>
       </Routes>
     </BrowserRouter>

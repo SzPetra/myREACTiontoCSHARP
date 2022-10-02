@@ -10,15 +10,16 @@ const Form = () => {
         const selectDisplayMode = document.getElementById("display-mode");
         const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
 
-        //const urlQuery = `name=${participantName},displayMode=${displayMode},testType=${testType}`;
-        const urlQuery = `${participantName},${displayMode},${testType}`;
+        const urlQuery = `${participantName}+Contrast+Bigger-Font`;
+        //const urlQuery = `name=${participantName}+displayMode=${displayMode}+testType=${testType}`;
+        //const urlQuery = `${participantName},${displayMode},${testType}`;
 
         const submission = {
             Name: participantName,
             Email: email,
             TestUrl: urlQuery
         };
-
+        console.log(submission)
         fetch("https://localhost:7200/api/Email/SendEmailWithTestLink", {
             method: "POST",
             headers: {

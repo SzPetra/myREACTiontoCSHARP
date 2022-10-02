@@ -1,5 +1,4 @@
 import React from "react";
-import { useEffect } from "react";
 
 const Select = ({ options, type, ...rest }) => {
   return (
