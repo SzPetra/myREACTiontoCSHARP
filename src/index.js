@@ -5,6 +5,7 @@ import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
+import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +15,11 @@ root.render(
         <Route path="/tests" element={<App />}>
           <Route index element={<AdminPage />} />
           <Route exact path="create-link" element={<CreateLink />} />
+          <Route
+            exact
+            path="work-motivation-test"
+            element={<WorkMotivationTestPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
