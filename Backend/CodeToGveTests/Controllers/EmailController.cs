@@ -4,6 +4,8 @@ using CodeToGiveTests.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Cors;
 using CodeToGiveTests.Encryption;
+using PdfSharp.Pdf;
+using CodeToGveTests.PDFGeneration;
 using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
 
 namespace CodeToGiveTests.Controllers
@@ -25,12 +27,13 @@ namespace CodeToGiveTests.Controllers
         [HttpPost]
         public async Task<ActionResult<dynamic>> SendEmailWithTestLink([FromBody] LoadModel payload)
         {
+            string testlink = "http://localhost:3000/select-test?data=" + payload.TestUrl;//StringCrypter.Encrypt(payload.TestUrl);
+
+           Console.WriteLine(payload);
             string adminEmail = payload.AdminEmail;
-            SessionExtensions.SetObjectAsJson(HttpContext.Session, "cart", adminEmail);
+            SessionExtensions.SetObjectAsJson(HttpContext.Session, "email", adminEmail);
 
-
-            string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
-			Console.WriteLine(payload);
+			Console.WriteLine(adminEmail);
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
                 EmailAdress = payload.ClientEmail,
@@ -61,12 +64,23 @@ namespace CodeToGiveTests.Controllers
 
         [EnableCors("AnotherPolicy")]
         [Route("DecryptUrl")]
-        [HttpPost]
-        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] string payload)
+        [HttpGet]
+        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromQuery] string payload)
         {
-            string decryptedString = StringCrypter.Decrypt(payload);
+            string decryptedString = payload; // StringCrypter.Decrypt(payload);
+			Console.WriteLine(decryptedString);
             TestLinkModel testLinkData = new TestLinkModel(decryptedString);
             return Ok(testLinkData);
+        }
+
+        [Route("")]
+        [HttpGet]
+        public bool SendPDF()
+        {
+            var pdf = PdfGenerator.GeneratePdf();
+            if (pdf == null)
+                return false;
+            return true;
         }
     }
 }

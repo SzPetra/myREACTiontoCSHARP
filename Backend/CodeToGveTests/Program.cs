@@ -1,4 +1,5 @@
 using CodeToGiveTests.services;
+using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSingleton<EmailHostedService>();
 builder.Services.AddHostedService(provider => provider.GetService<EmailHostedService>());
+
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -46,6 +49,8 @@ app.UseCors();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllers();
 

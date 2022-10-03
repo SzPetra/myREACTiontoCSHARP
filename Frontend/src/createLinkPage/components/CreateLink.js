@@ -4,14 +4,17 @@ import "../assets/createLinkPage.css";
 import Select from "./Select";
 import testPageOptions from "../../options/testPageOptions";
 import modeOptions from "../../options/modeOptions";
+import Form from "./Form";
+
 import FetchDataButton from "../components/FetchDataButton";
 import Input from "./Input";
 
 const CreateLink = ({ design }) => {
+
   return (
     <>
       <Navbar />
-      <div className="link-page-content-container">
+      <div className="page-content-container">
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
@@ -53,7 +56,7 @@ const CreateLink = ({ design }) => {
               <p>(If you don't choose test mode, the default will be basic)</p>
               <Select id="test-mode" options={modeOptions} />
             </label>
-            <FetchDataButton />
+            <FetchDataButton btnId={"link-page-form-btn"}/>
           </section>
         </form>
       </div>
