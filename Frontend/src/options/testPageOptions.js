@@ -14,6 +14,11 @@ const testPageOptions = [
     option: "Work motivation test Read out loud",
     pageLink: "/tests/work-motivation-test/read-out-loud",
   },
+  {
+    id: 4,
+    option: "Work motivation test with Speech Recognition",
+    pageLink: "/tests/work-motivation.test/speech-recognition",
+  },
 ];
 
 export default testPageOptions;

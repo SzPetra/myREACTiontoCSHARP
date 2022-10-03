@@ -8,6 +8,7 @@ import App from "./App";
 import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
 import WorkMotivationTestPage from "./testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
 import WorkMotivationTestReadLoud from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageReadLoud";
+import WorkMotivationTestPageSpeechRecognition from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageSpeechRecognition";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -26,6 +27,11 @@ root.render(
             exact
             path="work-motivation-test/read-out-loud"
             element={<WorkMotivationTestReadLoud />}
+          />
+          <Route
+            exact
+            path="work-motivation.test/speech-recognition"
+            element={<WorkMotivationTestPageSpeechRecognition />}
           />
           <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>

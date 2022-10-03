@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
 import "../../assets/workMotivationTest.css";
-import workMotivationQuestions from "../../questions/hungarian/workMotivationQuestionsHungarian";
+import workMotivationQuestions from "../../questions/english/workMotivationQuestionsEnglish";
+import { useContext } from "react";
+import { ThemeContext } from "../../../../App.js";
 
 const WorkMotivationTestPageSpeechRecognition = () => {
+  const { design } = useContext(ThemeContext);
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const { speak } = useSpeechSynthesis();
@@ -13,15 +16,48 @@ const WorkMotivationTestPageSpeechRecognition = () => {
     },
   });
 
+  const h1LAbel = "I would like a job where a person";
+  const questionValue = `${workMotivationQuestions[index].question}`;
+  const nextButtonLabel = "Next question";
   const choose = "press any key and say 1-5";
 
   return (
-    <div className="work-mot-test-content-container">
-      <h1 tabIndex={1}>Olyan munkát szeretnék, ahol az ember</h1>
-      <p className="work-mot-test-content-question" tabIndex={2}>
+    <div
+      className={
+        design
+          ? "work-mot-test-content-container-contrast"
+          : "work-mot-test-content-container"
+      }
+    >
+      <h1
+        className={
+          design
+            ? "work-mot-test-content-title-contrast"
+            : "work-mot-test-content-title"
+        }
+        tabIndex={1}
+        onFocus={() => speak({ text: h1LAbel })}
+      >
+        I would like a job where a person
+      </h1>
+      <p
+        className={
+          design
+            ? "work-mot-test-content-question-contrast"
+            : "work-mot-test-content-question"
+        }
+        tabIndex={2}
+        onFocus={() => speak({ text: questionValue })}
+      >
         {workMotivationQuestions[index].question}
       </p>
-      <p onChange={(event) => setValue(event.target.value)}>{value}</p>
+
+      <p
+        className={design ? "speech-rec-value-contrast" : "speech-rec-value"}
+        onChange={(event) => setValue(event.target.value)}
+      >
+        {value}
+      </p>
       <button
         onFocus={() => speak({ text: choose })}
         onMouseDown={listen}
@@ -29,15 +65,20 @@ const WorkMotivationTestPageSpeechRecognition = () => {
         onMouseUp={stop}
         onKeyUp={stop}
       >
-        🎤
+        Listen
       </button>
       {listening && <p>I'm listening</p>}
 
       <button
-        className="work-mot-test-content-btn"
+        className={
+          design
+            ? "work-mot-test-content-btn-contrast"
+            : "work-mot-test-content-btn"
+        }
         onClick={() => setIndex(index + 1)}
+        onFocus={() => speak({ text: nextButtonLabel })}
       >
-        Következő állítás
+        Next question
       </button>
     </div>
   );

@@ -125,3 +125,11 @@
     border: 0.6rem solid var(--contrastyellow);
     font-size: 1.4rem;
 }
+
+/* speech recognition value */
+.speech-rec-value {
+    color: var(--red);
+}
+.speech-rec-value-contrast {
+    color: var(--contrastyellow)
+}
