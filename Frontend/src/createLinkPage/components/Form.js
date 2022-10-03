@@ -1,5 +1,5 @@
 import React from "react";
-const Form = () => {
+const Form = ({btnId}) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -10,17 +10,11 @@ const Form = () => {
         const selectDisplayMode = document.getElementById("display-mode");
         const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
 
-        
         const pcNameNoWs = replaceWhitespce(participantName, "+");
         const testTypeNoWs = replaceWhitespce(testType, "+");
-        console.log(testTypeNoWs);
         const displayModeNoWs = replaceWhitespce(displayMode, "+");
-        console.log(displayModeNoWs);
-
 
         const urlQuery = `${pcNameNoWs}/${displayModeNoWs}/${testTypeNoWs}`;
-        //const urlQuery = `name=${participantName}+displayMode=${displayMode}+testType=${testType}`;
-        //const urlQuery = `${participantName},${displayMode},${testType}`;
 
         const submission = {
             Name: participantName,
@@ -46,7 +40,7 @@ const Form = () => {
         });
     };
     
-    return <button onClick={handleSubmit}>Click here to submit</button>;
+    return <button onClick={handleSubmit} type="submit" id={btnId}>Send test link</button>;
 };
 
 
