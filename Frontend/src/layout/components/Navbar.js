@@ -6,7 +6,7 @@ import testPageOptions from "../../options/testPageOptions";
 import editPageOptions from "../../options/editPageOptions";
 
 const Navbar = () => {
-  const [design, setDesign] = useState(false);
+  const [design, setDesign] = useState(true);
 
   const handleDesign = () => {
     if (design) {
