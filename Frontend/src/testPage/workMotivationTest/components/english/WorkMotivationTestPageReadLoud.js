@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
-import workMotivationQuestions from "../../questions/hungarian/workMotivationQuestions";
-import "../assets/workMotivationTest.css";
+import workMotivationQuestions from "../../questions/hungarian/workMotivationQuestionsHungarian";
+import "../../assets/workMotivationTest.css";
 
 const WorkMotivationTestPageReadLoud = () => {
   const { speak } = useSpeechSynthesis();

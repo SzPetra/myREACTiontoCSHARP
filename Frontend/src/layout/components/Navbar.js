@@ -1,21 +1,13 @@
-import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/navbar.css";
 import Dropdown from "./Dropdown";
 import testPageOptions from "../../options/testPageOptions";
 import editPageOptions from "../../options/editPageOptions";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
 const Navbar = () => {
-  const [design, setDesign] = useState(true);
-
-  const handleDesign = () => {
-    if (design) {
-      setDesign(false);
-    } else {
-      setDesign(true);
-    }
-  };
-
+  const { design, setDesign } = useContext(ThemeContext);
   return (
     <div
       className={
@@ -24,12 +16,14 @@ const Navbar = () => {
           : "header-content-container"
       }
     >
-      <img
-        src="/salva_logo.jpg"
-        id={design ? "salva-logo-contrast" : "salva-logo"}
-        aria-label="Salva Vita logo"
-        alt="Salva Vita logo"
-      />
+      <Link to="/tests">
+        <img
+          src="/salva_logo.jpg"
+          id={design ? "salva-logo-contrast" : "salva-logo"}
+          aria-label="Salva Vita logo"
+          alt="Salva Vita logo"
+        />
+      </Link>
 
       <section className="header-content">
         <ul className="header-content-menu">
@@ -56,7 +50,7 @@ const Navbar = () => {
           />
         </ul>
       </section>
-      <button onClick={() => handleDesign()}> Change layout</button>
+      <button onClick={() => setDesign()}> Change layout</button>
     </div>
   );
 };
