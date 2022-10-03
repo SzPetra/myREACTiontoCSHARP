@@ -47,10 +47,7 @@ const CreateLink = () => {
             </label>
             <Select id="mode" options={modeOptions} type="display-mode"/>
           </section>
-          <Form />
-          <button type="submit" id="form-btn">
-            Send test link
-          </button>
+          <Form btnId={"form-btn"}/>
         </form>
       </div>
     </>
