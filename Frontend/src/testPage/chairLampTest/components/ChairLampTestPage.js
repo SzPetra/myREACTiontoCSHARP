@@ -2,7 +2,7 @@ import React from 'react'
 import listOfIcons from './ChairLampIcons';
 import "../assets/chairLampTest.css"
 import Timer from './Timer';
-import { performancePercentageCount } from './ChairLampTestResultCount';
+import { extentOfAttentionCount, performancePercentageCount, qualityOfAttetionCount } from './ChairLampTestResultCount';
 
 const ChairLampTestPage = () => {
   
@@ -45,12 +45,14 @@ const ChairLampTestPage = () => {
     }
 
     const calculateResults = () =>{
-        let sumOfRevisedIcons = revisedIconsByMinute.reduce((result,number)=> result+number);
+        let sumOfRevisedIcons = revisedIconsByMinuteState.reduce((result,number)=> result+number);
         let sumOfErrors = errorsByMinuteState.reduce((result,number)=> result+number);
-        console.log("i sum: "+sumOfRevisedIcons);
-        console.log("e sum: "+sumOfErrors);
         let performancePercentage = performancePercentageCount(sumOfRevisedIcons, sumOfErrors);
-        console.log(performancePercentage)
+        let extentOfAttenton = extentOfAttentionCount(revisedIconsByMinuteState);
+        let qualityOfAttetion = qualityOfAttetionCount(revisedIconsByMinuteState, errorsByMinuteState,sumOfRevisedIcons, sumOfErrors);
+        console.log(qualityOfAttetion);
+        console.log(performancePercentage);
+        console.log(extentOfAttenton);
     }
 
     function getRandomInt(min, max) {

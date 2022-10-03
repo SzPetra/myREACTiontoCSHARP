@@ -9,7 +9,7 @@ const Timer = ( { handleMinute }) => {
       let timerId;
   
       if (runTimer) {
-        setCountDown(60 * 1);
+        setCountDown(60 * 2);
         timerId = setInterval(() => {
           setCountDown((countDown) => countDown - 1);
         }, 1000);
