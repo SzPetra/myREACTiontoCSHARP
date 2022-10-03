@@ -6,8 +6,8 @@ import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
 //import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
-import TestSelectorPage from "./testSelector/components/TestSelector";
-import TestSelector from "./testSelector/components/TestSelectorPage";
+import TestSelectorPage from "./testSelector/components/TestSelectorPage";
+import TestSelector from "./testSelector/components/TestSelector";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
