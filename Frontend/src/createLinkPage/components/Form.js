@@ -10,7 +10,15 @@ const Form = () => {
         const selectDisplayMode = document.getElementById("display-mode");
         const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
 
-        const urlQuery = `${participantName}+${replaceWhitespce(displayMode, "+")}+Bigger-Font`;
+        
+        const pcNameNoWs = replaceWhitespce(participantName, "+");
+        const testTypeNoWs = replaceWhitespce(testType, "+");
+        console.log(testTypeNoWs);
+        const displayModeNoWs = replaceWhitespce(displayMode, "+");
+        console.log(displayModeNoWs);
+
+
+        const urlQuery = `${pcNameNoWs}/${displayModeNoWs}/${testTypeNoWs}`;
         //const urlQuery = `name=${participantName}+displayMode=${displayMode}+testType=${testType}`;
         //const urlQuery = `${participantName},${displayMode},${testType}`;
 
@@ -43,8 +51,7 @@ const Form = () => {
 
 
 function replaceWhitespce(string, char){
-    string.replace(/ /g, char);
-    return string;
+    return string.replace(/ /g, char);
 } 
 
 export default Form

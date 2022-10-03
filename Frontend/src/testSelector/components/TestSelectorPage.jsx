@@ -7,7 +7,7 @@ const TestSelectorPage = () => {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     console.log(params.data + "dddd")
-    const joinedString = params.data.replace(/ /g,'/');
+    const joinedString = params.data.replace(/ /g,'+');
     useEffect(
       ()=>{
         fetch(`https://localhost:7200/api/Email/DecryptUrl?payload=${joinedString}`)
