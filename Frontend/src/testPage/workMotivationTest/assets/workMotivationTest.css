@@ -3,7 +3,32 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-top: 3rem;
 }
+.work-mot-test-content-container-contrast {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3rem;
+
+    background-color: var(--black);
+}
+
+/* title */
+.work-mot-test-content-title-contrast {
+    color: var(--contrastyellow);
+}
+
+/* questions */
+.work-mot-test-content-question {
+    font-size: 1.5rem;
+}
+.work-mot-test-content-question-contrast {
+    font-size: 1.5rem;
+    color: var(--contrastyellow);
+}
+
 
 /* test scale */
 .work-mot-test-scale {
@@ -12,9 +37,91 @@
     align-items: center;
 }
 
-/* teste scale buttons */
+/* scale texts */
+.work-mot-test-scale-text {
+    font-size: 1rem;
+
+    max-width: 5rem;
+}
+.work-mot-test-scale-text-contrast {
+    font-size: 1rem;
+    color: var(--contrastyellow);
+    
+    max-width: 5rem;
+}
+
+/* test scale buttons */
 .work-mot-test-scale-btn {
     height: 3rem;
     width: 3rem;
+
+    margin: 1rem;
     border-radius: 1.5rem;
+    border: 0.2rem solid var(--black);
+
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    background-color: var(--white);
+}
+.work-mot-test-scale-btn:hover {
+    background-color: var(--green);
+}
+.work-mot-test-scale-btn:focus {
+    background-color: var(--green);
+}
+
+.work-mot-test-scale-btn-contrast {
+    height: 3rem;
+    width: 3rem;
+
+    margin: 1rem;
+    border-radius: 1.5rem;
+    border: 0.2rem solid var(--black);
+
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--black);
+
+    background-color: var(--contrastyellow);
+}
+.work-mot-test-scale-btn-contrast:hover {
+    border: 0.6rem solid var(--contrastyellow)
+}
+
+/* test buttons outside of scale */
+.work-mot-test-content-btn {
+    align-self: flex-end;
+    margin-right: 21rem;
+    margin-top: 2rem;
+    background-color: var(--white);
+
+    border: 0.2rem solid var(--black);
+
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+.work-mot-test-content-btn:hover {
+    background-color: var(--green);
+}
+.work-mot-test-content-btn:focus {
+    background-color: var(--green);
+}
+.work-mot-test-content-btn-contrast {
+    align-self: flex-end;
+    margin-right: 21rem;
+    margin-top: 2rem;
+    background-color: var(--contrastyellow);
+
+    border: 0.2rem solid var(--black);
+
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    color: var(--black);
+}
+.work-mot-test-content-btn-contrast:hover {
+    border: 0.6rem solid var(--contrastyellow);
+    font-size: 1.4rem;
 }
