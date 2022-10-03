@@ -10,53 +10,44 @@ const CreateLink = () => {
   return (
     <>
       <Navbar />
-      <div className="link-page-content-container">
+      <div className="page-content-container">
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
           alt="We help people with disabilities"
         />
 
-        <form className="link-page-form">
-          <section className="link-page-content-container">
+        <form className="form">
+          <section className="form-content">
             {/* test participant name input */}
-            <label for="participantName">Enter the name of the reciver*:
+            <label for="participantName">Enter the name of the reciver*:</label>
             <input
               id="participantName"
               type="email"
               required
               placeholder="name of the receiver"
             />
-            </label>
-
             {/* email input */}
-            <label for="email">
-              Enter a valid email address*:
-              <input
-                id="email"
-                className="link-page-form-input-email"
-                type="email"
-                required
-                placeholder="email of the receiver"
-              />    
-            </label>
+            <label for="email">Enter a valid email address*:</label>
+            <input
+              id="email"
+              type="email"
+              required
+              placeholder="email of the receiver"
+            />
 
             {/* select test type */}
-            <label for="test-type">
-              Choose a type of test* :
-              <Select id="test-type" options={testPageOptions} type="test-type" />
-            </label>
+            <label for="test-type">Choose a type of test* :</label>
+            <Select id="test-type" options={testPageOptions} type="test-type" />
 
             {/* select mode */}
-            <label for="test-mode">
+            <label for="mode">
               Choose mode:
-              <p className="link-page-form-content-p">(if you don't choose test mode, the default will be normal)</p>
-              <Select id="test-mode" options={modeOptions} type="display-mode"/>
+              <p>(if you don't choose test mode, the default will be normal)</p>
             </label>
-
+            <Select id="mode" options={modeOptions} type="display-mode"/>
           </section>
-          <Form btnId={"link-page-form-btn"}/>
-
+          <Form btnId={"form-btn"}/>
         </form>
       </div>
     </>
