@@ -6,8 +6,11 @@ import testPageOptions from "../../options/testPageOptions";
 import modeOptions from "../../options/modeOptions";
 import FetchDataButton from "../components/FetchDataButton";
 import Input from "./Input";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
-const CreateLink = ({ design }) => {
+const CreateLink = () => {
+  const { design } = useContext(ThemeContext);
   return (
     <>
       <Navbar />
@@ -18,7 +21,11 @@ const CreateLink = ({ design }) => {
           alt="We help people with disabilities"
         />
 
-        <form className={design ? "link-page-form-contrast" : "link-page-form"}>
+        <div
+          className={design ? "parting-line-contrast" : "parting-line"}
+        ></div>
+
+        <form className="link-page-form">
           <section className="link-page-form-content-left">
             {/* inputs */}
             <Input
@@ -40,7 +47,13 @@ const CreateLink = ({ design }) => {
               placeholder="salva_v@gmail.com"
             />
           </section>
-          <section className="link-page-form-content-right">
+          <section
+            className={
+              design
+                ? "link-page-form-content-right-contrast"
+                : "link-page-form-content-right"
+            }
+          >
             {/* select test type */}
             <label for="test-type">
               Choose the type of test* :

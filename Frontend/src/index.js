@@ -7,6 +7,7 @@ import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
 import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
 import WorkMotivationTestPage from "./testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
+import WorkMotivationTestReadLoud from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageReadLoud";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,11 @@ root.render(
             exact
             path="work-motivation-test"
             element={<WorkMotivationTestPage />}
+          />
+          <Route
+            exact
+            path="work-motivation-test/read-out-loud"
+            element={<WorkMotivationTestReadLoud />}
           />
           <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>

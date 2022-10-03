@@ -1,6 +1,9 @@
 import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
 const Form = () => {
+  const { design } = useContext(ThemeContext);
   const submission = {
     Name: "Kázmér",
     Email: "szabimi12@gmail.com",
@@ -27,7 +30,10 @@ const Form = () => {
   };
 
   return (
-    <button id="link-page-form-btn" onClick={handleSubmit}>
+    <button
+      id={design ? "link-page-form-btn-contrast" : "link-page-form-btn"}
+      onClick={handleSubmit}
+    >
       Click here to submit
     </button>
   );

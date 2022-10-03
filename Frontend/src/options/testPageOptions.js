@@ -9,6 +9,11 @@ const testPageOptions = [
     option: "Work motivation test",
     pageLink: "/tests/work-motivation-test",
   },
+  {
+    id: 3,
+    option: "Work motivation test Read out loud",
+    pageLink: "/tests/work-motivation-test/read-out-loud",
+  },
 ];
 
 export default testPageOptions;

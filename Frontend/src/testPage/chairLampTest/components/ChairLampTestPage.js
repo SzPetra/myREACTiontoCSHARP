@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import listOfIcons from "./ChairLampIcons";
 import "../assets/chairLampTest.css";
 import Timer from "./Timer";
@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../../App";
 
 const ChairLampTestPage = () => {
+  const [chosen, setChosen] = useState(false);
   const { design } = useContext(ThemeContext);
   const [page, setPage] = React.useState(0);
   let [revisedIconsState, setRevisedIconsState] = React.useState(0);
@@ -89,20 +90,30 @@ const ChairLampTestPage = () => {
       let iconObject = listOfIcons[getRandomInt(1, 16)];
       arr.push(
         <iconObject.icon
+          id={chosen ? "chosen-icon" : "not-chosen-icon"}
           className={
             design
               ? "chair-lamp-test-content-icon-contrast"
               : "chair-lamp-test-content-icon"
           }
           onFocus={() => setIcons()}
-          onKeyPress={(e) => setError(e, iconObject.correct)}
+          onKeyPress={(e) => {
+            setError(e, iconObject.correct);
+            setChosen(true);
+          }}
           tabIndex={i}
           key={i}
         />
       );
     }
     return (
-      <div className="chair-lamp-test-content-container">
+      <div
+        className={
+          design
+            ? "chair-lamp-test-content-container-contrast"
+            : "chair-lamp-test-content-container"
+        }
+      >
         {arr.map((icon) => icon)}
       </div>
     );
