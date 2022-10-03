@@ -2,11 +2,7 @@ import React from "react";
 
 const Select = ({ options, type, ...rest }) => {
   return (
-<<<<<<< HEAD
-    <select id={type} className="select-menu">
-=======
-    <select className="link-page-form-select-menu">
->>>>>>> main
+    <select id={type} className="link-page-form-select-menu">
       {options.map((option) => (
         <option key={option.id} value={option.option}>
           {option.option}

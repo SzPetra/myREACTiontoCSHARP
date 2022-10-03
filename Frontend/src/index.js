@@ -5,14 +5,11 @@ import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
-<<<<<<< HEAD
 //import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
 import TestSelectorPage from "./testSelector/components/TestSelectorPage";
 import TestSelector from "./testSelector/components/TestSelector";
-=======
 import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
 import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
->>>>>>> main
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -22,23 +19,21 @@ root.render(
         <Route path="/tests" element={<App />}>
           <Route index element={<AdminPage />} />
           <Route exact path="create-link" element={<CreateLink />} />
-<<<<<<< HEAD
-          
         </Route>
         <Route path="/select-test" element={<App />}>
           <Route index element={<TestSelectorPage />} />
-=======
-          <Route
-            exact
-            path="work-motivation-test"
-            element={<WorkMotivationTestPage />}
-          />
-           <Route
-            exact
-            path="chair-lamp-test"
-            element={<ChairLampTestPage />}
-          />
->>>>>>> main
+
+            <Route
+              exact
+              path="work-motivation-test"
+              element={<WorkMotivationTestPage />}
+            />
+            <Route
+              exact
+              path="chair-lamp-test"
+              element={<ChairLampTestPage />}
+            />
+
         </Route>
       </Routes>
     </BrowserRouter>
