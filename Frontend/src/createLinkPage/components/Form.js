@@ -10,7 +10,7 @@ const Form = () => {
         const selectDisplayMode = document.getElementById("display-mode");
         const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
 
-        const urlQuery = `${participantName}+Contrast+Bigger-Font`;
+        const urlQuery = `${participantName}+${replaceWhitespce(displayMode, "+")}+Bigger-Font`;
         //const urlQuery = `name=${participantName}+displayMode=${displayMode}+testType=${testType}`;
         //const urlQuery = `${participantName},${displayMode},${testType}`;
 
@@ -40,5 +40,11 @@ const Form = () => {
     
     return <button onClick={handleSubmit}>Click here to submit</button>;
 };
+
+
+function replaceWhitespce(string, char){
+    string.replace(/ /g, char);
+    return string;
+} 
 
 export default Form
