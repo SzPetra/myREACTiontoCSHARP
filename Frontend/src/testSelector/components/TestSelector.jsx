@@ -1,8 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import testPageOptions from '../../options/testPageOptions';
-import ChairLampTestPage from '../../testPage/chairLampTest/components/ChairLampTestPage';
-import WorkMotivationTestPage from '../../testPage/workMotivationTest/components/WorkMotivationTestPage';
 
 const TestSelector = () => {
     const [test, setTest] = useState(null);
