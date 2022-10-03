@@ -50,6 +50,8 @@ const ChairLampTestPage = () => {
         let performancePercentage = performancePercentageCount(sumOfRevisedIcons, sumOfErrors);
         let extentOfAttenton = extentOfAttentionCount(revisedIconsByMinuteState);
         let qualityOfAttetion = qualityOfAttetionCount(revisedIconsByMinuteState, errorsByMinuteState,sumOfRevisedIcons, sumOfErrors);
+        //return <Comp props={qualityOfAttetion} />
+        
         console.log(qualityOfAttetion);
         console.log(performancePercentage);
         console.log(extentOfAttenton);
