@@ -29,7 +29,7 @@ namespace CodeToGiveTests.Controllers
 
             Console.WriteLine(payload);
             string adminEmail = payload.AdminEmail;
-            SessionExtensions.SetObjectAsJson(HttpContext.Session, "cart", adminEmail);
+            SessionExtensions.SetObjectAsJson(HttpContext.Session, "email", adminEmail);
 
 			Console.WriteLine(payload);
             await _emailHostedService.SendEmailAsync(new EmailModel
