@@ -15,10 +15,11 @@ const Form = ({btnId}) => {
         const displayModeNoWs = replaceWhitespce(displayMode, "+");
 
         const urlQuery = `${pcNameNoWs}/${displayModeNoWs}/${testTypeNoWs}`;
-
+        console.log(urlQuery);
         const submission = {
             Name: participantName,
-            Email: email,
+            ClientEmail: email,
+            AdminEmail: email,
             TestUrl: urlQuery
         };
         console.log(submission)
