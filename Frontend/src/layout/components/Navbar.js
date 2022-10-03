@@ -50,7 +50,7 @@ const Navbar = () => {
           />
         </ul>
       </section>
-      <button onClick={() => setDesign()}> Change layout</button>
+      <Link onClick={() => setDesign()}> Negative contrast</Link>
     </div>
   );
 };
