@@ -5,7 +5,8 @@ import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
-import WorkMotivationTestPage from "./testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
+import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
+import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,6 +21,7 @@ root.render(
             path="work-motivation-test"
             element={<WorkMotivationTestPage />}
           />
+          <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
