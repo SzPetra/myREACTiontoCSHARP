@@ -6,7 +6,11 @@ import testPageOptions from "../../options/testPageOptions";
 import modeOptions from "../../options/modeOptions";
 import Form from "./Form";
 
-const CreateLink = () => {
+import FetchDataButton from "../components/FetchDataButton";
+import Input from "./Input";
+
+const CreateLink = ({ design }) => {
+
   return (
     <>
       <Navbar />
@@ -17,37 +21,43 @@ const CreateLink = () => {
           alt="We help people with disabilities"
         />
 
-        <form className="form">
-          <section className="form-content">
-            {/* test participant name input */}
-            <label for="participantName">Enter the name of the reciver*:</label>
-            <input
-              id="participantName"
-              type="email"
-              required
-              placeholder="name of the receiver"
+        <form className={design ? "link-page-form-contrast" : "link-page-form"}>
+          <section className="link-page-form-content-left">
+            {/* inputs */}
+            <Input
+              id="client-name"
+              type="text"
+              label="Enter client's full name*:"
+              placeholder="John Doe"
             />
-            {/* email input */}
-            <label for="email">Enter a valid email address*:</label>
-            <input
+            <Input
+              id="client-email"
+              type="email"
+              label="Enter client's email address*:"
+              placeholder="johndoe@gmail.com"
+            />
+            <Input
               id="email"
               type="email"
-              required
-              placeholder="email of the receiver"
+              label="Enter email address for receiving test results*:"
+              placeholder="salva_v@gmail.com"
             />
-
+          </section>
+          <section className="link-page-form-content-right">
             {/* select test type */}
-            <label for="test-type">Choose a type of test* :</label>
-            <Select id="test-type" options={testPageOptions} type="test-type" />
+            <label for="test-type">
+              Choose the type of test* :
+              <Select id="test-type" options={testPageOptions} />
+            </label>
 
             {/* select mode */}
-            <label for="mode">
-              Choose mode:
-              <p>(if you don't choose test mode, the default will be normal)</p>
+            <label for="test-mode">
+              Choose display mode:
+              <p>(If you don't choose test mode, the default will be basic)</p>
+              <Select id="test-mode" options={modeOptions} />
             </label>
-            <Select id="mode" options={modeOptions} type="display-mode"/>
+            <FetchDataButton />
           </section>
-          <Form btnId={"form-btn"}/>
         </form>
       </div>
     </>
