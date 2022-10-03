@@ -4,6 +4,8 @@ using CodeToGiveTests.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Cors;
 using CodeToGiveTests.Encryption;
+using PdfSharp.Pdf;
+using CodeToGveTests.PDFGeneration;
 using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
 
 namespace CodeToGiveTests.Controllers
@@ -27,11 +29,11 @@ namespace CodeToGiveTests.Controllers
         {
             string testlink = "http://localhost:3000/select-test?data=" + payload.TestUrl;//StringCrypter.Encrypt(payload.TestUrl);
 
-            Console.WriteLine(payload);
+           Console.WriteLine(payload);
             string adminEmail = payload.AdminEmail;
             SessionExtensions.SetObjectAsJson(HttpContext.Session, "email", adminEmail);
 
-			Console.WriteLine(payload);
+			Console.WriteLine(adminEmail);
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
                 EmailAdress = payload.ClientEmail,
@@ -69,6 +71,16 @@ namespace CodeToGiveTests.Controllers
 			Console.WriteLine(decryptedString);
             TestLinkModel testLinkData = new TestLinkModel(decryptedString);
             return Ok(testLinkData);
+        }
+
+        [Route("")]
+        [HttpGet]
+        public bool SendPDF()
+        {
+            var pdf = PdfGenerator.GeneratePdf();
+            if (pdf == null)
+                return false;
+            return true;
         }
     }
 }
