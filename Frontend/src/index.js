@@ -21,11 +21,7 @@ root.render(
             path="work-motivation-test"
             element={<WorkMotivationTestPage />}
           />
-           <Route
-            exact
-            path="chair-lamp-test"
-            element={<ChairLampTestPage />}
-          />
+          <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
