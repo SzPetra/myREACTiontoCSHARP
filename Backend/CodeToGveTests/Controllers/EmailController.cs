@@ -4,6 +4,7 @@ using CodeToGiveTests.Models;
 using Newtonsoft.Json.Linq;
 using Microsoft.AspNetCore.Cors;
 using CodeToGiveTests.Encryption;
+using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
 
 namespace CodeToGiveTests.Controllers
 {
@@ -27,9 +28,13 @@ namespace CodeToGiveTests.Controllers
             string testlink = "http://localhost:3000/select-test?data=" + payload.TestUrl;//StringCrypter.Encrypt(payload.TestUrl);
 
             Console.WriteLine(payload);
+            string adminEmail = payload.AdminEmail;
+            SessionExtensions.SetObjectAsJson(HttpContext.Session, "cart", adminEmail);
+
+			Console.WriteLine(payload);
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = payload.Email,
+                EmailAdress = payload.ClientEmail,
                 Subject = "Link for Test",
                 Body =$"Hello {payload.Name}! <br>Click this <a href={testlink}>LINK</a> to start your test.",
                 Attachments = null
@@ -42,11 +47,12 @@ namespace CodeToGiveTests.Controllers
         [HttpPost]
         public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] LoadModel payload)
         {
+            payload.AdminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
             string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
             Console.WriteLine(payload);
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = payload.Email,
+                EmailAdress = payload.AdminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = null

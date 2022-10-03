@@ -1,4 +1,4 @@
-.header-container {
+.header-content-container {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9,35 +9,57 @@
     background-color: var(--white);
 }
 
-.header-content {
+.header-content-container-contrast {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: 6rem;
+
+    background-color: var(--black);
+}
+
+/* menu */
+.header-content-menu {
     display: flex;
     flex-direction: row;
 
     font-size: 1rem;
 }
 
-a {
+/* menu links */
+.header-content-menu-link {
     color: var(--mainblue);
     text-decoration: none;
 }
 
-a:visited {
+.header-content-menu-link:visited {
     color: var(--mainblue);
 }
 
-a:hover {
+.header-content-menu-link:hover {
     color: var(--red);
 }
 
+.header-content-menu-link-contrast {
+    color: var(--contrastyellow);
+    text-decoration: none;
 
-#salva-logo {
-    width: 3.5rem;
-    height: 3.5rem;
-
-    margin-left: 5rem;
+    padding: 0.3rem;
 }
 
-.sub-menu {
+.header-content-menu-link-contrast:visited {
+    color: var(--contrastyellow);
+}
+
+.header-content-menu-link-contrast:hover {
+    color: var(--contrastyellow);
+    border: 0.2rem solid var(--contrastyellow);
+}
+
+/* dropdown-sub menu */
+.header-content-sub-menu {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -55,7 +77,55 @@ a:hover {
     border-top: 0.2rem solid var(--lightblue);
 }
 
-.sub-menu a {
+.header-content-sub-menu a {
     color: var(--black);
+    text-decoration: none;
     opacity: 0.6;
+}
+
+.header-content-sub-menu a:hover {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.header-content-sub-menu-contrast {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+
+    position: absolute;
+    overflow: hidden;
+    margin-top: 2rem;
+    background-color: var(--contrastyellow);
+
+    width: 16rem;
+    height: 8rem;
+
+    border-top: 0.2rem solid var(--contrastyellow);
+}
+
+.header-content-sub-menu-contrast a {
+    color: var(--black);
+    text-decoration: none;
+}
+
+.header-content-sub-menu-contrast a:hover {
+    color: var(--black);
+    text-decoration: none;
+
+    border: 0.2rem solid var(--black);
+}
+
+/* Salva Vita logo*/
+#salva-logo {
+    width: 3.5rem;
+    height: 3.5rem;
+
+    margin-left: 5rem;
+}
+
+#salva-logo-contrast {
+    visibility: hidden;
 }
