@@ -1,7 +1,7 @@
 const modeOptions = [
   {
     id: 1,
-    option: "Normal",
+    option: "Basic",
   },
 
   {

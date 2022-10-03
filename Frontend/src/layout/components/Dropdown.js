@@ -3,7 +3,7 @@ import { FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const Dropdown = ({ menu, options, ...rest }) => {
+const Dropdown = ({ design, menu, options, ...rest }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -20,11 +20,21 @@ const Dropdown = ({ menu, options, ...rest }) => {
         to="/TODO"
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
-        className="header-content-menu-link"
+        className={
+          design
+            ? "header-content-menu-link-contrast"
+            : "header-content-menu-link"
+        }
       >
         {menu} <FaAngleDown />
         {isHovering && (
-          <ul className="header-content-sub-menu">
+          <ul
+            className={
+              design
+                ? "header-content-sub-menu-contrast"
+                : "header-content-sub-menu"
+            }
+          >
             {options.map((option) => (
               <Link key={option.id} to={option.pageLink}>
                 {option.option}
