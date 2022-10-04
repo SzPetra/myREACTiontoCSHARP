@@ -50,14 +50,23 @@ namespace CodeToGiveTests.Controllers
         public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] LoadModel payload)
         {
             payload.AdminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
-            string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
+            //string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
             Console.WriteLine(payload);
+            PdfDocument testPdf = PdfGenerator.GeneratePdf();
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = payload.AdminEmail,
+                EmailAdress = "kislorand270@gmail.com", //payload.AdminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
-                Attachments = null
+                Attachments = new List<EmailAttachment>() 
+                    { 
+                    new EmailAttachment() 
+                        { 
+                            Name="testPdf",
+                            ContentType="application/pdf",
+                            Data=System.IO.File.ReadAllBytes($"../CodeToGveTests/PdfStorage/HelloWorld2.pdf")
+                        }  
+                    }
             });
             return Ok(payload);
         }
