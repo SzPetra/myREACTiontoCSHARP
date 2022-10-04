@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useContext } from "react";
-import { ThemeContext } from "../../App";
+import { ThemeContext } from "../../App.js";
 import "../assets/sidebar.css";
+import classNames from "classnames";
 
 const Sidebar = () => {
-  const { setDesign } = useContext(ThemeContext);
-  const { isActive, setIsActive } = useState(false);
+  const { design, setDesign } = useContext(ThemeContext);
+  const [isActive, setIsActive] = useState(false);
 
   const handleOnClick = () => {
     if (isActive) {
@@ -15,23 +16,42 @@ const Sidebar = () => {
     }
   };
 
+  const sideNavigationContentClasses = classNames({
+    "side-navigation-content": !design,
+    "side-navigation-content-contrast": design,
+    active: isActive,
+  });
+
+  const sideNavigationContentOptionClasses = classNames({
+    "side-navigation-content-option": !design,
+    "side-navigation-content-option-contrast": design,
+  });
+
   return (
     <div className="side-navigation-content-container">
       <img
-        onClick={() => handleOnClick}
+        onClick={() => handleOnClick()}
         alt="Accessibility logo"
         src="/accessibility_logo.png"
-        id="sidebar-accessibility-logo"
-      />
-      <div
         className={
           isActive
-            ? "side-navigation-content"
-            : "side-navigation-content-active"
+            ? "sidebar-accessibility-logo active"
+            : "sidebar-accessibility-logo"
         }
-      >
-        <option onClick={() => setDesign()}>Negative contrast</option>
-        <option>Bigger text</option>
+      />
+      <div className={sideNavigationContentClasses}>
+        <option
+          className={sideNavigationContentOptionClasses}
+          onClick={() => setDesign()}
+        >
+          Negative contrast
+        </option>
+        <option className={sideNavigationContentOptionClasses}>
+          Bigger text
+        </option>
+        <option className={sideNavigationContentOptionClasses}>
+          High contrast
+        </option>
       </div>
     </div>
   );
