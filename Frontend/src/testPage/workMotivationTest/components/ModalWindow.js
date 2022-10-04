@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import "../assets/modalWindow.css";
 import { useContext } from "react";
 import { ThemeContext } from "../../../App.js";
+import { runTimer } from "../../chairLampTest/components/ChairLampTestPage";
 import classNames from "classnames";
+import Timer from "../../chairLampTest/components/Timer";
 
-const ModalWindowHungarian = ({
+const ModalWindow = ({
+  handleMinute,
   title,
   instruction,
   button,
@@ -13,6 +16,7 @@ const ModalWindowHungarian = ({
 }) => {
   const [modalWindow, setModalWindow] = useState(true);
   const { design } = useContext(ThemeContext);
+  const { setIsRuntime } = useContext(runTimer);
 
   const modalWindowContainerClasses = classNames({
     "modal-window-content-container": !design,
@@ -39,10 +43,12 @@ const ModalWindowHungarian = ({
     <div className={modalWindowContainerClasses}>
       <h1 className={modalWindowContentHeaderClasses}>{title}</h1>
       <p className={modalWindowContentBodyClasses}>{instruction}</p>
+      <Timer handleMinute={handleMinute} />
       <button
         className={modalWindowContentButton}
         onClick={() => {
           setModalWindow(false);
+          setIsRuntime(true);
         }}
       >
         {button}
@@ -51,4 +57,4 @@ const ModalWindowHungarian = ({
   );
 };
 
-export default ModalWindowHungarian;
+export default ModalWindow;
