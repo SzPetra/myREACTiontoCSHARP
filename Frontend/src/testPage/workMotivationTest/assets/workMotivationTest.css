@@ -3,12 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 6%;
 }
 .work-mot-test-content-container-contrast {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 6%;
 
     background-color: var(--black);
 }
