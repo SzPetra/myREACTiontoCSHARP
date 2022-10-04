@@ -50,9 +50,10 @@ namespace CodeToGiveTests.Controllers
         public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] LoadModel payload)
         {
             payload.AdminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
-            //string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
+
             Console.WriteLine(payload);
-            PdfDocument testPdf = PdfGenerator.GeneratePdf();
+            PdfDocument testPdf = PdfGenerator.GeneratePdf(payload);
+            string testType = "Chiar-lamp test";
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
                 EmailAdress = "kislorand270@gmail.com", //payload.AdminEmail,
@@ -64,7 +65,7 @@ namespace CodeToGiveTests.Controllers
                         { 
                             Name="testPdf",
                             ContentType="application/pdf",
-                            Data=System.IO.File.ReadAllBytes($"../CodeToGveTests/PdfStorage/HelloWorld2.pdf")
+                            Data=System.IO.File.ReadAllBytes($"../CodeToGveTests/PdfStorage/{payload.Name}_{testType}.pdf")
                         }  
                     }
             });
@@ -86,7 +87,8 @@ namespace CodeToGiveTests.Controllers
         [HttpGet]
         public bool SendPDF()
         {
-            var pdf = PdfGenerator.GeneratePdf();
+            var testModel= new LoadModel() { Name="Huba", AdminEmail="",ClientEmail="",TestUrl="/"};
+            var pdf = PdfGenerator.GeneratePdf(testModel);
             if (pdf == null)
                 return false;
             return true;
