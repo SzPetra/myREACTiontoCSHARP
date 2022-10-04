@@ -24,14 +24,14 @@ namespace CodeToGveTests.PDFGeneration
 			XGraphics gfx = XGraphics.FromPdfPage(page);
 			XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
 
-			gfx.DrawString("Hello, World!", font, XBrushes.Black,
+			gfx.DrawString("Hello, Jahhhn!", font, XBrushes.Black,
 			new XRect(0, 0, page.Width, page.Height),
 			XStringFormats.Center);
 
-			const string filename = "HelloWorld1.pdf";
-			document.Save($"C:/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
+			const string filename = "HelloWorld2.pdf";
+			//document.Save($"C:/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
 
-
+			document.Save($"../CodeToGveTests/PdfStorage/{filename}");
 
 			//Process.Start($"../PdfStorage/{filename}");
 			//Process.Start($"C:/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
