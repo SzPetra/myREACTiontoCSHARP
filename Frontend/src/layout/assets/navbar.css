@@ -24,7 +24,7 @@
 .header-content-menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex: 1;
 
     font-size: 1rem;
@@ -32,7 +32,7 @@
 .header-content-menu-contrast {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex: 1;
 
     font-size: 1rem;

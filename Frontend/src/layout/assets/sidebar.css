@@ -1,4 +1,4 @@
-#sidebar-accessibility-logo {
+.sidebar-accessibility-logo {
     height: 4rem;
     width: 4rem;
 
@@ -8,23 +8,100 @@
     right:0;
     top: 30%
 }
+.sidebar-accessibility-logo.active {
+    height: 4rem;
+    width: 4rem;
 
-/* side navigation options */
+    position: fixed;
+    z-index: 1;
+
+    right: 18%;
+    top: 30%
+}
+
+/* side navigation container */
 .side-navigation-content {
     visibility: hidden;
 
     position: fixed;
     z-index: 1;
 
-    right: 0;
     top: 30%;
+    right: 0;
+    width: 16%;
+    max-width: 16%;
+    height: 30%;
+    max-height: 30%;
+
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+
+    background-color: var(--white);
+    border-top: 0.3rem solid var(--lightblue);
+    border-radius: 0.2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
 }
-.side-navigation-content-active {
+.side-navigation-content.active {
     visibility: visible;
+}
+.side-navigation-content-contrast {
+    visibility: hidden;
 
     position: fixed;
     z-index: 1;
 
-    right: 0;
     top: 30%;
+    right: 0;
+    width: 16%;
+    max-width: 16%;
+    height: 30%;
+    max-height: 30%;
+
+    margin-right: 0.5rem;
+    padding: 0.5rem;
+
+    background-color: var(--black);
+    border-top: 0.3rem solid var(--contrastyellow);
+    border-radius: 0.2rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+.side-navigation-content-contrast.active {
+    visibility: visible;
+}
+
+/* side navigation options */
+.side-navigation-content-option {
+    color: var(--black);
+    font-weight: bold;
+    font-size: 1rem;
+
+    opacity: 0.6;
+}
+.side-navigation-content-option:hover {
+    color: var(--black);
+
+    opacity: 1;
+
+    cursor: grab;
+}
+.side-navigation-content-option-contrast {
+    color: var(--contrastyellow);
+    font-weight: bold;
+    
+    opacity: 1;
+
+    cursor: grab;
+}
+.side-navigation-content-option-contrast:hover {
+    border: 0.2rem solid var(--contrastyellow);
+
+    padding: 0.5rem;
 }

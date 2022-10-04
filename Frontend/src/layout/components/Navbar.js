@@ -5,6 +5,7 @@ import testPageOptions from "../../options/testPageOptions";
 import editPageOptions from "../../options/editPageOptions";
 import { useContext } from "react";
 import { ThemeContext } from "../../App";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const { design } = useContext(ThemeContext);
@@ -53,6 +54,7 @@ const Navbar = () => {
             options={editPageOptions}
           />
         </ul>
+        <Sidebar />
       </div>
     </>
   );
