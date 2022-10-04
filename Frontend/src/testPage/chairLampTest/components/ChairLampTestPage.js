@@ -7,8 +7,9 @@ import {
   performancePercentageCount,
   qualityOfAttetionCount,
 } from "./ChairLampTestResultCount";
-import { useContext, useRef} from "react";
-import { ThemeContext } from "../../../App";
+import { useContext, useRef } from "react";
+import { ThemeContext } from "../../../App.js";
+import ModalWindow from "../../workMotivationTest/components/ModalWindow";
 
 const ChairLampTestPage = () => {
   const revisedIconList = useRef([])
@@ -195,6 +196,11 @@ const ChairLampTestPage = () => {
 
   return (
     <div>
+      <ModalWindow
+        title="Chair-Lamp test"
+        instruction="blaaaa"
+        button="Start test"
+      />
       <Timer handleMinute={handleMinute} />
       {createIcons()}
     </div>

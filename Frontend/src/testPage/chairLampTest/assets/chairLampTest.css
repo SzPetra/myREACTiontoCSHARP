@@ -1,7 +1,6 @@
 .chair-lamp-test-content-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: block;
+    flex-direction: column;
 
     justify-content: center;
 }
