@@ -74,7 +74,11 @@ const CreateLink = () => {
               <p>(If you don't choose test mode, the default will be basic)</p>
               <Select id="test-mode" options={modeOptions} />
             </label>
-            <FetchDataButton btnId={"link-page-form-btn"} />
+            <FetchDataButton
+              btnId={
+                design ? "link-page-form-btn-contrast" : "link-page-form-btn"
+              }
+            />
           </section>
         </form>
       </div>
