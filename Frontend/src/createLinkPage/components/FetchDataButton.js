@@ -1,6 +1,4 @@
 import React from "react";
-import { useContext } from "react";
-import { ThemeContext } from "../../App";
 
 const Form = ({ btnId }) => {
   const handleSubmit = async (event) => {
