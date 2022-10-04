@@ -6,17 +6,17 @@ using PdfSharp;
 using PdfSharp.Pdf.IO;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
+using CodeToGiveTests.Models;
 
 namespace CodeToGveTests.PDFGeneration
 {
 	public class PdfGenerator
 	{
-		public static PdfDocument GeneratePdf()
+		public static PdfDocument GeneratePdf(LoadModel payload)
 		{
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
 			
 			PdfDocument document = new PdfDocument();
-
 
 			document.Info.Title = "Created with PDFsharp";
 
@@ -27,14 +27,12 @@ namespace CodeToGveTests.PDFGeneration
 			gfx.DrawString("Hello, Jahhhn!", font, XBrushes.Black,
 			new XRect(0, 0, page.Width, page.Height),
 			XStringFormats.Center);
+			
+			string name = payload.Name; //catch name is null
 
-			const string filename = "HelloWorld2.pdf";
-			//document.Save($"C:/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
+			string filename = $"{name}_.pdf";
 
 			document.Save($"../CodeToGveTests/PdfStorage/{filename}");
-
-			//Process.Start($"../PdfStorage/{filename}");
-			//Process.Start($"C:/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
 			return document;
 		}
 	}
