@@ -37,7 +37,7 @@ const WorkMotivationTestPage = () => {
         Az egyes(1) azt jelenti, hogy egyáltalán nem szeretnél ilyen helyen dolgozni,
         az ötös(5) pedig, hogy mindenképpen ilyen helyen szeretnél dolgozni. A hármas(3)
         semleges, a többi pedig ezek közé esik.
-        Ha figyelmesen végigolvastad az utasítások kérlek nyomd meg az 'Elkezdem a tesztet' gombot"
+        Ha figyelmesen végigolvastad az utasítások kérlek nyomd meg az 'Elkezdem a tesztet' gombot, amellyel el fog indulni a teszt."
         button="Elkezdem a tesztet"
       />
       <div

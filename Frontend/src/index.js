@@ -5,8 +5,10 @@ import "./index.css";
 import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
-import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
+import TestSelectorPage from "./testSelector/components/TestSelectorPage";
+import TestSelector from "./testSelector/components/TestSelector";
 import WorkMotivationTestPage from "./testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
+import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
 import WorkMotivationTestReadLoud from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageReadLoud";
 import WorkMotivationTestPageSpeechRecognition from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageSpeechRecognition";
 
@@ -32,6 +34,15 @@ root.render(
             exact
             path="work-motivation.test/speech-recognition"
             element={<WorkMotivationTestPageSpeechRecognition />}
+          />
+          <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
+        </Route>
+        <Route path="/select-test" element={<App />}>
+          <Route index element={<TestSelectorPage />} />
+          <Route
+            exact
+            path="work-motivation-test"
+            element={<WorkMotivationTestPage />}
           />
           <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>

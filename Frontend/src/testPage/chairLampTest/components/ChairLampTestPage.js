@@ -73,6 +73,7 @@ const ChairLampTestPage = () => {
       sumOfRevisedIcons,
       sumOfErrors
     );
+    //return <Comp props={qualityOfAttetion} />
     console.log(qualityOfAttetion);
     console.log(performancePercentage);
     console.log(extentOfAttenton);

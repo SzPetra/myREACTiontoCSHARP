@@ -1,3 +1,6 @@
+import ChairLampTestPage from "../testPage/chairLampTest/components/ChairLampTestPage";
+import WorkMotivationTestPage from "../testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
+
 const testPageOptions = [
   {
     id: 1,
