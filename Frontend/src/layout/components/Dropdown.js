@@ -34,7 +34,7 @@ const Dropdown = ({ design, menu, options, ...rest }) => {
             }
           >
             {options.map((option) => (
-              <Link key={option.id} to={option.pageLink}>
+              <Link tabIndex={0} key={option.id} to={option.pageLink}>
                 {option.option}
               </Link>
             ))}

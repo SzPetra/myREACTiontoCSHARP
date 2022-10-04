@@ -8,7 +8,8 @@ import {
   qualityOfAttetionCount,
 } from "./ChairLampTestResultCount";
 import { useContext } from "react";
-import { ThemeContext } from "../../../App";
+import { ThemeContext } from "../../../App.js";
+import ModalWindow from "../../workMotivationTest/components/ModalWindow";
 
 const ChairLampTestPage = () => {
   const [chosen, setChosen] = useState(false);
@@ -133,6 +134,11 @@ const ChairLampTestPage = () => {
 
   return (
     <div>
+      <ModalWindow
+        title="Chair-Lamp test"
+        instruction="blaaaa"
+        button="Start test"
+      />
       <Timer handleMinute={handleMinute} />
       {createIcons()}
       <button type="button" onClick={setPageNum}>

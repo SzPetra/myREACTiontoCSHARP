@@ -4,7 +4,6 @@ import "../assets/createLinkPage.css";
 import Select from "./Select";
 import testPageOptions from "../../options/testPageOptions";
 import modeOptions from "../../options/modeOptions";
-import Form from "./Form";
 
 import FetchDataButton from "../components/FetchDataButton";
 import Input from "./Input";
