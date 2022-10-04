@@ -15,10 +15,9 @@ const ModalWindowHungarian = ({
   const { design } = useContext(ThemeContext);
 
   const classes = classNames({
-    "modal-window-content-container active": !design && modalWindow,
-    "modal-window-content-container-contrast active": design && modalWindow,
-    "modal-window-content-container": design && !modalWindow,
-    "modal-window-content-container-contrast": !design && !modalWindow,
+    "modal-window-content-container": !design,
+    "modal-window-content-container-contrast": design,
+    active: modalWindow,
   });
 
   return (
