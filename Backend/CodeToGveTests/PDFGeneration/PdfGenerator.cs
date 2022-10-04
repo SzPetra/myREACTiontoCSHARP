@@ -29,8 +29,9 @@ namespace CodeToGveTests.PDFGeneration
 			XStringFormats.Center);
 			
 			string name = payload.Name; //catch name is null
+			string testType = "Chiar-lamp test";
 
-			string filename = $"{name}_.pdf";
+			string filename = $"{name}_{testType}.pdf";
 
 			document.Save($"../CodeToGveTests/PdfStorage/{filename}");
 			return document;
