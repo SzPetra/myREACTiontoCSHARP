@@ -7,6 +7,7 @@ using CodeToGiveTests.Encryption;
 using PdfSharp.Pdf;
 using CodeToGveTests.PDFGeneration;
 using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
+using CodeToGveTests.Models;
 
 namespace CodeToGiveTests.Controllers
 {
@@ -47,16 +48,17 @@ namespace CodeToGiveTests.Controllers
         [EnableCors("AnotherPolicy")]
         [Route("SendEmailWithTestResult")]
         [HttpPost]
-        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] LoadModel payload)
+        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] TestResultModel payload)
         {
-            payload.AdminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
+            var adminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
 
-            Console.WriteLine(payload);
+            Console.WriteLine(adminEmail);
+			Console.WriteLine(payload.TestData);
             PdfDocument testPdf = PdfGenerator.GeneratePdf(payload);
             string testType = "Chiar-lamp test";
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "kislorand270@gmail.com", //payload.AdminEmail,
+                EmailAdress = adminEmail,  //"kislorand270@gmail.com", 
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 
@@ -75,7 +77,7 @@ namespace CodeToGiveTests.Controllers
         [EnableCors("AnotherPolicy")]
         [Route("DecryptUrl")]
         [HttpGet]
-        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromQuery] string payload)
+        public ActionResult<dynamic> SendEmailWithTestResult([FromQuery] string payload)
         {
             string decryptedString = payload; // StringCrypter.Decrypt(payload);
 			Console.WriteLine(decryptedString);
@@ -83,7 +85,7 @@ namespace CodeToGiveTests.Controllers
             return Ok(testLinkData);
         }
 
-        [Route("")]
+       /* [Route("")]
         [HttpGet]
         public bool SendPDF()
         {
@@ -92,6 +94,6 @@ namespace CodeToGiveTests.Controllers
             if (pdf == null)
                 return false;
             return true;
-        }
+        }*/
     }
 }
