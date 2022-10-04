@@ -87,15 +87,17 @@ const ChairLampTestPage = () => {
 
   const createIcons = () => {
     let arr = [];
-    for (let i = 1; i <= 209; i++) {
+    for (let i = 1; i <= 208; i++) {
       let iconObject = listOfIcons[getRandomInt(1, 16)];
       arr.push(
         <iconObject.icon
-          id={chosen ? "chosen-icon" : "not-chosen-icon"}
+          key={i}
+          id={i}
           className={
-            design
+            (design
               ? "chair-lamp-test-content-icon-contrast"
-              : "chair-lamp-test-content-icon"
+              : "chair-lamp-test-content-icon")
+            //(chosen ? "chosen-icon" : "not-chosen-icon")
           }
           onFocus={() => setIcons()}
           onKeyPress={(e) => {
@@ -103,10 +105,29 @@ const ChairLampTestPage = () => {
             setChosen(true);
           }}
           tabIndex={i}
-          key={i}
         />
-      );
+      ); 
     }
+    let lastIconObject = listOfIcons[getRandomInt(1, 16)];
+    arr.push(
+      <lastIconObject.icon
+        key={209}
+        id={209}
+        className={
+          (design
+            ? "chair-lamp-test-content-icon-contrast"
+            : "chair-lamp-test-content-icon")
+          //(chosen ? "chosen-icon" : "not-chosen-icon")
+        }
+        onFocus={() => setIcons()}
+        onBlur={()=> setPageNum()}
+        onKeyPress={(e) => {
+          setError(e, lastIconObject.correct);
+          setChosen(true);
+        }}
+        tabIndex={209}
+      />
+    );
     return (
       <div
         className={
@@ -135,9 +156,6 @@ const ChairLampTestPage = () => {
     <div>
       <Timer handleMinute={handleMinute} />
       {createIcons()}
-      <button type="button" onClick={setPageNum}>
-        NextPage
-      </button>
     </div>
   );
 };
