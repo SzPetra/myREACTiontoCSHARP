@@ -1,27 +1,46 @@
 import React, { useState } from "react";
 import "../../assets/modalWindow.css";
 
-const ModalWindowHungarian = () => {
+const ModalWindowHungarian = ({ title, instruction, button, ...rest }) => {
   const [modalWindow, setModalWindow] = useState(true);
 
   return (
-    <>
-      <div
+    <div
+      className={
+        modalWindow
+          ? "modal-window-content-container active"
+          : "modal-window-conetnt-container"
+      }
+    >
+      <h1
         className={
           modalWindow
-            ? "modal-window-content-container active"
-            : "modal-window-conetnt-container"
+            ? "modal-window-content-head active"
+            : "modal-window-content-head"
         }
       >
-        <h1 className="modal-window-content-head">The work motivation test</h1>
-        <p className="modal-window-content-body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam
-          voluptatem ab eaque tempore animi deleniti beatae quibusdam delectus.
-        </p>
-        <button onClick={() => setModalWindow(false)}>close</button>
-      </div>
-      <div className="modal-window-overlay"></div>
-    </>
+        {title}
+      </h1>
+      <p
+        className={
+          modalWindow
+            ? "modal-window-content-body active"
+            : "modal-window-content-body"
+        }
+      >
+        {instruction}
+      </p>
+      <button
+        className={
+          modalWindow
+            ? "modal-window-content-btn active"
+            : "modal-window-content-btn"
+        }
+        onClick={() => setModalWindow(false)}
+      >
+        {button}
+      </button>
+    </div>
   );
 };
 

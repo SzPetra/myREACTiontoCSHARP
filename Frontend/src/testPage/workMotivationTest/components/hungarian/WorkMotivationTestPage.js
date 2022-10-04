@@ -30,7 +30,16 @@ const WorkMotivationTestPage = () => {
 
   return (
     <>
-      <ModalWindowHungarian />
+      <ModalWindowHungarian
+        title="Motivációs teszt"
+        instruction="Különböző állítások fognak megjelenni egyesével. A te feladatod, 
+        hogy gondold végig ezeket az állításokat és pontozd őket egytől ötig(1-5).
+        Az egyes(1) azt jelenti, hogy egyáltalán nem szeretnél ilyen helyen dolgozni,
+        az ötös(5) pedig, hogy mindenképpen ilyen helyen szeretnél dolgozni. A hármas(3)
+        semleges, a többi pedig ezek közé esik.
+        Ha figyelmesen végigolvastad az utasítások kérlek nyomd meg az 'Elkezdem a tesztet' gombot"
+        button="Elkezdem a tesztet"
+      />
       <div
         className={
           design
