@@ -1,0 +1,30 @@
+#sidebar-accessibility-logo {
+    height: 4rem;
+    width: 4rem;
+
+    position: fixed;
+    z-index: 1;
+
+    right:0;
+    top: 30%
+}
+
+/* side navigation options */
+.side-navigation-content {
+    visibility: hidden;
+
+    position: fixed;
+    z-index: 1;
+
+    right: 0;
+    top: 30%;
+}
+.side-navigation-content-active {
+    visibility: visible;
+
+    position: fixed;
+    z-index: 1;
+
+    right: 0;
+    top: 30%;
+}

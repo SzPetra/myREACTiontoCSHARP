@@ -7,7 +7,7 @@ import { useContext } from "react";
 import { ThemeContext } from "../../App";
 
 const Navbar = () => {
-  const { design, setDesign } = useContext(ThemeContext);
+  const { design } = useContext(ThemeContext);
   return (
     <>
       <div
@@ -53,8 +53,6 @@ const Navbar = () => {
             options={editPageOptions}
           />
         </ul>
-
-        <Link onClick={() => setDesign()}> Negative contrast</Link>
       </div>
     </>
   );

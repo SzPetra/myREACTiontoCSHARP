@@ -14,16 +14,16 @@ const ModalWindowHungarian = ({
   const [modalWindow, setModalWindow] = useState(true);
   const { design } = useContext(ThemeContext);
 
-  const className = classNames({
-    "modal-window-content-container-contrast active": design,
-    "modal-window-content-container active": !design,
-    "modal-window-content-container": !modalWindow,
+  const classes = classNames({
+    "modal-window-content-container": !design,
+    "modal-window-content-container-contrast": design,
+    active: modalWindow,
   });
 
   return (
     <>
       {modalWindow && (
-        <div className={className}>
+        <div className={classes}>
           <h1
             className={
               modalWindow
