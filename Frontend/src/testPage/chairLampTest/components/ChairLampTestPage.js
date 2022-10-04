@@ -10,7 +10,7 @@ import {
 import { useContext } from "react";
 import { ThemeContext } from "../../../App";
 
-import { TestFinishedContext } from "../../../testSelector/components/TestFinishedContext";
+import { TestDataContext, TestFinishedContext } from "../../../testSelector/components/TestFinishedContext";
 
 const ChairLampTestPage = () => {
   const [chosen, setChosen] = useState(false);
@@ -27,6 +27,7 @@ const ChairLampTestPage = () => {
   let errorsByMinute = errorsByMinuteState;
 
   const { testComplete, setTestComplete } = useContext(TestFinishedContext);
+  const { testResults, setTestResults } = useContext(TestDataContext);
 
   const setIcons = () => {
     revisedIcons += 1;
@@ -78,6 +79,13 @@ const ChairLampTestPage = () => {
       sumOfErrors
     );
     //return <Comp props={qualityOfAttetion} />
+    setTestResults(
+      {
+        quality : qualityOfAttetion,
+        percentage : performancePercentage,
+        extent : extentOfAttenton
+      }
+    )
     setTestComplete(true);
 
     console.log(qualityOfAttetion);
