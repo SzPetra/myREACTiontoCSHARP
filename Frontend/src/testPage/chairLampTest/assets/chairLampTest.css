@@ -1,14 +1,37 @@
-.charLampicons-container {
+.chair-lamp-test-content-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    max-width: 38rem;
-    margin-left: 3rem;
 
+    justify-content: center;
 }
-.icon{
+.chair-lamp-test-content-container-contrast {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    background-color: var(--black);
+}
+
+/* icons */
+.chair-lamp-test-content-icon {
     width: 3rem;
     height: 3rem;
+
+    margin: 0.5rem;
+}
+.chair-lamp-test-content-icon-contrast {
+    width: 3rem;
+    height: 3rem;
+
+    margin: 0.5rem;
+
+    color: var(--contrastyellow);
+}
+
+/* icon ids for chosen color */
+#chosen-icon {
+    color: var(--green);
 }

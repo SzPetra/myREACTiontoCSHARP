@@ -4,22 +4,20 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Dropdown = ({ design, menu, options, ...rest }) => {
-  const [isHovering, setIsHovering] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
-  const handleMouseOver = () => {
-    setIsHovering(true);
-  };
-
-  const handleMouseOut = () => {
-    setIsHovering(false);
+  const handleDropdown = () => {
+    if (!isActive) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
   };
 
   return (
     <>
       <Link
-        to="/TODO"
-        onMouseOver={handleMouseOver}
-        onMouseOut={handleMouseOut}
+        onClick={handleDropdown}
         className={
           design
             ? "header-content-menu-link-contrast"
@@ -27,7 +25,7 @@ const Dropdown = ({ design, menu, options, ...rest }) => {
         }
       >
         {menu} <FaAngleDown />
-        {isHovering && (
+        {isActive && (
           <ul
             className={
               design

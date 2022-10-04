@@ -1,6 +1,8 @@
 import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
-const Form = ({btnId}) => {
+const Form = ({ btnId }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -12,7 +14,8 @@ const Form = ({btnId}) => {
     console.log(selectTestType);
     const testType = selectTestType.options[selectTestType.selectedIndex].text;
     const selectDisplayMode = document.getElementById("test-mode");
-    const displayMode = selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
+    const displayMode =
+      selectDisplayMode.options[selectDisplayMode.selectedIndex].text;
 
     const pcNameNoWs = replaceWhitespce(participantName, "+");
     const testTypeNoWs = replaceWhitespce(testType, "+");
@@ -21,28 +24,28 @@ const Form = ({btnId}) => {
     const urlQuery = `${pcNameNoWs}/${displayModeNoWs}/${testTypeNoWs}`;
     console.log(urlQuery);
     const submission = {
-        Name: participantName,
-        ClientEmail: clientEmail,
-        AdminEmail: adminEmail,
-        TestUrl: urlQuery
+      Name: participantName,
+      ClientEmail: clientEmail,
+      AdminEmail: adminEmail,
+      TestUrl: urlQuery,
     };
-    console.log(submission)
+    console.log(submission);
     fetch("https://localhost:7200/api/Email/SendEmailWithTestLink", {
-        method: "POST",
-        headers: {
-            'Content-Type': "application/json"
-        },
-        body: JSON.stringify(submission),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(submission),
     })
-    .then((response) => {
-        console.log(response, 'response');
+      .then((response) => {
+        console.log(response, "response");
         if (response.status !== 200) {
-            console.log("not ok" + response.status);
+          console.log("not ok" + response.status);
         }
-    })
-    .catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
-    });
+      });
   };
 
   return (
@@ -52,8 +55,8 @@ const Form = ({btnId}) => {
   );
 };
 
-function replaceWhitespce(string, char){
+function replaceWhitespce(string, char) {
   return string.replace(/ /g, char);
-} 
+}
 
 export default Form;

@@ -8,20 +8,32 @@ import Form from "./Form";
 
 import FetchDataButton from "../components/FetchDataButton";
 import Input from "./Input";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
-const CreateLink = ({ design }) => {
-
+const CreateLink = () => {
+  const { design } = useContext(ThemeContext);
   return (
     <>
       <Navbar />
-      <div className="page-content-container">
+      <div
+        className={
+          design
+            ? "link-page-content-container-contrast"
+            : "link-page-content-container"
+        }
+      >
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
           alt="We help people with disabilities"
         />
 
-        <form className={design ? "link-page-form-contrast" : "link-page-form"}>
+        <div
+          className={design ? "parting-line-contrast" : "parting-line"}
+        ></div>
+
+        <form className="link-page-form">
           <section className="link-page-form-content-left">
             {/* inputs */}
             <Input
@@ -43,7 +55,13 @@ const CreateLink = ({ design }) => {
               placeholder="salva_v@gmail.com"
             />
           </section>
-          <section className="link-page-form-content-right">
+          <section
+            className={
+              design
+                ? "link-page-form-content-right-contrast"
+                : "link-page-form-content-right"
+            }
+          >
             {/* select test type */}
             <label for="test-type">
               Choose the type of test* :
@@ -56,7 +74,7 @@ const CreateLink = ({ design }) => {
               <p>(If you don't choose test mode, the default will be basic)</p>
               <Select id="test-mode" options={modeOptions} />
             </label>
-            <FetchDataButton btnId={"link-page-form-btn"}/>
+            <FetchDataButton btnId={"link-page-form-btn"} />
           </section>
         </form>
       </div>

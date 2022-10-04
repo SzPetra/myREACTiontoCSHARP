@@ -1,11 +1,21 @@
 import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../App";
 
 const Input = ({ id, type, label, placeholder, ...rest }) => {
+  const { design } = useContext(ThemeContext);
   return (
-    <label className="link-page-form-label" for={id}>
+    <label
+      className={
+        design ? "link-page-form-label-contrast" : "link-page-form-label"
+      }
+      for={id}
+    >
       {label}
       <input
-        className="link-page-form-input"
+        className={
+          design ? "link-page-form-input-contrast" : "link-page-form-input"
+        }
         id={id}
         type={type}
         placeholder={placeholder}

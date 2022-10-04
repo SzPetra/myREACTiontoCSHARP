@@ -3,14 +3,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 3rem;
 }
 .work-mot-test-content-container-contrast {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding-top: 3rem;
 
     background-color: var(--black);
 }
@@ -124,4 +122,12 @@
 .work-mot-test-content-btn-contrast:hover {
     border: 0.6rem solid var(--contrastyellow);
     font-size: 1.4rem;
+}
+
+/* speech recognition value */
+.speech-rec-value {
+    color: var(--red);
+}
+.speech-rec-value-contrast {
+    color: var(--contrastyellow)
 }
