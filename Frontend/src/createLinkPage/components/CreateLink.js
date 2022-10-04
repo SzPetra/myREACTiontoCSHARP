@@ -14,7 +14,13 @@ const CreateLink = () => {
   return (
     <>
       <Navbar />
-      <div className="link-page-content-container">
+      <div
+        className={
+          design
+            ? "link-page-content-container-contrast"
+            : "link-page-content-container"
+        }
+      >
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
