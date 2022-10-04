@@ -8,14 +8,16 @@ import {
 } from "./ChairLampTestResultCount";
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../../../App.js";
-import ModalWindow from "../../workMotivationTest/components/ModalWindow";
+import ChairLampGreetingPage from "./ChairLampGreetingPage";
 import classNames from "classnames";
+import ResultPage from "../../workMotivationTest/components/ResultPage";
 
 export const runTimer = createContext();
 const ChairLampTestPage = () => {
   const [isRuntime, setIsRuntime] = useState(false);
   const revisedIconList = useRef([]);
   const markedIconList = useRef([]);
+  const [resultPage, setResultPage] = useState(false);
   //const chosen = useRef(null);
   const { design } = useContext(ThemeContext);
   const [page, setPage] = useState(0);
@@ -36,7 +38,6 @@ const ChairLampTestPage = () => {
     if (revisedIconList.current.length === 0) {
       revisedIconList.current.push(id);
       revisedIcons += 1;
-      console.log("revisednum: " + revisedIcons);
     }
     let iconId = 0;
     for (let i = 0; i <= revisedIconList.current.length; i++) {
@@ -49,7 +50,6 @@ const ChairLampTestPage = () => {
     }
     if (iconId <= 0) {
       revisedIcons += 1;
-      console.log("revisednum: " + revisedIcons);
       revisedIconList.current.push(id);
     }
   };
@@ -80,7 +80,6 @@ const ChairLampTestPage = () => {
           errors += 1;
         }
       }
-      console.log("error num: " + errors);
     }
   };
 
@@ -102,6 +101,7 @@ const ChairLampTestPage = () => {
       revisedIconsByMinute.length !== 0
     ) {
       calculateResults();
+      setResultPage(true);
     }
   };
 
@@ -123,10 +123,7 @@ const ChairLampTestPage = () => {
       sumOfRevisedIcons,
       sumOfErrors
     );
-    //return <Comp props={qualityOfAttetion} />
-    console.log(qualityOfAttetion);
-    console.log(performancePercentage);
-    console.log(extentOfAttenton);
+    //return <Comp props={qualityOfAttetion}
   };
 
   function getRandomInt(min, max) {
@@ -138,7 +135,7 @@ const ChairLampTestPage = () => {
   const createIcons = () => {
     let arr = [];
     for (let i = 1; i <= 208; i++) {
-      let iconObject = listOfIcons[getRandomInt(1, 16)];
+      let iconObject = listOfIcons[getRandomInt(0, 15)];
       arr.push(
         <iconObject.icon
           key={i}
@@ -152,7 +149,7 @@ const ChairLampTestPage = () => {
         />
       );
     }
-    let lastIconObject = listOfIcons[getRandomInt(1, 16)];
+    let lastIconObject = listOfIcons[getRandomInt(0, 15)];
     arr.push(
       <lastIconObject.icon
         key={209}
@@ -187,7 +184,6 @@ const ChairLampTestPage = () => {
       (revisedIconsByMinuteState = revisedIconsByMinute)
     );
     seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
-    console.log(revisedIconsByMinute);
     revisedIconList.current = [];
     markedIconList.current = [];
     setPage(page + 1);
@@ -196,7 +192,7 @@ const ChairLampTestPage = () => {
   return (
     <div>
       <runTimer.Provider value={{ isRuntime, setIsRuntime }}>
-        <ModalWindow
+        <ChairLampGreetingPage
           title="Chair-Lamp test"
           instruction="blaaaa"
           button="Start
@@ -205,6 +201,7 @@ const ChairLampTestPage = () => {
         />
       </runTimer.Provider>
       {createIcons()}
+      <ResultPage title="PAPAAAA" state={resultPage} />
     </div>
   );
 };

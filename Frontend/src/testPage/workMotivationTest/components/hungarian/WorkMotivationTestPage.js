@@ -2,17 +2,29 @@ import React, { useContext, useState } from "react";
 import "../../assets/workMotivationTest.css";
 import workMotivationQuestions from "../../questions/hungarian/workMotivationQuestionsHungarian";
 import { ThemeContext } from "../../../../App.js";
-import ModalWindow from "../ModalWindow";
+import WorkMotivationGreetingPage from "../WorkMotivationGreetingPage";
+import ResultPage from "../ResultPage";
 
 const WorkMotivationTestPage = () => {
   const [index, setIndex] = useState(0);
+  const [resultPage, setResultPage] = useState(false);
   const { design } = useContext(ThemeContext);
+  const [hasValue, setHasValue] = useState(true);
 
   const setQuestionValue = (newValue) => {
     for (let i = 0; i < workMotivationQuestions.length; i++) {
       if (workMotivationQuestions[i].id === workMotivationQuestions[index].id) {
         workMotivationQuestions[i].value = newValue;
+        setHasValue(false);
       }
+    }
+  };
+
+  const feedbackMessage = () => {
+    if (hasValue) {
+      return <p>Válassz</p>;
+    } else {
+      return <p>Elmentve</p>;
     }
   };
 
@@ -27,7 +39,43 @@ const WorkMotivationTestPage = () => {
 
     console.log(anyagiak);
   };
-
+  const changeButton = () => {
+    if (index === workMotivationQuestions.length - 1) {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            countResult();
+            setResultPage(true);
+          }}
+        >
+          Finish
+        </button>
+      );
+    } else {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            setIndex(index + 1);
+            setHasValue(true);
+          }}
+        >
+          Következő állítás
+        </button>
+      );
+    }
+  };
   return (
     <div
       className={
@@ -36,7 +84,8 @@ const WorkMotivationTestPage = () => {
           : "work-mot-test-content-container"
       }
     >
-      <ModalWindow
+      {" "}
+      <WorkMotivationGreetingPage
         title="Motivációs teszt"
         instruction="Különböző állítások fognak megjelenni egyesével. A te feladatod, 
         hogy gondold végig ezeket az állításokat és pontozd őket egytől ötig(1-5).
@@ -66,7 +115,6 @@ const WorkMotivationTestPage = () => {
       >
         {workMotivationQuestions[index].question}
       </p>
-
       <section className="work-mot-test-scale">
         <p
           className={
@@ -137,18 +185,9 @@ const WorkMotivationTestPage = () => {
           Ilyen helyen szeretnék dolgozni
         </p>
       </section>
-
-      <button
-        className={
-          design
-            ? "work-mot-test-content-btn-contrast"
-            : "work-mot-test-content-btn"
-        }
-        onClick={() => setIndex(index + 1)}
-      >
-        Következő állítás
-      </button>
-      <button onClick={() => countResult()}>Finish</button>
+      {feedbackMessage()}
+      {changeButton()}
+      <ResultPage state={resultPage} title="MAMAAAAAAA" />
     </div>
   );
 };

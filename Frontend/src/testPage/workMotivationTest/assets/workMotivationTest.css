@@ -88,17 +88,16 @@
     background-color: var(--contrastyellow);
 }
 .work-mot-test-scale-btn-contrast:hover {
-    border: 0.6rem solid var(--contrastyellow)
+    border: 0.6rem solid var(--contrastyellow);
 }
 
 /* test buttons outside of scale */
 .work-mot-test-content-btn {
-    align-self: flex-end;
-    margin-right: 21rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
     background-color: var(--white);
 
     border: 0.2rem solid var(--black);
+    border-radius: 0.2rem;
 
     font-size: 1.5rem;
     font-weight: bold;
@@ -110,13 +109,15 @@
 .work-mot-test-content-btn:focus {
     background-color: var(--green);
 }
+.work-mot-test-content-btn:disabled {
+    border: none;
+}
 .work-mot-test-content-btn-contrast {
-    align-self: flex-end;
-    margin-right: 21rem;
-    margin-top: 2rem;
+    margin-top: 3rem;
     background-color: var(--contrastyellow);
 
     border: 0.2rem solid var(--black);
+    border-radius: 0.2rem;
 
     font-size: 1.5rem;
     font-weight: bold;
@@ -126,6 +127,14 @@
 .work-mot-test-content-btn-contrast:hover {
     border: 0.6rem solid var(--contrastyellow);
     font-size: 1.4rem;
+}
+.work-mot-test-content-btn-contrast:disabled {
+    border: 0.1rem solid (--lightgrey);
+
+    background-color: var(--lightgrey);
+}
+.work-mot-test-content-btn-contrast:disabled:hover {
+    border: 0.1rem solid var(--lightgrey);
 }
 
 /* speech recognition value */
