@@ -54,11 +54,11 @@ namespace CodeToGiveTests.Controllers
 
             Console.WriteLine(adminEmail);
 			Console.WriteLine(payload.TestData);
-            PdfDocument testPdf = PdfGenerator.GeneratePdf(payload);
-            string testType = "Chiar-lamp test";
+            PdfGenerator.GeneratePdf(payload);
+            string testType = "Chair-lamp test";
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = adminEmail,  //"kislorand270@gmail.com", 
+                EmailAdress = "kislorand270@gmail.com",//adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 

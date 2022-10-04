@@ -13,9 +13,10 @@ namespace CodeToGveTests.PDFGeneration
 {
 	public class PdfGenerator
 	{
-		public static PdfDocument GeneratePdf(TestResultModel payload)
+		public static void GeneratePdf(TestResultModel payload)
 		{
 			System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
+			string name = payload.Name; //catch if name is null
 			
 			PdfDocument document = new PdfDocument();
 
@@ -25,20 +26,29 @@ namespace CodeToGveTests.PDFGeneration
 			XGraphics gfx = XGraphics.FromPdfPage(page);
 			XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
 
-			gfx.DrawString("Hello, Jahhhn!", font, XBrushes.Black,
+			gfx.DrawString($"Hello, {name}!", font, XBrushes.Black,
 			new XRect(0, 0, page.Width, page.Height),
 			XStringFormats.Center);
 			
-			string name = payload.Name; //catch if name is null
-			string testType = "Chiar-lamp test";
+			string testType = "Chair-lamp test";
 
 			string filename = $"{name}_{testType}.pdf";
 
 			document.Save($"../CodeToGveTests/PdfStorage/{filename}");
+			document.Close();
+			//Process.Start(filename);
 
-			Process.Start(filename);
+			/*			Process p = new Process();
+						p.StartInfo = new ProcessStartInfo()
+						{
+							CreateNoWindow = true,
+							Verb = "print",
+							FileName = "C:/Program Files/Adobe/Acrobat DC/Acrobat/Acrobat.exe", //put the path to the pdf reading software e.g. Adobe Acrobat
+							Arguments = filename // put the path of the pdf file you want to print
+						};
 
-			return document;
+						p.Start(); // $"../CodeToGveTests/PdfStorage/{filename}");*/
+
 		}
 	}
 }
