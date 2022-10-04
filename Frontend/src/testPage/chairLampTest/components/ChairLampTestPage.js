@@ -10,11 +10,12 @@ import {
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../../../App.js";
 import ModalWindow from "../../workMotivationTest/components/ModalWindow";
+import classNames from "classnames";
 
 const ChairLampTestPage = () => {
   const revisedIconList = useRef([])
   const markedIconList = useRef([])
- // const [chosen, setChosen] = useState(false);
+  //const chosen = useRef(null);
   const { design } = useContext(ThemeContext);
   const [page, setPage] = useState(0);
   let [revisedIconsState, setRevisedIconsState] = useState(0);
@@ -27,7 +28,10 @@ const ChairLampTestPage = () => {
   let revisedIconsByMinute = revisedIconsByMinuteState;
   let errorsByMinute = errorsByMinuteState;
 
-
+  const classes = classNames({
+    "chair-lamp-test-content-icon": !design,
+    "chair-lamp-test-content-icon-contrast": design,
+  });
   const setIcons = (id) => {
     if(revisedIconList.current.length ===0){
       revisedIconList.current.push(id);
@@ -53,8 +57,10 @@ const ChairLampTestPage = () => {
 
   const setError = (e, isCorrect, id) => {
     if (e.key === "Enter") {
+      let icon = document.getElementById(`${id}`);
       if(markedIconList.current.length ===0){
         markedIconList.current.push(id);
+        icon.classList.add("chosen-icon");
         if(isCorrect ===false){
           errors += 1;
         }       
@@ -70,6 +76,7 @@ const ChairLampTestPage = () => {
           }
       }
       if (iconId <=0 ) {
+        icon.classList.add("chosen-icon");
         markedIconList.current.push(id);
         if(isCorrect===false){
           errors += 1;
@@ -136,10 +143,7 @@ const ChairLampTestPage = () => {
           key={i}
           id={i}
           className={
-            //chosen ? "chosen-icon" : "not-chosen-icon"
-            design
-              ? "chair-lamp-test-content-icon-contrast"
-              : "chair-lamp-test-content-icon"
+            classes
           }
           onFocus={() => setIcons(i)}
           onKeyPress={(e) => {
@@ -156,9 +160,7 @@ const ChairLampTestPage = () => {
         id={209}
         isrevised={lastIconObject.isRevised}
         className={
-          design
-            ? "chair-lamp-test-content-icon-contrast"
-            : "chair-lamp-test-content-icon"
+          classes
         }
         onFocus={() => setIcons(209)}
         onBlur={()=> setPageNum()}
