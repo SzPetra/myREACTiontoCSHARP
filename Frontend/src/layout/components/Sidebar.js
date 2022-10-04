@@ -27,17 +27,18 @@ const Sidebar = () => {
     "side-navigation-content-option-contrast": design,
   });
 
+  const sideNavigationContentLogoClasses = classNames({
+    "sidebar-accessibility-logo": !isActive,
+    "sidebar-accessibility-logo active": isActive,
+  });
+
   return (
     <div className="side-navigation-content-container">
       <img
         onClick={() => handleOnClick()}
         alt="Accessibility logo"
         src="/accessibility_logo.png"
-        className={
-          isActive
-            ? "sidebar-accessibility-logo active"
-            : "sidebar-accessibility-logo"
-        }
+        className={sideNavigationContentLogoClasses}
       />
       <div className={sideNavigationContentClasses}>
         <option

@@ -14,38 +14,33 @@ const ModalWindowHungarian = ({
   const [modalWindow, setModalWindow] = useState(true);
   const { design } = useContext(ThemeContext);
 
-  const classes = classNames({
+  const modalWindowContainerClasses = classNames({
     "modal-window-content-container": !design,
     "modal-window-content-container-contrast": design,
     active: modalWindow,
   });
 
+  const modalWindowContentHeaderClasses = classNames({
+    "modal-window-content-head active": !design,
+    "modal-window-content-head-contrast active": design,
+  });
+
+  const modalWindowContentBodyClasses = classNames({
+    "modal-window-content-body active": !design,
+    "modal-window-content-body-contrast active": design,
+  });
+
+  const modalWindowContentButton = classNames({
+    "modal-window-content-btn active": !design,
+    "modal-window-content-btn-contrast active": design,
+  });
+
   return (
-    <div className={classes}>
-      <h1
-        className={
-          modalWindow
-            ? "modal-window-content-head active"
-            : "modal-window-content-head"
-        }
-      >
-        {title}
-      </h1>
-      <p
-        className={
-          modalWindow
-            ? "modal-window-content-body active"
-            : "modal-window-content-body"
-        }
-      >
-        {instruction}
-      </p>
+    <div className={modalWindowContainerClasses}>
+      <h1 className={modalWindowContentHeaderClasses}>{title}</h1>
+      <p className={modalWindowContentBodyClasses}>{instruction}</p>
       <button
-        className={
-          modalWindow
-            ? "modal-window-content-btn active"
-            : "modal-window-content-btn"
-        }
+        className={modalWindowContentButton}
         onClick={() => {
           setModalWindow(false);
         }}
