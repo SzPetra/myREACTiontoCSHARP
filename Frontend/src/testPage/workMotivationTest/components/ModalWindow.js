@@ -5,6 +5,7 @@ import { ThemeContext } from "../../../App.js";
 import classNames from "classnames";
 
 const ModalWindowHungarian = ({
+
   title,
   instruction,
   button,
@@ -14,16 +15,13 @@ const ModalWindowHungarian = ({
   const [modalWindow, setModalWindow] = useState(true);
   const { design } = useContext(ThemeContext);
 
-  const className = classNames({
-    "modal-window-content-container-contrast active": design,
-    "modal-window-content-container active": !design,
-    "modal-window-content-container": !modalWindow,
-  });
+    const classes = classNames({
+    'modal-window-content-container active': !design && modalWindow,
+    'modal-window-content-container-contrast active': design && modalWindow,
+    });
 
   return (
-    <>
-      {modalWindow && (
-        <div className={className}>
+        <div className={classes}>
           <h1
             className={
               modalWindow
@@ -55,8 +53,6 @@ const ModalWindowHungarian = ({
             {button}
           </button>
         </div>
-      )}
-    </>
   );
 };
 
