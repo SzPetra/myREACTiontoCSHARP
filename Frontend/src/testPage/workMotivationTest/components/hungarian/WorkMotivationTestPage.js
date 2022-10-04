@@ -30,15 +30,15 @@ const WorkMotivationTestPage = () => {
 
   const countResult = () => {
     let anyagiak = 0;
-
     for (let i = 0; i < workMotivationQuestions.length; i++) {
-      if (workMotivationQuestions[i].type === "anyagiak") {
+      if (workMotivationQuestions[i].type === types[0]) {
         anyagiak += workMotivationQuestions[i].value;
       }
     }
 
     console.log(anyagiak);
   };
+
   const changeButton = () => {
     if (index === workMotivationQuestions.length - 1) {
       return (

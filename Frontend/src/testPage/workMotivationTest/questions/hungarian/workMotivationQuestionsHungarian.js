@@ -8,7 +8,7 @@ const workMotivationQuestions = [
   {
     id: 2,
     question: "...másokon segíthet.",
-    type: "alturizmus",
+    type: "altruizmus",
     value: 0,
   },
   {
@@ -141,7 +141,7 @@ const workMotivationQuestions = [
   {
     id: 24,
     question: "...vezetői képességeire szüksége lehet.",
-    type: "esztétikum",
+    type: "irányítás",
     value: 0,
   },
   {
@@ -159,7 +159,7 @@ const workMotivationQuestions = [
   {
     id: 27,
     question: "...munkatársai egyben barátai is.",
-    type: "irányítás",
+    type: "társas kapcsolatok",
     value: 0,
   },
   {
@@ -177,13 +177,13 @@ const workMotivationQuestions = [
   {
     id: 30,
     question: "...jót tehet mások érdekében.",
-    type: "alturizmus",
+    type: "altruizmus",
     value: 0,
   },
   {
     id: 31,
     question: "...más emberek javát szolgálhatja.",
-    type: "alturizmus",
+    type: "altruizmus",
     value: 0,
   },
   {
@@ -201,7 +201,7 @@ const workMotivationQuestions = [
   {
     id: 34,
     question: "...jól kijön munkatársaival.",
-    type: "irányítás",
+    type: "társas kapcsolatok",
     value: 0,
   },
   {
@@ -219,7 +219,7 @@ const workMotivationQuestions = [
   {
     id: 37,
     question: "...mások munkáját is irányíthatja.",
-    type: "esztétikum",
+    type: "irányítás",
     value: 0,
   },
   {
