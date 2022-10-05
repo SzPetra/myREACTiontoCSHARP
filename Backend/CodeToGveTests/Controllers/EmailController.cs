@@ -30,11 +30,12 @@ namespace CodeToGiveTests.Controllers
         {
             string testlink = "http://localhost:3000/select-test?data=" + payload.TestUrl;//StringCrypter.Encrypt(payload.TestUrl);
 
-           Console.WriteLine(payload);
+            //Console.WriteLine(payload);
             string adminEmail = payload.AdminEmail;
-            SessionExtensions.SetObjectAsJson(HttpContext.Session, "email", adminEmail);
-
-			Console.WriteLine(adminEmail);
+            HttpContext.Session.SetString(adminEmail, "adminEmail");
+            //SessionExtensions.SetObjectAsJson(HttpContext.Session, "adminEmail", adminEmail);
+            Console.WriteLine($"admin email : {SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail")}");
+			
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
                 EmailAdress = payload.ClientEmail,
@@ -51,14 +52,16 @@ namespace CodeToGiveTests.Controllers
         public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] TestResultModel payload)
         {
             var adminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
+            Console.WriteLine($"admin-email :{HttpContext.Session.GetString("adminEmail")}");
 
-            Console.WriteLine(adminEmail);
-			Console.WriteLine(payload.TestData);
+           //Console.WriteLine($"admin-email : {SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail")}");
+            Console.WriteLine($"TestData : + {payload.TestData}");
             PdfGenerator.GeneratePdf(payload);
             string testType = "Chair-lamp test";
+
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "kislorand270@gmail.com",//adminEmail,
+                EmailAdress = adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 
