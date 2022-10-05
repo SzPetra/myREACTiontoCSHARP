@@ -4,15 +4,16 @@ import React,
     useContext
 } from 'react';
 import { TestDataContext } from './TestFinishedContext';
-import { ThemeContext } from "../../../App.js";
+import { ThemeContext } from '../../App';
+import classNames from 'classnames';
+import "../../testPage/workMotivationTest/assets/workMotivationTest.css";
 
 const TestEndPage = ({testData,clientData}) => {
     const { design } = useContext(ThemeContext);
 
     const modalWindowContainerClasses = classNames({
-    "modal-window-content-container": !design,
-    "modal-window-content-container-contrast": design,
-    active: state,
+    "modal-window-content-containe active": !design ,
+    "modal-window-content-container-contrast active": design,
     });
 
     const modalWindowContentHeaderClasses = classNames({
@@ -61,11 +62,9 @@ const TestEndPage = ({testData,clientData}) => {
     });
     return (
         <div className={modalWindowContainerClasses}>
-        <h1 className={modalWindowContentHeaderClasses}>{title}</h1>
-        <p className={modalWindowContentBodyClasses}>{instruction}</p>
-        <Link to="/tests">
-        <img id={modalWindowContentImgIds} src={img}></img>
-        </Link>
+        <h1 className={modalWindowContentHeaderClasses}>Test</h1>
+        <p className={modalWindowContentBodyClasses}>instruction</p>
+        <img id={modalWindowContentImgIds} src={"/salva_vita_blue.png"}></img>
     </div>
     )
 }

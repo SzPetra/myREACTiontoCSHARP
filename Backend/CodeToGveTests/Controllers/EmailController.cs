@@ -59,7 +59,7 @@ namespace CodeToGiveTests.Controllers
 
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "petra.szilagyi27@gmail.com",//"kislorand270@gmail.com",//adminEmail,
+                EmailAdress = "kislorand270@gmail.com",//adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 
