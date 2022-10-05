@@ -208,14 +208,29 @@ const ChairLampTestPage = () => {
       <runTimer.Provider value={{ isRuntime, setIsRuntime }}>
         <ChairLampGreetingPage
           title="Chair-Lamp test"
-          instruction="blaaaa"
+          instruction="In this test you will be given pictures of different kind of subjects. Your task
+          is to select the all the chairs and lamp on the page.
+          There will be 19 pictures in a row and there are 11 rows. You can use the 'TAB' key to
+          move to the next picture. If you think it is a chair or a lamp press 'ENTER'. The color
+          of the picture will change, meaning you selected that subject. If you ever need to go backward
+          you can use the 'TAB' and 'SHIFT' key combination for that. You will have 5 minutes to complete this test,
+          but if you have completed all 3 pages before you run out of time, it will automatically stop.
+          When you get to the last subject on the page, just simply press 'TAB' again and it will
+          jump to the next page.
+          Good luck!"
           button="Start
         test"
           handleMinute={handleMinute}
         />
       </runTimer.Provider>
       {createIcons()}
-      <ResultPage title="PAPAAAA" state={resultPage} />
+      <ResultPage
+        state={resultPage}
+        title="The test has ended, great job!"
+        instruction="Thank you for filling out this test, your answers have been saved.
+         Please contact your mentor."
+        img="/salva_vita_blue.png"
+      />
     </div>
   );
 };

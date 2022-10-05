@@ -30,7 +30,8 @@ const WorkMotivationTestPageSpeechRecognition = () => {
   const h1LAbel = "I would like a job where a person";
   const questionValue = `${workMotivationQuestions[index].question}`;
   const nextButtonLabel = "next question";
-  const chooseLabel = "press space and say a number from 1-5";
+  const finishButtonLabel = "finish test";
+  const chooseLabel = "press and hold space and say a number from 1-5";
 
   /* speak statements */
   const startListening = (e) => {
@@ -54,6 +55,7 @@ const WorkMotivationTestPageSpeechRecognition = () => {
             countResult();
             setResultPage(true);
           }}
+          onFocus={() => speak({ text: finishButtonLabel })}
         >
           Finish test
         </button>

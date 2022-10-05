@@ -36,9 +36,14 @@ const WorkMotivationGreetingPage = ({
 
   return (
     <div className={modalWindowContainerClasses}>
-      <h1 className={modalWindowContentHeaderClasses}>{title}</h1>
-      <p className={modalWindowContentBodyClasses}>{instruction}</p>
+      <h1 tabIndex={1} className={modalWindowContentHeaderClasses}>
+        {title}
+      </h1>
+      <p tabIndex={2} className={modalWindowContentBodyClasses}>
+        {instruction}
+      </p>
       <button
+        tabIndex={3}
         className={modalWindowContentButton}
         onClick={() => {
           setModalWindow(false);
