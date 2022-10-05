@@ -35,30 +35,6 @@ const workMotivationQuestionsEnglish = [
     type: "irányítás",
     value: 0,
   },
-  {
-    id: 7,
-    question: "can make something new.",
-    type: "kreativitás",
-    value: 0,
-  },
-  {
-    id: 8,
-    question: "can make the world a better place.",
-    type: "esztétikum",
-    value: 0,
-  },
-  {
-    id: 9,
-    question: "can be friends with his or her colleagues.",
-    type: "irányítás",
-    value: 0,
-  },
-  {
-    id: 10,
-    question: "can sometimes play.",
-    type: "játékosság",
-    value: 0,
-  },
 ];
 
 export default workMotivationQuestionsEnglish;

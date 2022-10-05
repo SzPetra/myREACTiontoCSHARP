@@ -8,7 +8,6 @@ const WorkMotivationGreetingPage = ({
   title,
   instruction,
   button,
-  buttonOnClick,
   ...rest
 }) => {
   const [modalWindow, setModalWindow] = useState(true);

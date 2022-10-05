@@ -27,6 +27,8 @@
     justify-content: space-around;
     flex: 1;
 
+    margin-right: 10rem;
+
     font-size: 1rem;
 }
 .header-content-menu-contrast {
@@ -34,6 +36,8 @@
     flex-direction: row;
     justify-content: space-around;
     flex: 1;
+
+    margin-right: 10rem;
 
     font-size: 1rem;
 }
@@ -110,7 +114,7 @@
     margin-top: 2rem;
     background-color: var(--contrastyellow);
 
-    width: 23rem;
+    width: 18rem;
     height: 20rem;
 
     border-top: 0.2rem solid var(--contrastyellow);
