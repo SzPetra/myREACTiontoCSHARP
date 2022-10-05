@@ -7,6 +7,7 @@ using CodeToGiveTests.Encryption;
 using PdfSharp.Pdf;
 using CodeToGveTests.PDFGeneration;
 using SessionExtensions = CodeToGiveTests.services.SessionExtensions;
+using CodeToGveTests.Models;
 
 namespace CodeToGiveTests.Controllers
 {
@@ -31,7 +32,7 @@ namespace CodeToGiveTests.Controllers
 
            Console.WriteLine(payload);
             string adminEmail = payload.AdminEmail;
-            SessionExtensions.SetObjectAsJson(HttpContext.Session, "email", adminEmail);
+            SessionExtensions.SetObjectAsJson(HttpContext.Session, "adminEmail", adminEmail);
 
 			Console.WriteLine(adminEmail);
             await _emailHostedService.SendEmailAsync(new EmailModel
@@ -47,17 +48,29 @@ namespace CodeToGiveTests.Controllers
         [EnableCors("AnotherPolicy")]
         [Route("SendEmailWithTestResult")]
         [HttpPost]
-        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] LoadModel payload)
+        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromBody] TestResultModel payload)
         {
-            payload.AdminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
-            string testlink = "https://localhost:44490/" + StringCrypter.Encrypt(payload.TestUrl);
-            Console.WriteLine(payload);
+            var adminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
+
+            Console.WriteLine(adminEmail);
+			Console.WriteLine(payload.TestData);
+            PdfGenerator.GeneratePdf(payload);
+            string testType = "Chair-lamp test";
+
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = payload.AdminEmail,
+                EmailAdress = "petra.szilagyi27@gmail.com",//"kislorand270@gmail.com",//adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
-                Attachments = null
+                Attachments = new List<EmailAttachment>() 
+                    { 
+                    new EmailAttachment() 
+                        { 
+                            Name="testPdf",
+                            ContentType="application/pdf",
+                            Data=System.IO.File.ReadAllBytes($"../CodeToGveTests/PdfStorage/{payload.Name}_{testType}.pdf")
+                        }  
+                    }
             });
             return Ok(payload);
         }
@@ -65,7 +78,7 @@ namespace CodeToGiveTests.Controllers
         [EnableCors("AnotherPolicy")]
         [Route("DecryptUrl")]
         [HttpGet]
-        public async Task<ActionResult<dynamic>> SendEmailWithTestResult([FromQuery] string payload)
+        public ActionResult<dynamic> SendEmailWithTestResult([FromQuery] string payload)
         {
             string decryptedString = payload; // StringCrypter.Decrypt(payload);
 			Console.WriteLine(decryptedString);
@@ -73,14 +86,19 @@ namespace CodeToGiveTests.Controllers
             return Ok(testLinkData);
         }
 
-        [Route("")]
-        [HttpGet]
-        public bool SendPDF()
-        {
-            var pdf = PdfGenerator.GeneratePdf();
-            if (pdf == null)
-                return false;
-            return true;
-        }
-    }
+		[Route("")]
+		[HttpGet]
+		public bool SendPDF()
+		{
+			var testModel = new TestResultModel() 
+            { 
+                Name = "Huba", 
+                ClientEmail = "", 
+                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : Hoze manuel el dos santos " 
+            };
+			PdfGenerator.GeneratePdf(testModel);
+			
+			return true;
+		}
+	}
 }
