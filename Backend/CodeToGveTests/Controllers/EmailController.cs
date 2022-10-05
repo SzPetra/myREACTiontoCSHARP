@@ -59,7 +59,7 @@ namespace CodeToGiveTests.Controllers
 
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "petra.szilagyi27@gmail.com",//"kislorand270@gmail.com",//adminEmail,
+                EmailAdress = "kislorand270@gmail.com",//adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 
@@ -94,7 +94,7 @@ namespace CodeToGiveTests.Controllers
             { 
                 Name = "Huba", 
                 ClientEmail = "", 
-                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : Hoze manuel el dos santos " 
+                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : 120\nTotal : 178\nChair-lamp test" 
             };
 			PdfGenerator.GeneratePdf(testModel);
 			

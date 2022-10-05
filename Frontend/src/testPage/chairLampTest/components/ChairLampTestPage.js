@@ -134,8 +134,8 @@ const ChairLampTestPage = () => {
       sumOfRevisedIcons,
       sumOfErrors
     );
-    console.log(testResults);
-    if (testResults === "data") {
+    console.log("ttt" + testResults);
+    if (testResults ==="data") {
       setTestResults(
         {
           quality : qualityOfAttetion,
