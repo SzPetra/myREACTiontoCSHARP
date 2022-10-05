@@ -39,11 +39,10 @@ const ChairLampTestPage = () => {
     "chosen-icon-contrast": design,
   });
 
-  const changeColor = (e, id) =>{
-    if (e.key==='Enter') {
-    let icon = document.getElementById(`${id}`);
-    console.log(icon)
-    icon.classList.add(checkedIconClasses);
+  const changeColor = (e) =>{
+    if (e.key==='Enter' && e.target.dataset.checkedId ==='not-chosen') {
+      e.target.classList.add(checkedIconClasses);
+      e.target.dataset.checkedId = 'chosen';
     }
   };
 
@@ -51,7 +50,6 @@ const ChairLampTestPage = () => {
     if (revisedIconList.current.length === 0) {
       revisedIconList.current.push(id);
       revisedIcons += 1;
-      console.log("revisednum: " + revisedIcons);
     }
     let iconId = 0;
     for (let i = 0; i <= revisedIconList.current.length; i++) {
@@ -64,7 +62,6 @@ const ChairLampTestPage = () => {
     }
     if (iconId <= 0 ) {
       revisedIcons += 1;
-      console.log("revisednum: " + revisedIcons);
       revisedIconList.current.push(id);
     }
   };
@@ -92,15 +89,16 @@ const ChairLampTestPage = () => {
           errors += 1;
         }
       }
-      console.log("error num: " + errors);
     }
   };
   const handleMinute = (second, minute) => {
-    if (second === "00" && minute !== "05" && revisedIcons > 0) {
+    if (second === "01" && minute !== "05" && revisedIcons>0) {
       revisedIconsByMinute.push(revisedIcons);
       errorsByMinute.push(errors);
+      console.log("revsed by minute: " +revisedIconsByMinute)
       revisedIcons = 0;
       errors = 0;
+
     }
     if (
       second === "00" &&
@@ -137,7 +135,6 @@ const ChairLampTestPage = () => {
 
   const createIcons = () => {
     let arr = [];
-    console.log(page)
     let iconList = iconNums[page].iNums;
     for (let i = 0; i <= 207; i++) {
       let iconObject = listOfIcons[iconList[i]];
@@ -145,10 +142,11 @@ const ChairLampTestPage = () => {
         <iconObject.icon
           key={i+1}
           id={i+1}
+          data-checked-id="not-chosen"
         //  className={classes}
           onFocus={() => setIcons(i+1)}
           onKeyPress={(e) => {
-            changeColor(e, i+1)
+            changeColor(e)
             setError(e, iconObject.correct, i+1);
             
           }}
@@ -161,14 +159,14 @@ const ChairLampTestPage = () => {
       <lastIconObject.icon
         key={209}
         id={209}
-        isrevised={lastIconObject.isRevised}
+        data-checked-id="not-chosen"
        // className={classes}
         onFocus={() => setIcons(209)}
         onBlur={() => setPageNum()}
         onKeyPress={(e) => {
-          changeColor(e, 209);
+          changeColor(e);
           setError(e, lastIconObject.correct, 209);
-         
+          setIsRuntime(false)
         }}
         tabIndex={209}
       />
@@ -187,18 +185,24 @@ const ChairLampTestPage = () => {
   };
 
   const setPageNum = () => {
-    setRevisedIconsState((revisedIconsState = revisedIcons));
-    setErrorState((errorsState = errors));
-    setrevisedIconsByMinuteState(
-     (revisedIconsByMinuteState = revisedIconsByMinute)
-    );
-    seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
-    revisedIconList.current = [];
-    markedIconList.current = [];
     if(page <2){
+
+      setRevisedIconsState((revisedIconsState = revisedIcons));
+      setErrorState((errorsState = errors));
+      setrevisedIconsByMinuteState(
+      (revisedIconsByMinuteState = revisedIconsByMinute)
+      );
+      seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
+      revisedIconList.current = [];
+      markedIconList.current = [];
       setPage(page +1);
     }
     else if(page ===2){
+      if(isNaN(revisedIcons) === false){
+        revisedIconsByMinute.push(revisedIconsState);
+        errorsByMinute.push(errorsState);
+      }
+      setIsRuntime(false);
       calculateResults();
     }
     
