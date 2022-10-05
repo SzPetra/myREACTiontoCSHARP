@@ -24,10 +24,19 @@
 .header-content-menu {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    flex: 1;
 
     font-size: 1rem;
 }
+.header-content-menu-contrast {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex: 1;
 
+    font-size: 1rem;
+}
 /* menu links */
 .header-content-menu-link {
     color: var(--mainblue);
@@ -72,7 +81,7 @@
     background-color: var(--white);
 
     width: 16rem;
-    height: 8rem;
+    height: 20rem;
 
     border-top: 0.2rem solid var(--lightblue);
 }
@@ -86,6 +95,7 @@
 .header-content-sub-menu a:hover {
     color: var(--black);
     text-decoration: none;
+    opacity: 1;
 }
 
 .header-content-sub-menu-contrast {
@@ -100,8 +110,8 @@
     margin-top: 2rem;
     background-color: var(--contrastyellow);
 
-    width: 16rem;
-    height: 8rem;
+    width: 23rem;
+    height: 20rem;
 
     border-top: 0.2rem solid var(--contrastyellow);
 }
@@ -109,6 +119,9 @@
 .header-content-sub-menu-contrast a {
     color: var(--black);
     text-decoration: none;
+
+    padding:0.3rem;
+    margin-right: 2rem;
 }
 
 .header-content-sub-menu-contrast a:hover {
@@ -127,5 +140,9 @@
 }
 
 #salva-logo-contrast {
+    width: 3.5rem;
+    height: 3.5rem;
+
+    margin-left: 5rem;
     visibility: hidden;
 }

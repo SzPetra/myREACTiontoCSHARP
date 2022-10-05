@@ -18,8 +18,38 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding: 3rem;
 }
 .modal-window-content-container.active {
+    opacity: 1;
+
+    pointer-events: all;
+}
+
+.modal-window-content-container-contrast {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    transition: 200ms ease-in-out;
+    opacity: 0;
+    z-index: 10;
+
+    pointer-events: none;
+
+    background-color: var(--black);
+
+    /* modal window elements */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 3rem;
+}
+
+.modal-window-content-container-contrast.active {
     opacity: 1;
 
     pointer-events: all;
@@ -34,30 +64,75 @@
 .modal-window-content-head.active {
     opacity: 1;
 }
+.modal-window-content-head-contrast {
+    font-size: 2rem;
+    color: var(--contrastyellow);
+    
+    opacity: 0;
+}
+.modal-window-content-head-contrast.active {
+    opacity: 1;
+}
 
 /* modal window body */
 .modal-window-content-body {
     font-size: 1.5rem;
+    text-align: center;
+
+    margin: 2rem;
 
     opacity: 0;
 }
 .modal-window-content-body.active {
     opacity: 1;
 }
+.modal-window-content-body-contrast {
+    font-size: 1.5rem;
+    color: var(--contrastyellow);
+    text-align: center;
+
+    margin: 2rem;
+
+    opacity: 0;
+}
+.modal-window-content-body-contrast.active {
+    opacity: 1;
+}
 
 /* modal window button */
 .modal-window-content-btn {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 
+    height: 4rem;
+    width: 20rem;
     background-color: var(--orange);
-    border: 0.1rem solid var(--black);
+    border: 0.2rem solid var(--black);
+    margin: 2rem;
 
     opacity: 0;
 }
 .modal-window-content-btn:hover {
-    border: 0.2rem solid var(--orange);
+    border: 0.6rem solid var(--orange);
 }
 .modal-window-content-btn.active {
+    opacity: 1;
+}
+.modal-window-content-btn-contrast {
+    font-size: 2rem;
+    font-weight: bold;
+
+    height: 4rem;
+    width: 20rem;
+    background-color: var(--contrastyellow);
+    border: 0.4rem solid var(--black);
+    margin: 2rem;
+
+    opacity: 0;
+}
+.modal-window-content-btn-contrast:hover {
+    border: 0.6rem solid var(--contrastyellow);
+}
+.modal-window-content-btn-contrast.active {
     opacity: 1;
 }

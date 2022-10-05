@@ -1,18 +1,21 @@
 .chair-lamp-test-content-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
 
-    justify-content: center;
+   margin: 0.5rem;
+   padding: 1rem;
+
+   border: 0.2rem solid var(--black);
 }
 .chair-lamp-test-content-container-contrast {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
-    justify-content: center;
+    margin: 0.5rem;
+    padding: 1rem;
 
     background-color: var(--black);
+    border: 0.2rem solid var(--contrastyellow);
 }
 
 /* icons */
@@ -21,6 +24,7 @@
     height: 3rem;
 
     margin: 0.5rem;
+    color: var(--black)
 }
 .chair-lamp-test-content-icon-contrast {
     width: 3rem;
@@ -30,8 +34,9 @@
 
     color: var(--contrastyellow);
 }
-
-/* icon ids for chosen color */
-#chosen-icon {
-    color: var(--green);
+.chosen-icon {
+    color: var(--orange);
+}
+.chosen-icon-contrast {
+    color: var(--white)
 }

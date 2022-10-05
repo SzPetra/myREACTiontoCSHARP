@@ -1,26 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 import listOfIcons from "./ChairLampIcons";
 import "../assets/chairLampTest.css";
-import Timer from "./Timer";
 import {
   extentOfAttentionCount,
   performancePercentageCount,
   qualityOfAttetionCount,
 } from "./ChairLampTestResultCount";
-import { useContext } from "react";
-import { ThemeContext } from "../../../App";
-
+import { useContext, useRef } from "react";
+import { ThemeContext } from "../../../App.js";
+import ModalWindow from "../../workMotivationTest/components/ModalWindow";
+import classNames from "classnames";
 import { TestDataContext, TestFinishedContext } from "../../../testSelector/components/TestFinishedContext";
 
+export const runTimer = createContext();
+
 const ChairLampTestPage = () => {
-  const [chosen, setChosen] = useState(false);
+  const [isRuntime, setIsRuntime] = useState(false);
+  const revisedIconList = useRef([]);
+  const markedIconList = useRef([]);
+  //const chosen = useRef(null);
   const { design } = useContext(ThemeContext);
-  const [page, setPage] = React.useState(0);
-  let [revisedIconsState, setRevisedIconsState] = React.useState(0);
-  let [errorsState, setErrorState] = React.useState(0);
-  let [revisedIconsByMinuteState, setrevisedIconsByMinuteState] =
-    React.useState([]);
-  let [errorsByMinuteState, seterrorsByMinuteState] = React.useState([]);
+  const [page, setPage] = useState(0);
+  let [revisedIconsState, setRevisedIconsState] = useState(0);
+  let [errorsState, setErrorState] = useState(0);
+  let [revisedIconsByMinuteState, setrevisedIconsByMinuteState] = useState([]);
+  let [errorsByMinuteState, seterrorsByMinuteState] = useState([]);
   let revisedIcons = revisedIconsState;
   let errors = errorsState;
   let revisedIconsByMinute = revisedIconsByMinuteState;
@@ -29,19 +33,66 @@ const ChairLampTestPage = () => {
   const { testComplete, setTestComplete } = useContext(TestFinishedContext);
   const { testResults, setTestResults } = useContext(TestDataContext);
 
-  const setIcons = () => {
-    revisedIcons += 1;
-    console.log("revisednum: " + revisedIcons);
+  const classes = classNames({
+    "chair-lamp-test-content-icon": !design,
+    "chair-lamp-test-content-icon-contrast": design,
+  });
+  const setIcons = (id) => {
+    if (revisedIconList.current.length === 0) {
+      revisedIconList.current.push(id);
+      revisedIcons += 1;
+      console.log("revisednum: " + revisedIcons);
+    }
+    let iconId = 0;
+    for (let i = 0; i <= revisedIconList.current.length; i++) {
+      if (revisedIconList.current[i] === id) {
+        iconId = id;
+        break;
+      } else {
+        iconId = 0;
+      }
+    }
+    if (iconId <= 0) {
+      revisedIcons += 1;
+      console.log("revisednum: " + revisedIcons);
+      revisedIconList.current.push(id);
+    }
   };
 
-  const setError = (e, isIconCorrect) => {
+  const setError = (e, isCorrect, id) => {
     if (e.key === "Enter") {
-      if (isIconCorrect !== true) {
-        errors += 1;
+      let icon = document.getElementById(`${id}`);
+      if (markedIconList.current.length === 0) {
+        markedIconList.current.push(id);
+        icon.classList.add(checkedIconClasses);
+        if (isCorrect === false) {
+          errors += 1;
+        }
+      }
+      let iconId = 0;
+      for (let i = 0; i <= markedIconList.current.length; i++) {
+        if (markedIconList.current[i] === id) {
+          iconId = id;
+          break;
+        } else {
+          iconId = 0;
+        }
+      }
+      if (iconId <= 0) {
+        icon.classList.add(checkedIconClasses);
+        markedIconList.current.push(id);
+        if (isCorrect === false) {
+          errors += 1;
+        }
       }
       console.log("error num: " + errors);
     }
   };
+
+  const checkedIconClasses = classNames({
+    "chosen-icon": !design,
+    "chosen-icon-contrast": design,
+  });
 
   const handleMinute = (second, minute) => {
     if (second === "00" && minute !== "05" && revisedIcons > 0) {
@@ -55,7 +106,6 @@ const ChairLampTestPage = () => {
       minute === "00" &&
       revisedIconsByMinute.length !== 0
     ) {
-      console.log("Hey");
       calculateResults();
     }
   };
@@ -101,26 +151,36 @@ const ChairLampTestPage = () => {
 
   const createIcons = () => {
     let arr = [];
-    for (let i = 1; i <= 209; i++) {
+    for (let i = 1; i <= 208; i++) {
       let iconObject = listOfIcons[getRandomInt(1, 16)];
       arr.push(
         <iconObject.icon
-          id={chosen ? "chosen-icon" : "not-chosen-icon"}
-          className={
-            design
-              ? "chair-lamp-test-content-icon-contrast"
-              : "chair-lamp-test-content-icon"
-          }
-          onFocus={() => setIcons()}
+          key={i}
+          id={i}
+          className={classes}
+          onFocus={() => setIcons(i)}
           onKeyPress={(e) => {
-            setError(e, iconObject.correct);
-            setChosen(true);
+            setError(e, iconObject.correct, i);
           }}
           tabIndex={i}
-          key={i}
         />
       );
     }
+    let lastIconObject = listOfIcons[getRandomInt(1, 16)];
+    arr.push(
+      <lastIconObject.icon
+        key={209}
+        id={209}
+        isrevised={lastIconObject.isRevised}
+        className={classes}
+        onFocus={() => setIcons(209)}
+        onBlur={() => setPageNum()}
+        onKeyPress={(e) => {
+          setError(e, lastIconObject.correct, 209);
+        }}
+        tabIndex={209}
+      />
+    );
     return (
       <div
         className={
@@ -142,16 +202,23 @@ const ChairLampTestPage = () => {
     );
     seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
     console.log(revisedIconsByMinute);
+    revisedIconList.current = [];
+    markedIconList.current = [];
     setPage(page + 1);
   };
 
   return (
     <div>
-      <Timer handleMinute={handleMinute} />
+      <runTimer.Provider value={{ isRuntime, setIsRuntime }}>
+        <ModalWindow
+          title="Chair-Lamp test"
+          instruction="blaaaa"
+          button="Start
+        test"
+          handleMinute={handleMinute}
+        />
+      </runTimer.Provider>
       {createIcons()}
-      <button type="button" onClick={setPageNum}>
-        NextPage
-      </button>
     </div>
   );
 };

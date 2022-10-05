@@ -5,28 +5,33 @@ import testPageOptions from "../../options/testPageOptions";
 import editPageOptions from "../../options/editPageOptions";
 import { useContext } from "react";
 import { ThemeContext } from "../../App";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
-  const { design, setDesign } = useContext(ThemeContext);
+  const { design } = useContext(ThemeContext);
   return (
-    <div
-      className={
-        design
-          ? "header-content-container-contrast"
-          : "header-content-container"
-      }
-    >
-      <Link to="/tests">
-        <img
-          src="/salva_logo.jpg"
-          id={design ? "salva-logo-contrast" : "salva-logo"}
-          aria-label="Salva Vita logo"
-          alt="Salva Vita logo"
-        />
-      </Link>
+    <>
+      <div
+        className={
+          design
+            ? "header-content-container-contrast"
+            : "header-content-container"
+        }
+      >
+        <Link to="/tests">
+          <img
+            src="/salva_logo.jpg"
+            id={design ? "salva-logo-contrast" : "salva-logo"}
+            aria-label="Salva Vita logo"
+            alt="Salva Vita logo"
+          />
+        </Link>
 
-      <section className="header-content">
-        <ul className="header-content-menu">
+        <ul
+          className={
+            design ? "header-content-menu-contrast" : "header-content-menu"
+          }
+        >
           {/* Test menu dropdown */}
           <Dropdown design={design} menu="Tests" options={testPageOptions} />
 
@@ -49,9 +54,9 @@ const Navbar = () => {
             options={editPageOptions}
           />
         </ul>
-      </section>
-      <Link onClick={() => setDesign()}> Negative contrast</Link>
-    </div>
+        <Sidebar />
+      </div>
+    </>
   );
 };
 

@@ -3,12 +3,16 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 6%;
 }
 .work-mot-test-content-container-contrast {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    margin-top: 6%;
 
     background-color: var(--black);
 }
@@ -20,10 +24,10 @@
 
 /* questions */
 .work-mot-test-content-question {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 .work-mot-test-content-question-contrast {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
     color: var(--contrastyellow);
 }
 
@@ -37,27 +41,27 @@
 
 /* scale texts */
 .work-mot-test-scale-text {
-    font-size: 1rem;
+    font-size: 1.5rem;
 
-    max-width: 5rem;
+    max-width: 7rem;
 }
 .work-mot-test-scale-text-contrast {
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: var(--contrastyellow);
     
-    max-width: 5rem;
+    max-width: 7rem;
 }
 
 /* test scale buttons */
 .work-mot-test-scale-btn {
-    height: 3rem;
-    width: 3rem;
+    height: 4rem;
+    width: 4rem;
 
     margin: 1rem;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     border: 0.2rem solid var(--black);
 
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: bold;
 
     background-color: var(--white);
@@ -70,11 +74,11 @@
 }
 
 .work-mot-test-scale-btn-contrast {
-    height: 3rem;
-    width: 3rem;
+    height: 4rem;
+    width: 4rem;
 
     margin: 1rem;
-    border-radius: 1.5rem;
+    border-radius: 2rem;
     border: 0.2rem solid var(--black);
 
     font-size: 1.5rem;
@@ -96,7 +100,7 @@
 
     border: 0.2rem solid var(--black);
 
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     padding: 0.5rem;
 }
@@ -114,7 +118,7 @@
 
     border: 0.2rem solid var(--black);
 
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: bold;
     padding: 0.5rem;
     color: var(--black);
