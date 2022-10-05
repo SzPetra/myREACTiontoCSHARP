@@ -10,7 +10,6 @@ import { useContext, useRef } from "react";
 import { ThemeContext } from "../../../App.js";
 import ModalWindow from "../../workMotivationTest/components/ModalWindow";
 import classNames from "classnames";
-import { iconNums} from "./IconNums";
 
 export const runTimer = createContext();
 const ChairLampTestPage = () => {
@@ -42,7 +41,6 @@ const ChairLampTestPage = () => {
   const changeColor = (e, id) =>{
     if (e.key==='Enter') {
     let icon = document.getElementById(`${id}`);
-    console.log(icon)
     icon.classList.add(checkedIconClasses);
     }
   };
@@ -135,37 +133,41 @@ const ChairLampTestPage = () => {
     console.log(extentOfAttenton);
   };
 
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  }
+
   const createIcons = () => {
     let arr = [];
-    console.log(page)
-    let iconList = iconNums[page].iNums;
-    for (let i = 0; i <= 207; i++) {
-      let iconObject = listOfIcons[iconList[i]];
+    for (let i = 1; i <= 208; i++) {
+      let iconObject = listOfIcons[getRandomInt(0, 15)];
       arr.push(
         <iconObject.icon
-          key={i+1}
-          id={i+1}
-        //  className={classes}
-          onFocus={() => setIcons(i+1)}
-          onKeyPress={(e) => {
-            changeColor(e, i+1)
-            setError(e, iconObject.correct, i+1);
+          key={i}
+          id={i}
+          className={classes}
+          onFocus={() => setIcons(i)}
+          onKeyUp={(e) => {
+            changeColor(e, i)
+            setError(e, iconObject.correct, i);
             
           }}
-          tabIndex={i+1}
+          tabIndex={i}
         />
       );
     }
-    let lastIconObject = listOfIcons[iconList[208]];
+    let lastIconObject = listOfIcons[getRandomInt(0, 15)];
     arr.push(
       <lastIconObject.icon
         key={209}
         id={209}
         isrevised={lastIconObject.isRevised}
-       // className={classes}
+        className={classes}
         onFocus={() => setIcons(209)}
         onBlur={() => setPageNum()}
-        onKeyPress={(e) => {
+        onKeyUp={(e) => {
           changeColor(e, 209);
           setError(e, lastIconObject.correct, 209);
          
@@ -195,13 +197,7 @@ const ChairLampTestPage = () => {
     seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
     revisedIconList.current = [];
     markedIconList.current = [];
-    if(page <2){
-      setPage(page +1);
-    }
-    else if(page ===2){
-      calculateResults();
-    }
-    
+    setPage(page + 1);
   };
 
   return (
