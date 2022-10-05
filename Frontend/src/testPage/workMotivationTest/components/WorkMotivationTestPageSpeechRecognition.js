@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
-import "../../assets/workMotivationTest.css";
-import workMotivationQuestions from "../../questions/english/workMotivationQuestionsEnglish";
+import "../assets/workMotivationTest.css";
+import workMotivationQuestions from "../questions/workMotivationQuestionsEnglish";
 import { useContext } from "react";
-import { ThemeContext } from "../../../../App.js";
+import { ThemeContext } from "../../../App.js";
 
 const WorkMotivationTestPageSpeechRecognition = () => {
   const { design } = useContext(ThemeContext);
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const { speak } = useSpeechSynthesis();
+  const [isListening, setIsListening] = useState(false);
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       setValue(result);
     },
   });
 
+  /* speak labels */
   const h1LAbel = "I would like a job where a person";
   const questionValue = `${workMotivationQuestions[index].question}`;
   const nextButtonLabel = "Next question";
   const choose = "press any key and say 1-5";
+  const listenLabel = "I'm listening";
 
   return (
     <div

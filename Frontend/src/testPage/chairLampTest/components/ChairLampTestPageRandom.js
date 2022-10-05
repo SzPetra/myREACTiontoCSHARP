@@ -8,19 +8,14 @@ import {
 } from "./ChairLampTestResultCount";
 import { useContext, useRef } from "react";
 import { ThemeContext } from "../../../App.js";
-import ChairLampGreetingPage from "./ChairLampGreetingPage";
+import ModalWindow from "../../workMotivationTest/components/ModalWindow";
 import classNames from "classnames";
-import { TestDataContext, TestFinishedContext } from "../../../testSelector/components/TestFinishedContext";
-import { iconNums } from "./IconNums";
-import ResultPage from "../../workMotivationTest/components/ResultPage";
 
 export const runTimer = createContext();
-
 const ChairLampTestPage = () => {
   const [isRuntime, setIsRuntime] = useState(false);
   const revisedIconList = useRef([]);
   const markedIconList = useRef([]);
-  const [resultPage, setResultPage] = useState(false);
   //const chosen = useRef(null);
   const { design } = useContext(ThemeContext);
   const [page, setPage] = useState(0);
@@ -33,9 +28,6 @@ const ChairLampTestPage = () => {
   let revisedIconsByMinute = revisedIconsByMinuteState;
   let errorsByMinute = errorsByMinuteState;
 
-  const { testComplete, setTestComplete } = useContext(TestFinishedContext);
-  const { testResults, setTestResults } = useContext(TestDataContext);
-
   const classes = classNames({
     "chair-lamp-test-content-icon": !design,
     "chair-lamp-test-content-icon-contrast": design,
@@ -46,10 +38,10 @@ const ChairLampTestPage = () => {
     "chosen-icon-contrast": design,
   });
 
-  const changeColor = (e) => {
-    if (e.key === "Enter" && e.target.dataset.checkedId === "not-chosen") {
-      e.target.classList.add(checkedIconClasses);
-      e.target.dataset.checkedId = "chosen";
+  const changeColor = (e, id) =>{
+    if (e.key==='Enter') {
+    let icon = document.getElementById(`${id}`);
+    icon.classList.add(checkedIconClasses);
     }
   };
 
@@ -57,6 +49,7 @@ const ChairLampTestPage = () => {
     if (revisedIconList.current.length === 0) {
       revisedIconList.current.push(id);
       revisedIcons += 1;
+      console.log("revisednum: " + revisedIcons);
     }
     let iconId = 0;
     for (let i = 0; i <= revisedIconList.current.length; i++) {
@@ -67,14 +60,15 @@ const ChairLampTestPage = () => {
         iconId = 0;
       }
     }
-    if (iconId <= 0) {
+    if (iconId <= 0 ) {
       revisedIcons += 1;
+      console.log("revisednum: " + revisedIcons);
       revisedIconList.current.push(id);
     }
   };
 
   const setError = (e, isCorrect, id) => {
-    if (e.key === "Enter") {
+    if (e.key==='Enter') {
       if (markedIconList.current.length === 0) {
         markedIconList.current.push(id);
         if (isCorrect === false) {
@@ -84,10 +78,10 @@ const ChairLampTestPage = () => {
       let isIcon = true;
       for (let i = 0; i <= markedIconList.current.length; i++) {
         if (markedIconList.current[i] === id) {
-          isIcon = false;
+          isIcon = false
           break;
         } else {
-          isIcon = true;
+          isIcon = true
         }
       }
       if (isIcon === true) {
@@ -96,13 +90,13 @@ const ChairLampTestPage = () => {
           errors += 1;
         }
       }
+      console.log("error num: " + errors);
     }
   };
   const handleMinute = (second, minute) => {
-    if (second === "01" && minute !== "05" && revisedIcons > 0) {
+    if (second === "00" && minute !== "05" && revisedIcons > 0) {
       revisedIconsByMinute.push(revisedIcons);
       errorsByMinute.push(errors);
-      console.log("revsed by minute: " + revisedIconsByMinute);
       revisedIcons = 0;
       errors = 0;
     }
@@ -112,7 +106,6 @@ const ChairLampTestPage = () => {
       revisedIconsByMinute.length !== 0
     ) {
       calculateResults();
-      setResultPage(true);
     }
   };
 
@@ -135,54 +128,49 @@ const ChairLampTestPage = () => {
       sumOfErrors
     );
     //return <Comp props={qualityOfAttetion} />
-    setTestResults(
-      {
-        quality : qualityOfAttetion,
-        percentage : performancePercentage,
-        extent : extentOfAttenton
-      }
-    )
-    setTestComplete(true);
-
     console.log(qualityOfAttetion);
     console.log(performancePercentage);
     console.log(extentOfAttenton);
-
   };
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  }
 
   const createIcons = () => {
     let arr = [];
-    let iconList = iconNums[page].iNums;
-    for (let i = 0; i <= 207; i++) {
-      let iconObject = listOfIcons[iconList[i]];
+    for (let i = 1; i <= 208; i++) {
+      let iconObject = listOfIcons[getRandomInt(0, 15)];
       arr.push(
         <iconObject.icon
-          key={i + 1}
-          id={i + 1}
-          data-checked-id="not-chosen"
-          //  className={classes}
-          onFocus={() => setIcons(i + 1)}
-          onKeyPress={(e) => {
-            changeColor(e);
-            setError(e, iconObject.correct, i + 1);
+          key={i}
+          id={i}
+          className={classes}
+          onFocus={() => setIcons(i)}
+          onKeyUp={(e) => {
+            changeColor(e, i)
+            setError(e, iconObject.correct, i);
+            
           }}
-          tabIndex={i + 1}
+          tabIndex={i}
         />
       );
     }
-    let lastIconObject = listOfIcons[iconList[208]];
+    let lastIconObject = listOfIcons[getRandomInt(0, 15)];
     arr.push(
       <lastIconObject.icon
         key={209}
         id={209}
-        data-checked-id="not-chosen"
-        // className={classes}
+        isrevised={lastIconObject.isRevised}
+        className={classes}
         onFocus={() => setIcons(209)}
         onBlur={() => setPageNum()}
-        onKeyPress={(e) => {
-          changeColor(e);
+        onKeyUp={(e) => {
+          changeColor(e, 209);
           setError(e, lastIconObject.correct, 209);
-          setIsRuntime(false);
+         
         }}
         tabIndex={209}
       />
@@ -201,30 +189,21 @@ const ChairLampTestPage = () => {
   };
 
   const setPageNum = () => {
-    if (page < 2) {
-      setRevisedIconsState((revisedIconsState = revisedIcons));
-      setErrorState((errorsState = errors));
-      setrevisedIconsByMinuteState(
-        (revisedIconsByMinuteState = revisedIconsByMinute)
-      );
-      seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
-      revisedIconList.current = [];
-      markedIconList.current = [];
-      setPage(page + 1);
-    } else if (page === 2) {
-      if (isNaN(revisedIcons) === false) {
-        revisedIconsByMinute.push(revisedIconsState);
-        errorsByMinute.push(errorsState);
-      }
-      setIsRuntime(false);
-      calculateResults();
-    }
+    setRevisedIconsState((revisedIconsState = revisedIcons));
+    setErrorState((errorsState = errors));
+    setrevisedIconsByMinuteState(
+     (revisedIconsByMinuteState = revisedIconsByMinute)
+    );
+    seterrorsByMinuteState((errorsByMinuteState = errorsByMinute));
+    revisedIconList.current = [];
+    markedIconList.current = [];
+    setPage(page + 1);
   };
 
   return (
     <div>
       <runTimer.Provider value={{ isRuntime, setIsRuntime }}>
-        <ChairLampGreetingPage
+        <ModalWindow
           title="Chair-Lamp test"
           instruction="blaaaa"
           button="Start
@@ -233,7 +212,6 @@ const ChairLampTestPage = () => {
         />
       </runTimer.Provider>
       {createIcons()}
-      <ResultPage title="PAPAAAA" state={resultPage} />
     </div>
   );
 };

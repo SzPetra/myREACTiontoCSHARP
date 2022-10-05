@@ -32,6 +32,10 @@ const Sidebar = () => {
     "sidebar-accessibility-logo active": isActive,
   });
 
+  const setBodyBackgroundColor = () => {
+    document.body.style = "background : black;";
+  };
+
   return (
     <div className="side-navigation-content-container">
       <img
@@ -43,7 +47,10 @@ const Sidebar = () => {
       <div className={sideNavigationContentClasses}>
         <option
           className={sideNavigationContentOptionClasses}
-          onClick={() => setDesign()}
+          onClick={() => {
+            setDesign();
+            setBodyBackgroundColor();
+          }}
         >
           Negative contrast
         </option>

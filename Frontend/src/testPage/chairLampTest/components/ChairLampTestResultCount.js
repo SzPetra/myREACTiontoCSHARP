@@ -15,11 +15,8 @@ export const performancePercentageCount = (sumOfRevisedIcons, sumOfErrors) =>{
 };
 
 export const extentOfAttentionCount = (revisedIconsByMinute) =>{
-    console.log("rev i"+revisedIconsByMinute)
     let minRevised = Math.min.apply(Math, revisedIconsByMinute);
-    //console.log(Math.min(revisedIconsByMinute))
     let maxRevised = Math.max.apply(Math, revisedIconsByMinute);
-    //console.log(Math.max(revisedIconsByMinute))
     return `extent of attention = ${maxRevised-minRevised}`
 };
 
