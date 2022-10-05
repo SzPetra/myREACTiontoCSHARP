@@ -16,6 +16,15 @@ const Sidebar = () => {
     }
   };
 
+  const setBodyBackgroundColor = () => {
+    if(!design) {
+      document.body.style = "background : black;";
+    }
+    else {
+      document.body.style = "background : white;";
+    }
+  }
+
   const sideNavigationContentClasses = classNames({
     "side-navigation-content": !design,
     "side-navigation-content-contrast": design,
@@ -31,10 +40,6 @@ const Sidebar = () => {
     "sidebar-accessibility-logo": !isActive,
     "sidebar-accessibility-logo active": isActive,
   });
-
-  const setBodyBackgroundColor = () => {
-    document.body.style = "background : black;";
-  };
 
   return (
     <div className="side-navigation-content-container">

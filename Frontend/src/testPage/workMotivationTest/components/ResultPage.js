@@ -29,6 +29,7 @@ const ResultPage = ({ state, title, instruction, img, ...rest }) => {
     "modal-window-content-img-contrast": design,
   });
 
+
   return (
     <div className={modalWindowContainerClasses}>
       <h1 className={modalWindowContentHeaderClasses}>{title}</h1>

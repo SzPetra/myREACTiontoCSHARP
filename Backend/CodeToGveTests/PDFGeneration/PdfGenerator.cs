@@ -33,32 +33,33 @@ namespace CodeToGveTests.PDFGeneration
 			XRect rect = new XRect(22, 0, x,y);
 			XRect rect2 = new XRect(22, 22, x, y);
 			XRect rect3 = new XRect(22, xBase*2, x, y);
-			/*gfx.DrawString(
-				$"Cilent Name : {name}!",
-				font,
-				XBrushes.Black,
-				new XRect(0, 0, page.Width, page.Height),
-				XStringFormats.Center);*/
-			WritePdfLine(
-				$"Test Type : ",
-				gfx,
-				font,
-				page,
-				rect);
 
-			WritePdfLine(
-				$"Cilent Name : {name}",
-				gfx,
-				font,
-				page,
-				rect2);
-			
-			WritePdfLine(
-				payload.TestData,
-				gfx,
-				font,
-				page,
-				rect3);
+			var lines = new List<string>() { $"Test Type : ", $"Cilent Name : {name}" };
+			for (int i = 0; i < lines.Count; i++)
+			{
+				int arrLen = lines[i].Length;
+				arrLen = arrLen % 2 == 0 ? arrLen : arrLen - 1;
+				var currentRect = new XRect(xBase*arrLen/4, xBase*(i), x, y);
+				WritePdfLine(
+					lines[i],
+					gfx,
+					font,
+					page,
+					currentRect);
+			}
+			string[] arr = payload.TestData.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+			for (int i = 0; i < arr.Length; i++)
+			{
+				int arrLen = arr[i].Length;
+				arrLen = arrLen%2==0 ? arrLen : arrLen-1;
+				var currentRect = new XRect(xBase*arrLen/4, xBase*(i+2), x, y);
+				WritePdfLine(
+					arr[i],
+					gfx,
+					font,
+					page,
+					currentRect);
+			}
 
 
 			string testType = "Chair-lamp test";

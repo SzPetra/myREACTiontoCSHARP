@@ -36,8 +36,10 @@ root.render(
           />
           <Route exact path="chair-lamp-test" element={<ChairLampTestPage />} />
         </Route>
+
         <Route path="/select-test" element={<App />}>
           <Route index element={<TestSelectorPage />} />
+          
           <Route
             exact
             path="work-motivation-test"

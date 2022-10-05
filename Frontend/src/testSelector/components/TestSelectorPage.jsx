@@ -7,7 +7,7 @@ import TestEndPage from './TestEndPage';
 
 function TestSelectorPage() {
     const [testComplete, setTestComplete] = useState(false);
-    const [testResults, setTestResults] = useState(null);
+    const [testResults, setTestResults] = useState("data");
    
     const [test, setTest] = useState(null);
 

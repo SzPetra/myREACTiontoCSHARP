@@ -59,7 +59,7 @@ namespace CodeToGiveTests.Controllers
 
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
-                EmailAdress = "kislorand270@gmail.com",//adminEmail,
+                EmailAdress = "petra.szilagyi27@gmail.com",//"kislorand270@gmail.com",//adminEmail,
                 Subject = $"{payload.Name}'s Test Results",
                 Body = $"You can fnd the test results in the attachment",
                 Attachments = new List<EmailAttachment>() 
@@ -86,15 +86,19 @@ namespace CodeToGiveTests.Controllers
             return Ok(testLinkData);
         }
 
-       /* [Route("")]
-        [HttpGet]
-        public bool SendPDF()
-        {
-            var testModel= new LoadModel() { Name="Huba", AdminEmail="",ClientEmail="",TestUrl="/"};
-            var pdf = PdfGenerator.GeneratePdf(testModel);
-            if (pdf == null)
-                return false;
-            return true;
-        }*/
-    }
+		[Route("")]
+		[HttpGet]
+		public bool SendPDF()
+		{
+			var testModel = new TestResultModel() 
+            { 
+                Name = "Huba", 
+                ClientEmail = "", 
+                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : Hoze manuel el dos santos " 
+            };
+			PdfGenerator.GeneratePdf(testModel);
+			
+			return true;
+		}
+	}
 }
