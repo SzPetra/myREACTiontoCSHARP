@@ -3,23 +3,9 @@ import { useState, useEffect } from 'react';
 import { useContext } from 'react';
 
 import testPageOptions from '../../options/testPageOptions';
-import { TestFinishedContext } from './TestFinishedContext';
 
-const TestSelector = () => {
-    const [test, setTest] = useState(null);
-
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const params = Object.fromEntries(urlSearchParams.entries());
-    console.log(params.data + "|")
-    const joinedString = params.data.replace(/ /g,'+');
-
-    useEffect(
-      ()=>{
-        fetch(`https://localhost:7200/api/Email/DecryptUrl?payload=${joinedString}`)
-        .then((response) => response.json())
-        .then((data) => setTest(data));
-      },
-      []);
+const TestSelector = ({testState}) => {
+    const [test, setTest] = testState;
 
     return (test ?
       selectTestType(test) :

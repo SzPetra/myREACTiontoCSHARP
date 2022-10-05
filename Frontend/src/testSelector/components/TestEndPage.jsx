@@ -5,15 +5,16 @@ import React,
 } from 'react';
 import { TestDataContext } from './TestFinishedContext';
 
-const TestEndPage = () => {
+const TestEndPage = ({testData,clientData}) => {
     const {testResults, setTestResults} = useContext(TestDataContext);
     
-    const participantName = "Huab";
     const clientEmail = "gg" ;
+    const dataArr = clientData.split('/'); 
+    console.log(dataArr[0]);
 
 
     const submission = {
-        Name: participantName,
+        Name: dataArr[0],
         ClientEmail: clientEmail,
         TestData: JSON.stringify(testResults)
     };

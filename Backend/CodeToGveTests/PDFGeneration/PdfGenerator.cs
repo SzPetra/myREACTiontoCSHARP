@@ -26,9 +26,12 @@ namespace CodeToGveTests.PDFGeneration
 			XGraphics gfx = XGraphics.FromPdfPage(page);
 			XFont font = new XFont("Verdana", 20, XFontStyle.BoldItalic);
 
-			gfx.DrawString($"Hello, {name}!", font, XBrushes.Black,
-			new XRect(0, 0, page.Width, page.Height),
-			XStringFormats.Center);
+			gfx.DrawString(
+				$"Cilent Name : {name}!\n{payload.TestData}", 
+				font, 
+				XBrushes.Black,
+				new XRect(0, 0, page.Width, page.Height),
+				XStringFormats.Center);
 			
 			string testType = "Chair-lamp test";
 
@@ -36,19 +39,25 @@ namespace CodeToGveTests.PDFGeneration
 
 			document.Save($"../CodeToGveTests/PdfStorage/{filename}");
 			document.Close();
-			//Process.Start(filename);
+/*			try
+			{
+				document.Save($"../CodeToGveTests/PdfStorage/{filename}");
+				document.Close();
+			}
+			catch (System.IO.IOException ex)
+			{
+				document.Close();
+				Console.WriteLine();
+			}*/
 
-			/*			Process p = new Process();
-						p.StartInfo = new ProcessStartInfo()
-						{
-							CreateNoWindow = true,
-							Verb = "print",
-							FileName = "C:/Program Files/Adobe/Acrobat DC/Acrobat/Acrobat.exe", //put the path to the pdf reading software e.g. Adobe Acrobat
-							Arguments = filename // put the path of the pdf file you want to print
-						};
 
-						p.Start(); // $"../CodeToGveTests/PdfStorage/{filename}");*/
-
+			/*			//File.WriteAllBytes(Path.Combine(pdfPath, filename), pdfContents)
+						File.WriteAllBytes(
+							Path.Combine($"../CodeToGveTests/PdfStorage/{filename}", filename),
+							document.GetPDFAsByteArray()
+						);
+			document.Save($"C/Users/Kis Lóránd/projects_advanced/codeToGive/Backend/CodeToGveTests/PdfStorage/{filename}");
+			//document.Save($"../CodeToGveTests/PdfStorage/{filename}");*/
 		}
 	}
 }
