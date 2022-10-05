@@ -94,7 +94,7 @@ namespace CodeToGiveTests.Controllers
             { 
                 Name = "Huba", 
                 ClientEmail = "", 
-                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : Hoze manuel el dos santos " 
+                TestData = "attempt 1 : 4\nattempt 2 : 54\nattempt 3 : 120\nTotal : 178\nChair-lamp test" 
             };
 			PdfGenerator.GeneratePdf(testModel);
 			
