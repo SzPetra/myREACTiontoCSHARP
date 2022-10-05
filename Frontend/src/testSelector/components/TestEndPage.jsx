@@ -6,29 +6,29 @@ import React,
 import { TestDataContext } from './TestFinishedContext';
 import { ThemeContext } from '../../App';
 import classNames from 'classnames';
-import "../../testPage/workMotivationTest/assets/workMotivationTest.css";
+import "../assets/testEndPage.css";
 
 const TestEndPage = ({testData,clientData}) => {
     const { design } = useContext(ThemeContext);
 
     const modalWindowContainerClasses = classNames({
-    "modal-window-content-containe active": !design ,
-    "modal-window-content-container-contrast active": design,
+    "endpade-container": !design ,
+    "endpage-container-contrast": design,
     });
 
     const modalWindowContentHeaderClasses = classNames({
-    "modal-window-content-head active": !design,
-    "modal-window-content-head-contrast active": design,
+    "endpage-content-head": !design,
+    "endpage-content-head-contrast": design,
     });
 
     const modalWindowContentBodyClasses = classNames({
-    "modal-window-content-body active": !design,
-    "modal-window-content-body-contrast active": design,
+    "endpage-content-body": !design,
+    "endpage-content-body-contrast": design,
     });
 
     const modalWindowContentImgIds = classNames({
-    "modal-window-content-img": !design,
-    "modal-window-content-img-contrast": design,
+    "endpage-content-img": !design,
+    "endpage-content-img-contrast": design,
     });
 
     const {testResults, setTestResults} = useContext(TestDataContext);
@@ -62,9 +62,9 @@ const TestEndPage = ({testData,clientData}) => {
     });
     return (
         <div className={modalWindowContainerClasses}>
-        <h1 className={modalWindowContentHeaderClasses}>Test</h1>
-        <p className={modalWindowContentBodyClasses}>instruction</p>
-        <img id={modalWindowContentImgIds} src={"/salva_vita_blue.png"}></img>
+        <h1 className={modalWindowContentHeaderClasses}>The test has ended, great job!</h1>
+        <p className={modalWindowContentBodyClasses}>Thank you for filling out this test. Your answers have been saved. Please contanct your mentor.</p>
+        <img id={modalWindowContentImgIds} src="/salva_vita_blue.png"></img>
     </div>
     )
 }
