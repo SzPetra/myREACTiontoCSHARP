@@ -14,7 +14,7 @@ import ResultPage from "./ResultPage";
 import {
   setQuestionValue,
   feedbackMessage,
-  changeButton,
+  countResult,
 } from "../workMotivationTestFunctions";
 
 const WorkMotivationTestPageReadLoud = () => {
@@ -34,9 +34,51 @@ const WorkMotivationTestPageReadLoud = () => {
   const button3 = "three";
   const button4 = "four";
   const button5 = "five";
-  const nextButtonLabel = "Next question";
-  const feedbackMessage =
-    "Your answer has been saved, you can now proceed to the next question";
+  const nextButtonLabel = "next question";
+  const finishButtonLabel = "finish test";
+  const feedbackLabel =
+    "your answer has been saved, you can now proceed to the next question";
+
+  /* change the buttons function */
+  const changeButtonEnglish = () => {
+    if (index === workMotivationQuestions.length - 1) {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            countResult();
+            setResultPage(true);
+          }}
+          onFocus={() => speak({ text: finishButtonLabel })}
+        >
+          Finish test
+        </button>
+      );
+    } else {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            setIndex(index + 1);
+            setHasValue(true);
+          }}
+          onFocus={() => speak({ text: nextButtonLabel })}
+        >
+          Next question
+        </button>
+      );
+    }
+  };
 
   return (
     <>
@@ -93,7 +135,7 @@ const WorkMotivationTestPageReadLoud = () => {
             }
             onClick={() => {
               setQuestionValue(1, setHasValue, index);
-              speak({ text: feedbackMessage });
+              speak({ text: feedbackLabel });
             }}
             onFocus={() => speak({ text: button1 })}
           >
@@ -105,7 +147,10 @@ const WorkMotivationTestPageReadLoud = () => {
                 ? "work-mot-test-scale-btn-contrast"
                 : "work-mot-test-scale-btn"
             }
-            onClick={() => setQuestionValue(2, setHasValue, index)}
+            onClick={() => {
+              setQuestionValue(2, setHasValue, index);
+              speak({ text: feedbackLabel });
+            }}
             onFocus={() => speak({ text: button2 })}
           >
             2
@@ -116,7 +161,10 @@ const WorkMotivationTestPageReadLoud = () => {
                 ? "work-mot-test-scale-btn-contrast"
                 : "work-mot-test-scale-btn"
             }
-            onClick={() => setQuestionValue(3, setHasValue, index)}
+            onClick={() => {
+              setQuestionValue(3, setHasValue, index);
+              speak({ text: feedbackLabel });
+            }}
             onFocus={() => speak({ text: button3 })}
           >
             3
@@ -127,7 +175,11 @@ const WorkMotivationTestPageReadLoud = () => {
                 ? "work-mot-test-scale-btn-contrast"
                 : "work-mot-test-scale-btn"
             }
-            onClick={() => setQuestionValue(4, setHasValue, index)}
+            o
+            onClick={() => {
+              setQuestionValue(4, setHasValue, index);
+              speak({ text: feedbackLabel });
+            }}
             onFocus={() => speak({ text: button4 })}
           >
             4
@@ -138,7 +190,10 @@ const WorkMotivationTestPageReadLoud = () => {
                 ? "work-mot-test-scale-btn-contrast"
                 : "work-mot-test-scale-btn"
             }
-            onClick={() => setQuestionValue(5, setHasValue, index)}
+            onClick={() => {
+              setQuestionValue(5, setHasValue, index);
+              speak({ text: feedbackLabel });
+            }}
             onFocus={() => speak({ text: button5 })}
           >
             5
@@ -153,29 +208,19 @@ const WorkMotivationTestPageReadLoud = () => {
             I do want to work in a place like that
           </p>
         </section>
-
-        <button
-          className={
-            design
-              ? "work-mot-test-content-btn-contrast"
-              : "work-mot-test-content-btn"
-          }
-          onClick={() => setIndex(index + 1)}
-          onFocus={() => speak({ text: nextButtonLabel })}
-        >
-          Next question
-        </button>
-        {feedbackMessage(hasValue)}
-        {changeButton(
+        {feedbackMessage(
           hasValue,
-          setHasValue,
-          index,
-          setIndex,
-          setResultPage,
-          design
+          design,
+          "Your answer has been saved, you can now proceed to the next question",
+          "Please choose one from the options above"
         )}
+        {changeButtonEnglish()}
       </div>
-      <ResultPage state={resultPage} title="Finish" />
+      <ResultPage
+        state={resultPage}
+        title="The results"
+        img="/salva_vita_blue.png"
+      />
     </>
   );
 };

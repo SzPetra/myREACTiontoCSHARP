@@ -1,5 +1,5 @@
 import React from "react";
-import workMotivationQuestions from "./questions/workMotivationQuestionsEnglish";
+import workMotivationQuestions from "./questions/workMotivationQuestionsHunDemo";
 import "../workMotivationTest/assets/workMotivationTest.css";
 import { FaArrowUp } from "react-icons/fa";
 import classNames from "classnames";
@@ -52,7 +52,7 @@ export const changeButton = (
 };
 
 /* for giving back feedback messages to the user */
-export const feedbackMessage = (hasValue, design) => {
+export const feedbackMessage = (hasValue, design, feedbackMsgm, notYetMsg) => {
   /* CSS classnames for feedback messages */
   const feedbackMessagesClassnames = classNames({
     "work-mot-test-feedback-msg": !design,
@@ -61,17 +61,9 @@ export const feedbackMessage = (hasValue, design) => {
   });
 
   if (hasValue) {
-    return (
-      <p className={feedbackMessagesClassnames}>
-        Kérlek válassz a fent felsorolt <FaArrowUp /> opciók közül egyet
-      </p>
-    );
+    return <p className={feedbackMessagesClassnames}>{notYetMsg}</p>;
   } else {
-    return (
-      <p className={feedbackMessagesClassnames}>
-        Válaszodat elmentettük, továbbhaladhatsz a következő kérdésre
-      </p>
-    );
+    return <p className={feedbackMessagesClassnames}>{feedbackMsgm}</p>;
   }
 };
 
@@ -92,12 +84,12 @@ export const countResult = () => {
   for (let t = 0; t <= questionTypes.length - 1; t++) {
     let subResult = 0;
     for (let i = 0; i <= workMotivationQuestions.length - 1; i++) {
-      if (workMotivationQuestions[i].type === questionTypes[t].type) {
+      if (workMotivationQuestions[i].type === questionTypes[t].id) {
         subResult += workMotivationQuestions[i].value;
       }
     }
     result.push(subResult);
   }
 
-  console.log(result);
+  return result;
 };

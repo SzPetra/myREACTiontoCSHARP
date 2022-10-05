@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import "../assets/workMotivationTest.css";
-import workMotivationQuestions from "../questions/workMotivationQuestionsEnglish";
+import workMotivationQuestions from "../questions/workMotivationQuestionsHunDemo";
 import {
   ThemeContext,
   IndexContext,
@@ -31,7 +31,8 @@ const WorkMotivationTestPage = () => {
         Az egyes(1) azt jelenti, hogy egyáltalán nem szeretnél ilyen helyen dolgozni,
         az ötös(5) pedig, hogy mindenképpen ilyen helyen szeretnél dolgozni. A hármas(3)
         semleges, a többi pedig ezek közé esik.
-        Ha figyelmesen végigolvastad az utasítások kérlek nyomd meg az 'Elkezdem a tesztet' gombot, amellyel el fog indulni a teszt."
+        Ha figyelmesen végigolvastad az utasítások kérlek nyomd meg az 'Elkezdem a tesztet' gombot, amellyel el fog indulni a teszt.
+        Sok sikert kívánok!"
         button="Elkezdem a tesztet"
       />
       <div
@@ -131,7 +132,12 @@ const WorkMotivationTestPage = () => {
             Ilyen helyen szeretnék dolgozni
           </p>
         </section>
-        {feedbackMessage(hasValue, design)}
+        {feedbackMessage(
+          hasValue,
+          design,
+          "Válaszodat elmentettük, továbbhaladhatsz a következő kérdésre",
+          "Kérlek válassz a fent felsorolt opciók közül egyet"
+        )}
         {changeButton(
           hasValue,
           setHasValue,
@@ -144,7 +150,7 @@ const WorkMotivationTestPage = () => {
       <ResultPage
         state={resultPage}
         title="A teszt véget ért, nagyon ügyes voltál!"
-        instruction="Köszönjük, hogy kitöltötted a tesztet, válaszaidat elmentettük, kérlek vedd fel a kapcsolatot a mentoroddal."
+        instruction="Köszönjük, hogy kitöltötted a tesztet, válaszaidat elmentettük. Kérlek vedd fel a kapcsolatot a mentoroddal."
         img="/salva_vita_blue.png"
       />
     </>
