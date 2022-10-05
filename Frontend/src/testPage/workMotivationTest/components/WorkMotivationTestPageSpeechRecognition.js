@@ -1,28 +1,84 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
 import "../assets/workMotivationTest.css";
 import workMotivationQuestions from "../questions/workMotivationQuestionsEnglish";
-import { useContext } from "react";
-import { ThemeContext } from "../../../App.js";
+import {
+  ThemeContext,
+  HasValueContext,
+  ResultPageContext,
+} from "../../../App.js";
+import { setQuestionValue, countResult } from "../workMotivationTestFunctions";
 
 const WorkMotivationTestPageSpeechRecognition = () => {
+  /* useContext variables */
   const { design } = useContext(ThemeContext);
+  const { hasValue, setHasValue } = useContext(HasValueContext);
+  const { setResultPage } = useContext(ResultPageContext);
+
   const [index, setIndex] = useState(0);
   const [value, setValue] = useState("");
   const { speak } = useSpeechSynthesis();
-  const [isListening, setIsListening] = useState(false);
   const { listen, listening, stop } = useSpeechRecognition({
     onResult: (result) => {
       setValue(result);
+      setHasValue(false);
+      setQuestionValue(value, setHasValue, index);
     },
   });
 
   /* speak labels */
   const h1LAbel = "I would like a job where a person";
   const questionValue = `${workMotivationQuestions[index].question}`;
-  const nextButtonLabel = "Next question";
-  const choose = "press any key and say 1-5";
-  const listenLabel = "I'm listening";
+  const nextButtonLabel = "next question";
+  const chooseLabel = "press space and say a number from 1-5";
+
+  /* speak statements */
+  const startListening = (e) => {
+    if (e.keyCode == 32) {
+      listen();
+    }
+  };
+
+  /* change the buttons function */
+  const changeButtonEnglish = () => {
+    if (index === workMotivationQuestions.length - 1) {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            countResult();
+            setResultPage(true);
+          }}
+        >
+          Finish test
+        </button>
+      );
+    } else {
+      return (
+        <button
+          disabled={hasValue}
+          className={
+            design
+              ? "work-mot-test-content-btn-contrast"
+              : "work-mot-test-content-btn"
+          }
+          onClick={() => {
+            setIndex(index + 1);
+            setHasValue(true);
+            setValue("");
+          }}
+          onFocus={() => speak({ text: nextButtonLabel })}
+        >
+          Next question
+        </button>
+      );
+    }
+  };
 
   return (
     <div
@@ -62,27 +118,27 @@ const WorkMotivationTestPageSpeechRecognition = () => {
         {value}
       </p>
       <button
-        onFocus={() => speak({ text: choose })}
-        onMouseDown={listen}
-        onKeyDown={listen}
-        onMouseUp={stop}
-        onKeyUp={stop}
-      >
-        Listen
-      </button>
-      {listening && <p>I'm listening</p>}
-
-      <button
         className={
           design
             ? "work-mot-test-content-btn-contrast"
             : "work-mot-test-content-btn"
         }
-        onClick={() => setIndex(index + 1)}
-        onFocus={() => speak({ text: nextButtonLabel })}
+        onFocus={() => speak({ text: chooseLabel })}
+        onMouseDown={listen}
+        onKeyDown={(e) => startListening(e)}
+        onMouseUp={() => {
+          speak({ text: value });
+          stop();
+        }}
+        onKeyUp={() => {
+          speak({ text: value });
+          stop();
+        }}
       >
-        Next question
+        Listen
       </button>
+      {listening && <p>I'm listening</p>}
+      {changeButtonEnglish()}
     </div>
   );
 };
