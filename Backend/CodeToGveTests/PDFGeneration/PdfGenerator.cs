@@ -33,8 +33,11 @@ namespace CodeToGveTests.PDFGeneration
 			XRect rect2 = new XRect(22, 22, x, y);
 			XRect rect3 = new XRect(22, xBase * 2, x, y);
 
-
-			string[] arr = payload.TestData.Split("\n", StringSplitOptions.RemoveEmptyEntries);
+			Console.WriteLine(payload.TestData);
+			var data = payload.TestData.Remove(payload.TestData.Length - 1);
+			data = data.Replace("\"", "");
+			string[] arr = data.Split("\\n", 6);
+			Console.WriteLine($"{arr[arr.Length - 1]}");
 			var lines = new List<string>() { $"Test Type : {arr[arr.Length - 1]}", $"Cilent Name : {name}", "Test Results : " };
 			for (int i = 0; i < lines.Count; i++)
 			{

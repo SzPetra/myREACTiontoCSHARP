@@ -30,11 +30,11 @@ namespace CodeToGiveTests.Controllers
         {
             string testlink = "http://localhost:3000/select-test?data=" + payload.TestUrl;//StringCrypter.Encrypt(payload.TestUrl);
 
-           Console.WriteLine(payload);
+   
             string adminEmail = payload.AdminEmail;
             SessionExtensions.SetObjectAsJson(HttpContext.Session, "adminEmail", adminEmail);
 
-			Console.WriteLine(adminEmail);
+	
             await _emailHostedService.SendEmailAsync(new EmailModel
             {
                 EmailAdress = payload.ClientEmail,
@@ -52,8 +52,6 @@ namespace CodeToGiveTests.Controllers
         {
             var adminEmail = SessionExtensions.GetObjectFromJson<string>(HttpContext.Session, "adminEmail");
 
-            Console.WriteLine(adminEmail);
-			Console.WriteLine(payload.TestData);
             PdfGenerator.GeneratePdf(payload);
             string testType = "Chair-lamp test";
 

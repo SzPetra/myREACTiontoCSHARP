@@ -28,7 +28,8 @@ namespace CodeToGiveTests.services
                 }
                 jArray.Add(new JObject
                 {
-                    new JProperty("FromEmail", "myreactiontocsharp@gmail.com"), //Email registered with mailJet
+                    new JProperty("FromEmail", "szabimi12@gmail.com"),
+                    //new JProperty("FromEmail", "myreactiontocsharp@gmail.com"), //Email registered with mailJet
                     new JProperty("FromName", "Code To Give"),
                     new JProperty("Recipients", new JArray
                     {

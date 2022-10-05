@@ -135,13 +135,10 @@ const ChairLampTestPage = () => {
       sumOfErrors
     );
     console.log("ttt" + testResults);
+    const resultString = `${qualityOfAttetion}\n${performancePercentage}\n${extentOfAttenton}\nChair-lamp test`;
     if (testResults ==="data") {
       setTestResults(
-        {
-          quality : qualityOfAttetion,
-          percentage : performancePercentage,
-          extent : extentOfAttenton
-        }
+        resultString
       )
       setTestComplete(true);
     }
