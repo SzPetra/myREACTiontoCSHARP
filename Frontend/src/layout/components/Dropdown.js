@@ -1,10 +1,12 @@
 import React from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ResultPageContext } from "../../App";
 
 const Dropdown = ({ design, menu, options, ...rest }) => {
   const [isActive, setIsActive] = useState(false);
+  const { setResultPage } = useContext(ResultPageContext);
 
   const handleDropdown = () => {
     if (!isActive) {
@@ -34,7 +36,12 @@ const Dropdown = ({ design, menu, options, ...rest }) => {
             }
           >
             {options.map((option) => (
-              <Link tabIndex={0} key={option.id} to={option.pageLink}>
+              <Link
+                onClick={() => setResultPage(false)}
+                tabIndex={0}
+                key={option.id}
+                to={option.pageLink}
+              >
                 {option.option}
               </Link>
             ))}

@@ -143,10 +143,18 @@
 
 /* speech recognition value */
 .speech-rec-value {
-    color: var(--red);
+    color: var(--green);
+    font-size: 2rem;
+
+    padding: 1rem;
+    border: 0.2rem solid var(--green);
 }
 .speech-rec-value-contrast {
-    color: var(--contrastyellow)
+    color: var(--contrastyellow);
+    font-size: 2rem;
+
+    padding: 1rem;
+    border: 0.2rem solid var(--contrastyellow);
 }
 
 /* feedback messages */
