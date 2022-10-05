@@ -10,10 +10,12 @@ import { useContext, useRef } from "react";
 import { ThemeContext } from "../../../App.js";
 import ChairLampGreetingPage from "./ChairLampGreetingPage";
 import classNames from "classnames";
+import { TestDataContext, TestFinishedContext } from "../../../testSelector/components/TestFinishedContext";
 import { iconNums } from "./IconNums";
 import ResultPage from "../../workMotivationTest/components/ResultPage";
 
 export const runTimer = createContext();
+
 const ChairLampTestPage = () => {
   const [isRuntime, setIsRuntime] = useState(false);
   const revisedIconList = useRef([]);
@@ -30,6 +32,9 @@ const ChairLampTestPage = () => {
   let errors = errorsState;
   let revisedIconsByMinute = revisedIconsByMinuteState;
   let errorsByMinute = errorsByMinuteState;
+
+  const { testComplete, setTestComplete } = useContext(TestFinishedContext);
+  const { testResults, setTestResults } = useContext(TestDataContext);
 
   const classes = classNames({
     "chair-lamp-test-content-icon": !design,
@@ -129,7 +134,23 @@ const ChairLampTestPage = () => {
       sumOfRevisedIcons,
       sumOfErrors
     );
-    //return <Comp props={qualityOfAttetion}
+    console.log(testResults);
+    if (testResults === "data") {
+      setTestResults(
+        {
+          quality : qualityOfAttetion,
+          percentage : performancePercentage,
+          extent : extentOfAttenton
+        }
+      )
+      setTestComplete(true);
+    }
+  
+
+    console.log(qualityOfAttetion);
+    console.log(performancePercentage);
+    console.log(extentOfAttenton);
+
   };
 
   const createIcons = () => {
@@ -142,7 +163,7 @@ const ChairLampTestPage = () => {
           key={i + 1}
           id={i + 1}
           data-checked-id="not-chosen"
-          //  className={classes}
+          className={classes}
           onFocus={() => setIcons(i + 1)}
           onKeyPress={(e) => {
             changeColor(e);
@@ -158,7 +179,7 @@ const ChairLampTestPage = () => {
         key={209}
         id={209}
         data-checked-id="not-chosen"
-        // className={classes}
+        className={classes}
         onFocus={() => setIcons(209)}
         onBlur={() => setPageNum()}
         onKeyPress={(e) => {
@@ -198,7 +219,7 @@ const ChairLampTestPage = () => {
         revisedIconsByMinute.push(revisedIconsState);
         errorsByMinute.push(errorsState);
       }
-      setIsRuntime(false);
+      setResultPage(true);
       calculateResults();
     }
   };
