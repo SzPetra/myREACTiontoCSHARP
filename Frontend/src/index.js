@@ -6,10 +6,10 @@ import CreateLink from "./createLinkPage/components/CreateLink";
 import AdminPage from "./adminPage/components/AdminPage";
 import App from "./App";
 import TestSelectorPage from "./testSelector/components/TestSelectorPage";
-import WorkMotivationTestPage from "./testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
+import WorkMotivationTestPage from "./testPage/workMotivationTest/components/WorkMotivationTestPage";
 import ChairLampTestPage from "./testPage/chairLampTest/components/ChairLampTestPage";
-import WorkMotivationTestReadLoud from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageReadLoud";
-import WorkMotivationTestPageSpeechRecognition from "./testPage/workMotivationTest/components/english/WorkMotivationTestPageSpeechRecognition";
+import WorkMotivationTestPageReadLoud from "./testPage/workMotivationTest/components/WorkMotivationTestPageReadLoud";
+import WorkMotivationTestPageSpeechRecognition from "./testPage/workMotivationTest/components/WorkMotivationTestPageSpeechRecognition";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,7 +27,7 @@ root.render(
           <Route
             exact
             path="work-motivation-test/read-out-loud"
-            element={<WorkMotivationTestReadLoud />}
+            element={<WorkMotivationTestPageReadLoud />}
           />
           <Route
             exact

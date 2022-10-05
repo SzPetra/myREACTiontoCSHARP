@@ -1,7 +1,7 @@
 import ChairLampTestPage from "../testPage/chairLampTest/components/ChairLampTestPage";
-import WorkMotivationTestPage from "../testPage/workMotivationTest/components/hungarian/WorkMotivationTestPage";
-import WorkMotivationTestPageReadLoud from "../testPage/workMotivationTest/components/english/WorkMotivationTestPageReadLoud";
-import WorkMotivationTestPageSpeechRecognition from "../testPage/workMotivationTest/components/english/WorkMotivationTestPageSpeechRecognition";
+import WorkMotivationTestPage from "../testPage/workMotivationTest/components/WorkMotivationTestPage";
+import WorkMotivationTestPageReadLoud from "../testPage/workMotivationTest/components/WorkMotivationTestPageReadLoud";
+import WorkMotivationTestPageSpeechRecognition from "../testPage/workMotivationTest/components/WorkMotivationTestPageSpeechRecognition";
 
 const testPageOptions = [
   {
