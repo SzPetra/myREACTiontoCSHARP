@@ -1,6 +1,6 @@
 import React from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
-import workMotivationQuestions from "../questions/workMotivationQuestionsEnglish";
+import workMotivationQuestions from "../questions/workMotivationQuestionsHunDemo";
 import "../assets/workMotivationTest.css";
 import { useContext } from "react";
 import {
@@ -27,20 +27,20 @@ const WorkMotivationTestPageReadLoud = () => {
   const { speak } = useSpeechSynthesis();
 
   /* label constants */
-  const h1LAbel = "I would like a job where a person";
+  const h1LAbel = "Olyan munkát szeretnék, ahol az ember";
   const questionValue = `${workMotivationQuestions[index].question}`;
-  const button1 = "one";
-  const button2 = "two";
-  const button3 = "three";
-  const button4 = "four";
-  const button5 = "five";
-  const nextButtonLabel = "next question";
-  const finishButtonLabel = "finish test";
+  const button1 = "egy";
+  const button2 = "kettő";
+  const button3 = "három";
+  const button4 = "négy";
+  const button5 = "öt";
+  const nextButtonLabel = "következő állítás";
+  const finishButtonLabel = "befejezem a tesztet";
   const feedbackLabel =
-    "your answer has been saved, you can now proceed to the next question";
+    "válaszodat elmentettük, továbbléphetsz a következő kérdésre";
 
-  /* change the buttons function */
-  const changeButtonEnglish = () => {
+     /* change the buttons function */
+  const changeButton = () => {
     if (index === workMotivationQuestions.length - 1) {
       return (
         <button
@@ -53,10 +53,12 @@ const WorkMotivationTestPageReadLoud = () => {
           onClick={() => {
             countResult();
             setResultPage(true);
+            setIndex(0);
+            setHasValue(true);
           }}
           onFocus={() => speak({ text: finishButtonLabel })}
         >
-          Finish test
+          Befejezem a tesztet
         </button>
       );
     } else {
@@ -74,7 +76,7 @@ const WorkMotivationTestPageReadLoud = () => {
           }}
           onFocus={() => speak({ text: nextButtonLabel })}
         >
-          Next question
+          Következő állítás
         </button>
       );
     }
@@ -83,9 +85,9 @@ const WorkMotivationTestPageReadLoud = () => {
   return (
     <>
       <WorkMotivationGreetingPage
-        title="Work motivation test"
-        instruction="Please choose between 1-5"
-        button="Start test"
+        title="Motivácíós teszt"
+        instruction="Válassz egy számot 1 és 5 között"
+        button="Elkezdem a tesztet"
       />
       <div
         className={
@@ -103,7 +105,7 @@ const WorkMotivationTestPageReadLoud = () => {
           tabIndex={1}
           onFocus={() => speak({ text: h1LAbel })}
         >
-          I would like a job where a person
+          Olyan munkát szeretnék, ahol az ember
         </h1>
         <p
           className={
@@ -125,7 +127,7 @@ const WorkMotivationTestPageReadLoud = () => {
                 : "work-mot-test-scale-text"
             }
           >
-            I do not want to work in a place like that
+            Ilyen helyen szeretnék dolgozni
           </p>
           <button
             className={
@@ -205,20 +207,21 @@ const WorkMotivationTestPageReadLoud = () => {
                 : "work-mot-test-scale-text"
             }
           >
-            I do want to work in a place like that
+            Nem ilyen helyen szeretnék dolgozni
           </p>
         </section>
         {feedbackMessage(
           hasValue,
           design,
-          "Your answer has been saved, you can now proceed to the next question",
-          "Please choose one from the options above"
+          "Válaszodat elmentettük, továbbhaladhatsz a következő kérdésre",
+          "Kérlek válassz a fent felsorolt opciók közül egyet"
         )}
-        {changeButtonEnglish()}
+        {changeButton()}
       </div>
       <ResultPage
         state={resultPage}
-        title="The results"
+        title="A végeredmény:"
+        instruction={countResult()}
         img="/salva_vita_blue.png"
       />
     </>
