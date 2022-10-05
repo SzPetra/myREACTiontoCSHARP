@@ -1,13 +1,14 @@
 import React, { useState, useContext } from "react";
 import { useSpeechRecognition, useSpeechSynthesis } from "react-speech-kit";
 import "../assets/workMotivationTest.css";
-import workMotivationQuestions from "../questions/workMotivationQuestionsEnglish";
+import workMotivationQuestions from "../questions/workMotivationQuestionsHunDemo";
 import {
   ThemeContext,
   HasValueContext,
   ResultPageContext,
 } from "../../../App.js";
 import { setQuestionValue, countResult } from "../workMotivationTestFunctions";
+import { Link } from "react-router-dom";
 
 const WorkMotivationTestPageSpeechRecognition = () => {
   /* useContext variables */
@@ -27,11 +28,11 @@ const WorkMotivationTestPageSpeechRecognition = () => {
   });
 
   /* speak labels */
-  const h1LAbel = "I would like a job where a person";
+  const h1LAbel = "Olyan munkát szeretnék, ahol az ember";
   const questionValue = `${workMotivationQuestions[index].question}`;
-  const nextButtonLabel = "next question";
-  const finishButtonLabel = "finish test";
-  const chooseLabel = "press and hold space and say a number from 1-5";
+  const nextButtonLabel = "következő állítás";
+  const finishButtonLabel = "befejezem a tesztet";
+  const chooseLabel = "tartsd lenyomva a space billentyűt és mondj egy számot 1től 5ig";
 
   /* speak statements */
   const startListening = (e) => {
@@ -44,7 +45,7 @@ const WorkMotivationTestPageSpeechRecognition = () => {
   const changeButtonEnglish = () => {
     if (index === workMotivationQuestions.length - 1) {
       return (
-        <button
+        <Link to="/tests"> <button
           disabled={hasValue}
           className={
             design
@@ -54,11 +55,14 @@ const WorkMotivationTestPageSpeechRecognition = () => {
           onClick={() => {
             countResult();
             setResultPage(true);
+            setIndex(0);
+            setHasValue(true);
           }}
           onFocus={() => speak({ text: finishButtonLabel })}
         >
-          Finish test
+          Befejezem a tesztet
         </button>
+        </Link>
       );
     } else {
       return (
@@ -76,7 +80,7 @@ const WorkMotivationTestPageSpeechRecognition = () => {
           }}
           onFocus={() => speak({ text: nextButtonLabel })}
         >
-          Next question
+          Következő állítás
         </button>
       );
     }
@@ -99,7 +103,7 @@ const WorkMotivationTestPageSpeechRecognition = () => {
         tabIndex={1}
         onFocus={() => speak({ text: h1LAbel })}
       >
-        I would like a job where a person
+        Olyan munkát szeretnék, ahol az ember
       </h1>
       <p
         className={
@@ -137,9 +141,9 @@ const WorkMotivationTestPageSpeechRecognition = () => {
           stop();
         }}
       >
-        Listen
+        Felvétel
       </button>
-      {listening && <p>I'm listening</p>}
+      {listening && <p>Hallgatózom</p>}
       {changeButtonEnglish()}
     </div>
   );

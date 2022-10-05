@@ -26,6 +26,8 @@ export const changeButton = (
         onClick={() => {
           countResult();
           setResultPage(true);
+          setIndex(0);
+          setHasValue(true);
         }}
       >
         Befejezem a tesztet
@@ -83,12 +85,14 @@ export const countResult = () => {
 
   for (let t = 0; t <= questionTypes.length - 1; t++) {
     let subResult = 0;
+    let typeName = "";
     for (let i = 0; i <= workMotivationQuestions.length - 1; i++) {
       if (workMotivationQuestions[i].type === questionTypes[t].id) {
         subResult += workMotivationQuestions[i].value;
+        typeName = questionTypes[t].type;
       }
     }
-    result.push(subResult);
+    result.push(`${typeName}: ${subResult}, `);
   }
 
   return result;

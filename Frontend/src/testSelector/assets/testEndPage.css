@@ -1,0 +1,29 @@
+.endpage-container {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.endpage-content-head {
+    color: var(--black);
+
+    margin-left: 33rem;
+    margin-top: 3rem;
+}
+.endpage-content-body {
+    color: var(--black);
+    font-size: 2rem;
+
+    max-width: 50rem;
+    width: 50rem;
+
+    margin-left: 24rem;
+    margin-top: 4rem;
+}
+#endpage-content-img {
+    border-radius: 50%;
+
+    width: 40rem;
+
+    margin-left: 28rem;
+    margin-top: 4rem;
+}
