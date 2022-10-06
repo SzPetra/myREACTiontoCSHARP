@@ -47,7 +47,9 @@ const Form = ({ btnId }) => {
   };
 
   return (
-    <button onClick={handleSubmit} type="submit" id={btnId}>
+    <button
+    role="button"
+    aria-label="button for submitting form" onClick={handleSubmit} type="submit" id={btnId}>
       Click here to submit
     </button>
   );

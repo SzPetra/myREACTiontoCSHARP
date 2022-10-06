@@ -25,6 +25,8 @@ const CreateLink = () => {
         <img
           src="/we-help-people.png"
           id="we-help-people-image"
+          role="img"
+          aria-label="we help people with disabilities"
           alt="We help people with disabilities"
         />
 
@@ -32,22 +34,31 @@ const CreateLink = () => {
           className={design ? "parting-line-contrast" : "parting-line"}
         ></div>
 
-        <form className="link-page-form">
+        <form 
+        role="form"
+        aria-label="information for creating test link"
+        className="link-page-form">
           <section className="link-page-form-content-left">
             {/* inputs */}
             <Input
+            role="input"
+            aria-label="input for clien's name"
               id="client-name"
               type="text"
               label="Enter client's full name*:"
               placeholder="John Doe"
             />
             <Input
+            role="input"
+            aria-label="input for client's email"
               id="client-email"
               type="email"
               label="Enter client's email address*:"
               placeholder="johndoe@gmail.com"
             />
             <Input
+            role="input"
+            aria-label="input for your email address"
               id="email"
               type="email"
               label="Enter email address for receiving test results*:"
@@ -62,16 +73,28 @@ const CreateLink = () => {
             }
           >
             {/* select test type */}
-            <label for="test-type">
+            <label
+            role="label"
+            aria-label="label for test type"
+            for="test-type">
               Choose the type of test* :
-              <Select id="test-type" options={testPageOptions} />
+              <Select 
+              role="listbox"
+              aria-label="dropdown menu for test type"
+              id="test-type" options={testPageOptions} />
             </label>
 
             {/* select mode */}
-            <label for="test-mode">
+            <label
+            role="label"
+            aria-label="label for test mode"
+             for="test-mode">
               Choose display mode:
               <p>(If you don't choose test mode, the default will be basic)</p>
-              <Select id="test-mode" options={modeOptions} />
+              <Select
+              role="listbox"
+              aria-label="dropdown menu for test mode" 
+              id="test-mode" options={modeOptions} />
             </label>
             <FetchDataButton
               btnId={

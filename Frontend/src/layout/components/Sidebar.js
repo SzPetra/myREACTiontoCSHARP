@@ -46,11 +46,15 @@ const Sidebar = () => {
       <img
         onClick={() => handleOnClick()}
         alt="Accessibility logo"
+        aria-label="accessibility logo"
+        role="img"
         src="/accessibility_logo.png"
         className={sideNavigationContentLogoClasses}
       />
       <div className={sideNavigationContentClasses}>
         <option
+        role="option"
+        aria-label="option for negativ contrast layout"
           className={sideNavigationContentOptionClasses}
           onClick={() => {
             setDesign();
@@ -59,11 +63,15 @@ const Sidebar = () => {
         >
           Negative contrast
         </option>
-        <option className={sideNavigationContentOptionClasses}>
-          Bigger text
-        </option>
-        <option className={sideNavigationContentOptionClasses}>
+        <option
+        role="option"
+        aria-label="option for high contrast layout" className={sideNavigationContentOptionClasses}>
           High contrast
+        </option>
+        <option
+        role="option"
+        aria-label="option for bigger text layout" className={sideNavigationContentOptionClasses}>
+          Bigger text
         </option>
       </div>
     </div>

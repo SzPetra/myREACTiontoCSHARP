@@ -22,21 +22,29 @@ const Navbar = () => {
           <img
             src="/salva_logo.jpg"
             id={design ? "salva-logo-contrast" : "salva-logo"}
+            role="img"
             aria-label="Salva Vita logo"
             alt="Salva Vita logo"
           />
         </Link>
 
         <ul
+        role="list"
+        aria-label="list of navigation bar options"
           className={
             design ? "header-content-menu-contrast" : "header-content-menu"
           }
         >
           {/* Test menu dropdown */}
-          <Dropdown design={design} menu="Tests" options={testPageOptions} />
+          <Dropdown 
+          role="listbox"
+          aria-label="dropdown menu for test options"
+          design={design} menu="Tests" options={testPageOptions} />
 
           {/* Create link page link */}
           <Link
+          role="link"
+          aria-label="link to generate test links"
             to="/tests/create-link"
             className={
               design
@@ -49,12 +57,16 @@ const Navbar = () => {
 
           {/* Edit tests menu dropdown */}
           <Dropdown
+          role="listbox"
+          aria-label="dropdown menu for editing pages"
             design={design}
             menu="Edit tests"
             options={editPageOptions}
           />
         </ul>
-        <Sidebar />
+        <Sidebar
+        role="listbox"
+        aria-label="sidebar navigation for different layouts" />
       </div>
     </>
   );

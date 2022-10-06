@@ -9,6 +9,7 @@ const AdminPage = () => {
       <img
         src="/together.jpg"
         id="together-img"
+        role="img"
         aria-label="People collaborating as a team"
         alt="People collaborating as a team"
       />

@@ -6,6 +6,8 @@ const Select = ({ id, options, ...rest }) => {
   const { design } = useContext(ThemeContext);
   return (
     <select
+    role="listbox"
+    aria-label="dropdown menu for options"
       id={id}
       className={
         design
@@ -14,7 +16,10 @@ const Select = ({ id, options, ...rest }) => {
       }
     >
       {options.map((option) => (
-        <option key={option.id} value={option.option}>
+        <option
+        role="option"
+        aria-label="option"
+         key={option.id} value={option.option}>
           {option.option}
         </option>
       ))}
