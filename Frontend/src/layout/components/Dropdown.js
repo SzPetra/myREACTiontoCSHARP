@@ -18,7 +18,9 @@ const Dropdown = ({ design, menu, options, ...rest }) => {
 
   return (
     <>
-      <Link
+      <Link 
+        role="link"
+        aria-label="link for navigation bar options"
         onClick={handleDropdown}
         className={
           design

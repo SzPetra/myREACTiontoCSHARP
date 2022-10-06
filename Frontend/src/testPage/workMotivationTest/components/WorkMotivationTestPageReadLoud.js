@@ -97,13 +97,13 @@ const WorkMotivationTestPageReadLoud = () => {
         }
       >
         <h1
+        tabIndex={0}
           className={
             design
               ? "work-mot-test-content-title-contrast"
               : "work-mot-test-content-title"
           }
-          tabIndex={1}
-          onFocus={() => speak({ text: h1LAbel })}
+          onFocus={() => {speak({ text: h1LAbel }); speak({ text: questionValue })}}
         >
           Olyan munkát szeretnék, ahol az ember
         </h1>
@@ -113,8 +113,6 @@ const WorkMotivationTestPageReadLoud = () => {
               ? "work-mot-test-content-question-contrast"
               : "work-mot-test-content-question"
           }
-          tabIndex={2}
-          onFocus={() => speak({ text: questionValue })}
         >
           {workMotivationQuestions[index].question}
         </p>
@@ -213,7 +211,7 @@ const WorkMotivationTestPageReadLoud = () => {
         {feedbackMessage(
           hasValue,
           design,
-          "Válaszodat elmentettük, továbbhaladhatsz a következő kérdésre",
+          "Válaszodat elmentettük, továbbléphetsz a következő kérdésre",
           "Kérlek válassz a fent felsorolt opciók közül egyet"
         )}
         {changeButton()}

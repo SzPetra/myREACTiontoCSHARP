@@ -6,6 +6,8 @@ const Input = ({ id, type, label, placeholder, ...rest }) => {
   const { design } = useContext(ThemeContext);
   return (
     <label
+      role="label"
+      aria-label="label for input"
       className={
         design ? "link-page-form-label-contrast" : "link-page-form-label"
       }
@@ -13,6 +15,8 @@ const Input = ({ id, type, label, placeholder, ...rest }) => {
     >
       {label}
       <input
+      role="input"
+      aria-label="input field"
         className={
           design ? "link-page-form-input-contrast" : "link-page-form-input"
         }

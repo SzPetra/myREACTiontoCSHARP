@@ -173,6 +173,7 @@ const ChairLampTestPage = () => {
     let lastIconObject = listOfIcons[iconList[208]];
     arr.push(
       <lastIconObject.icon
+        autoFocus
         key={209}
         id={209}
         data-checked-id="not-chosen"
